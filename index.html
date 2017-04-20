@@ -413,19 +413,17 @@
       
         
           
-            <p><strong>二进制数在内存中以补码的形式存储。</strong></p>
-<p>按位取反：二进制每一位取反，0 变 1，1 变 0。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">~9 的计算步骤：</div><div class="line">转二进制：0 1001</div><div class="line">计算补码：0 1001</div><div class="line">按位取反：1 0110</div><div class="line">_____</div><div class="line">转为原码：</div><div class="line">按位取反：1 1001   </div><div class="line">末位加一：1 1010</div><div class="line">符号位为 1 是负数，即 - 10</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">~-9 的计算步骤：</div><div class="line">转二进制：1 1001</div><div class="line">计算补码：1 0111</div><div class="line">按位取反：0 1000</div><div class="line">_____</div><div class="line">转为原码：</div><div class="line">正数的补码和原码相同，仍为：0 1000，即 8</div></pre></td></tr></table></figure>
-<hr>
-<p>原码表示法在数值前面增加了一位符号位（即最高位为符号位）：正数该位为 0，负数该位为 1（0 有两种表示：+0 和 - 0），其余位表示数值的大小。例如，用 8 位二进制表示一个数，+11 的原码为 00001011，-11 的原码就是 10001011。<br>反码表示法规定：正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。<br>补码表示法规定：正数的补码与其原码相同；负数的补码是在其反码的末位加 1。</p>
-<p>（1） 原码：在数值前直接加一符号位的表示法。<br>[+7] 原 = 0 0000111 B<br>[-7] 原 = 1 0000111 B<br>注意：<br>a. 数 0 的原码有两种形式：<br>[+0] 原 = 0 0000000 B<br>[-0] 原 = 1 0000000 B<br>b. 8 位二进制原码的表示范围：-127～+127</p>
-<p>（2）反码：<br>正数：正数的反码与原码相同。<br>负数：负数的反码，符号位为 “1”，数值部分按位取反。<br>[+7] 反 = 0 0000111 B<br>[-7] 反 = 1 1111000 B<br>注意：<br>a. 数 0 的反码也有两种形式，即<br>[+0] 反 = 0 0000000 B<br>[-0] 反 = 1 1111111 B<br>b. 8 位二进制反码的表示范围：-127～+127</p>
-<p>（3）补码<br>正数：正数的补码和原码相同。<br>负数：负数的补码则是符号位为 “1”。并且，这个“1” 既是符号位，也是数值位。数值部分按位取反后再在末位（最低位）加 1。也就是“反码 + 1”。<br>求负整数的补码，原码符号位不变，先将原码减去 1，最后数值各位取反。（但由于 2 进制的特殊性，通常先使数值位各位取反，最后整个数加 1。）</p>
-<p>例如： 符号位 数值位<br>[+7] 补 = 0 0000111 B<br>[-7] 补 = 1 1111001 B<br>注意：<br>a. 采用补码后，可以方便地将减法运算转化成加法运算，运算过程得到简化。正数的补码即是它所表示的数的真值，而负数的补码的数值部份却不是它所表示的数的真值。采用补码进行运算，所得结果仍为补码。<br>b. 与原码、反码不同，数值 0 的补码只有一个，即 [0] 补 = 00000000B。<br>c. 若字长为 8 位，则补码所表示的范围为 - 128～+127；进行补码运算时，应注意所得结果不应超过补码所能表示数的范围。</p>
-<p>转化为原码</p>
-<p>已知一个数的补码，求原码的操作其实就是对该补码再求补码：<br>⑴如果补码的符号位为 “0”，表示是一个正数，其原码就是补码。<br>⑵如果补码的符号位为 “1”，表示是一个负数，那么求给定的这个补码的补码就是要求的原码。</p>
-
-          
+          二进制数在内存中以补码的形式存储。
+按位取反：二进制每一位取反，0 变 1，1 变 0。123456789~9 的计算步骤：转二进制：0 1001计算补码：0 1001按位取反：1 0110_____转为原码：按位取反：1 1001   末位加一：1 1010符号位为 1 是负数，即 - 10
+12
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/20/按位取反运算符-到底应该怎样计算？/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -566,13 +564,17 @@
       
         
           
-            <h1 style="text-align:center">C-语言中-d-o-f-e-x-的意义</h1>
+          C-语言中-d-o-f-e-x-的意义
 
-<p><span style="font-size:14px">格式说明由 &ldquo;％&rdquo; 和格式字符组成，如％d％f 等。它的作用是将输出的数据转换为指定的格式输出。格式说明总是由 &ldquo;％&rdquo; 字符开始的。不同类型的数据用不同的格式字符。&nbsp;<br><br>格式字符有 d,o,x,u,c,s,f,e,g 等。&nbsp;</span><br><br>如</p>
-
-<div><br><pre style="margin-left:40px"><br>％d 整型输出，％ld 长整型输出，<br><br>％o 以八进制数形式输出整数，<br><br>％x 以十六进制数形式输出整数，<br><br>％u 以十进制数输出 unsigned 型数据 (无符号数)。<br><br>％c 用来输出一个字符，<br><br>％s 用来输出一个字符串，<br><br>％f 用来输出实数，以小数形式输出，<br><br>％e 以指数形式输出实数，<br><br>％g 根据大小自动选 f 格式或 e 格式，且不输出无意义的零。<br><br>scanf(控制字符，地址列表)<br>格式字符的含义同 printf 函数，地址列表是由若干个地址组成的表列，可以是变量的地址，或字符串的首地址。如 scanf(&quot;％d％c％s&quot;,&amp;a,&amp;b,str)；</pre><br></div>
-
-          
+格式说明由 &ldquo;％&rdquo; 和格式字符组成，如％d％f 等。它的作用是将输出的数据转换为指定的格式输出。格式说明总是由 &ldquo;％&rdquo; 字符开始的。不同类型的数据用不同的格式字符。&nbsp;格式字符有 d,o,x,u,c,s
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/20/C-语言中-d-o-f-e-x-的意义/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -713,34 +715,17 @@
       
         
           
-            <h1 style="text-align:center">《Deep Learning》（深度学习）中文版开放下载</h1>
+          《Deep Learning》（深度学习）中文版开放下载
 
-<p><span style="font-size:14px">《<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.deeplearningbook.org%2F" target="_blank">Deep Learning</a>》（深度学习）是一本皆在帮助学生和从业人员进入<strong>机器学习</strong>领域的教科书，以开源的形式免费在网络上提供，这本书是由学界领军人物&nbsp;<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.iangoodfellow.com%2F" target="_blank">Ian Goodfellow</a>、<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.iro.umontreal.ca%2F~bengioy%2Fyoshua_en%2F" target="_blank">Yoshua Bengio</a>&nbsp;和&nbsp;<a href="http://www.yilan.io/article/redirect?url=https%3A%2F%2Faaroncourville.wordpress.com%2F" target="_blank">Aaron Courville</a>&nbsp;合力打造。@Appinn</span></p>
-
-<p><span style="font-size:14px"><img alt="" src="http://7x2wdd.com2.z0.glb.qiniucdn.com/36f165d9c1cba1e9cefbcdaddc87382d" style="float:left; height:420px; width:315px"></span></p>
-
-<p><hr></p>
-<p>来自<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.jiqizhixin.com%2Farticle%2F2647" target="_blank">机器之心</a>的消息。</p>
-
-<p><span style="background-color:#f0f8ff">这本书的主题具体来说，是机器学习的一种，一种能够使计算机系统从经验和数据中得到提高的技术。深度学习是一种特定类型的机器学习，具有强大的能力和灵活性，它将大千世界表示为嵌套的层次概念体系（由较简单概念间的联系定义复杂概念、从一般抽象概括到高级抽象表示）。对于本书的结构，第一部分介绍基本的数学工具和机器学习的概念，第二部分介绍最成熟的深度学习算法，而第三部分讨论某些具有展望性的想法，它们被广泛地认为是深度学习未来的研究重点。</span></p>
-
-<p><span style="background-color:#f0f8ff">因此，本书从基础数学知识到各类深度方法全面而又深入地描述了深度学习的各个主题。译者们也相信开源此书 PDF 版的中文译文可以促进大家对深度学习的基础和前沿知识有进一步的理解，也相信通过开放高质量的专业书籍能做到先阅读后付费。</span></p>
-
-<p>Deep Learning 中文版在&nbsp;<a href="http://www.yilan.io/article/redirect?url=https%3A%2F%2Fgithub.com%2Fexacity%2Fdeeplearningbook-chinese" target="_blank">Github 开源</a>，你可以直接前往阅读、下载，译者建议「读者可以以中文版为主、<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.deeplearningbook.org%2F" target="_blank">英文版</a>为辅来阅读学习」。</p>
-
-<p>更多细节请前往 Github，另外译者们依旧需要反馈意见，你可以在 Github 提交 issue，PDF 下载地址<a href="http://www.yilan.io/article/redirect?url=https%3A%2F%2Fgithub.com%2Fexacity%2Fdeeplearningbook-chinese%2Freleases" target="_blank">在这里</a>（<a href="http://www.yilan.io/article/redirect?url=https%3A%2F%2Fpan.baidu.com%2Fs%2F1skORN8x" target="_blank">百度盘地址</a>），在线阅读<a href="http://www.yilan.io/article/redirect?url=https%3A%2F%2Fexacity.github.io%2Fdeeplearningbook-chinese%2F" target="_blank">在这里</a>。</p>
-
-<p>注意由于版权问题，在线版本不提供图片。</p>
-
-<div style="page-break-after:always"><span style="display:none">&nbsp;</span></div>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-          
+《Deep Learning》（深度学习）是一本皆在帮助学生和从业人员进入机器学习领域的教科书，以开源的形式免费在网络上提供，这本书是由学界领军人物&nbsp;Ian Goodfellow、Yoshua Bengio&nbsp;和&nbsp
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/20/《Deep-Learning》（深度学习）中文版开放下载/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
