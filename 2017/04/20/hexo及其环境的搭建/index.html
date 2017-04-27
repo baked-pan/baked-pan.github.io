@@ -109,7 +109,7 @@ Git安装下载并安装Git，度娘备份，msysgit 是 Windows 版的 Git，�
 Node.js安装下载并安装Node.js,安装完成后在CMD输入  node -v显示版本表示安装node.">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/20/hexo及其环境的搭建/Git安装.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/20/hexo及其环境的搭建/Hexo初始.jpg">
-<meta property="og:updated_time" content="2017-04-27T17:50:08.438Z">
+<meta property="og:updated_time" content="2017-04-27T17:59:19.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo及其环境的搭建(Windows+HTTP版)">
 <meta name="twitter:description" content="工具 / 原料
@@ -477,7 +477,7 @@ Node.js安装下载并安装Node.js,安装完成后在CMD输入  node -v显示�
 <p>定这个参数后，您就只能通过该 IP 才能访问站点。例如，对于一台使用无线网络的笔记本电脑，除了指向本机的<code>127.0.0.1</code>外，通常还有一个<code>192.168.*.*</code>的局域网 IP，如果像上面那样使用<code>-i</code>参数，就不能用<code>127.0.0.1</code>来访问站点了。对于有公网 IP 的主机，如果您指定一个局域网 IP 作为<code>-i</code>参数的值，那么就无法通过公网来访问站点。</p>
 <h3 id="相对路径引用的标签插件"><a href="#相对路径引用的标签插件" class="headerlink" title="相对路径引用的标签插件"></a>相对路径引用的标签插件</h3><p>通过常规的 markdown 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。在 Hexo 2 时代，社区创建了很多插件来解决这个问题。但是，随着 Hexo 3 的发布，许多新的标签插件被加入到了核心代码中。这使得你可以更简单地在文章中引用你的资源。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_path slug %&#125;</div><div class="line">&#123;% asset_img slug [title] %&#125;</div><div class="line">&#123;% asset_link slug [title] %&#125;</div></pre></td></tr></table></figure></p>
 <p>比如说：当你打开文章资源文件夹功能后，你把一个 <code>example.jpg</code> 图片放在了你的资源文件夹中，如果通过使用相对路径的常规 markdown 语法<code>![](/example.jpg)</code>，它将 不会 出现在首页上。（但是它会在文章中按你期待的方式工作）<br>正确的引用图片方式是使用下列的标签插件而不是 markdown ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_img example.jpg This is an example image %&#125;</div></pre></td></tr></table></figure></p>
-<p>通过这种方式，图片将会同时出现在文章和主页以及归档页中。</p>
+<p>通过这种方式，图片将会同时出现在文章和主页以及归档页中。比如下边的图片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% asset_example example.png This is an example image %&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
