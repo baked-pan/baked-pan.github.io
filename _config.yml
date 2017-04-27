@@ -81,7 +81,7 @@ search:
   
 backup:
     type: git
-    message: 备份ing，完成后请检查backup-branch分支
+    message: ~~~~~~~~~~~~~~~~~~备份ing，完成后请检查backup-branch分支~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     theme: next,landscape
     repository:
        github: https://github.com/baked-pan/baked-pan.github.io.git,backup
