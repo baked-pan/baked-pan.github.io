@@ -1,6 +1,7 @@
 ---
 title: hexo及其环境的搭建(Windows+HTTP版)
 date: 2017-04-20 21:59:07
+update: 2017-04-28 02:00:01
 tags: 
 - hexo
 - 环境
