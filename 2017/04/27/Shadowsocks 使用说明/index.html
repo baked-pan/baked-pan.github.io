@@ -1,0 +1,1085 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ss,说明,centos," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="[TOC]
+一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
+
+TCP &amp;amp; UDP support
+User management API
+TCP fast open
+角色和软重启
+Destination IP blacklist
+
+二.服务端I安装Debian / Ubuntu:12apt-get install python-pippip install shadowsocks
+Ce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shadowsocks 使用说明">
+<meta property="og:url" content="https://baked-pan.github.io/2017/04/27/Shadowsocks 使用说明/index.html">
+<meta property="og:site_name" content="未知领域">
+<meta property="og:description" content="[TOC]
+一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
+
+TCP &amp;amp; UDP support
+User management API
+TCP fast open
+角色和软重启
+Destination IP blacklist
+
+二.服务端I安装Debian / Ubuntu:12apt-get install python-pippip install shadowsocks
+Ce">
+<meta property="og:image" content="https://baked-pan.github.io/./images/Shadowsocks%20Server%20on%20Windows.png">
+<meta property="og:updated_time" content="2017-04-27T10:06:44.690Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shadowsocks 使用说明">
+<meta name="twitter:description" content="[TOC]
+一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
+
+TCP &amp;amp; UDP support
+User management API
+TCP fast open
+角色和软重启
+Destination IP blacklist
+
+二.服务端I安装Debian / Ubuntu:12apt-get install python-pippip install shadowsocks
+Ce">
+<meta name="twitter:image" content="https://baked-pan.github.io/./images/Shadowsocks%20Server%20on%20Windows.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://baked-pan.github.io/2017/04/27/Shadowsocks 使用说明/"/>
+
+
+
+
+
+  <title> Shadowsocks 使用说明 | 未知领域 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1cf665ab422bf343c7297c3efe552bf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">未知领域</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://baked-pan.github.io/2017/04/27/Shadowsocks 使用说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="四维胖次">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未知领域">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Shadowsocks 使用说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T18:04:23+08:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/说明/" itemprop="url" rel="index">
+                    <span itemprop="name">说明</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/说明/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/说明/工具/ss/" itemprop="url" rel="index">
+                    <span itemprop="name">ss</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="一-概要"><a href="#一-概要" class="headerlink" title="一.概要"></a>一.概要</h1><p>一个帮你绕过防火墙的迅速的隧道代理.<br>特性:</p>
+<ul>
+<li>TCP &amp; UDP support</li>
+<li>User management API</li>
+<li>TCP fast open</li>
+<li>角色和软重启</li>
+<li>Destination IP blacklist</li>
+</ul>
+<h1 id="二-服务端"><a href="#二-服务端" class="headerlink" title="二.服务端"></a>二.服务端</h1><h2 id="I安装"><a href="#I安装" class="headerlink" title="I安装"></a>I安装</h2><h3 id="Debian-Ubuntu"><a href="#Debian-Ubuntu" class="headerlink" title="Debian / Ubuntu:"></a>Debian / Ubuntu:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">apt-get install python-pip</div><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure>
+<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS:"></a>CentOS:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install python-setuptools &amp;&amp; easy_install pip</div><div class="line">pip install shadowsocks</div><div class="line">enter code here</div></pre></td></tr></table></figure>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h3><p>不推荐部署在Windows上，因为在Windows上的<code>select</code>API非常有限。如果你想要为多个用户提供服务，请选择部署在LINUX上</p>
+<p> 1.下载并安装l <a href="https://www.python.org/downloads/windows/" target="_blank" rel="external">Python for Windows</a>, 在64位Windows操作系统中可以选择 x86-64 MSI 安装包 .<br> 2.在这个过程中你需要安装 <code>pip</code><br> <img src="./images/Shadowsocks%20Server%20on%20Windows.png" alt="Shadowsocks Server on Windows.png" title="Shadowsocks Server on Windows"></p>
+<ol>
+<li>安装 <a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">OpenSSL for Windows</a>. 如果你安装了 <strong>64</strong>位 Python, 你应该选择<strong>64</strong>位 OpenSSL.</li>
+<li><p>如在 Linux上安装,在命令提示符下,输入命令行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure>
+<p>5.如果你想用 <code>salsa20</code> or <code>chacha20</code> 加密, 下载 <a href="http://download.libsodium.org/libsodium/releases/" target="_blank" rel="external">libsodium</a> 并将所有dll文件(不需要路径)放进  <code>C:\Windows\System32</code> or <code>C:\Windows\SysWOW64 (32bit Python on 64bit Windows)</code>.</p>
+<h2 id="II使用"><a href="#II使用" class="headerlink" title="II使用"></a>II使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -p 443 -k password -m aes-256-cfb</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行:"></a>后台运行:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -p 443 -k password -m aes-256-cfb --user nobody -d start</div></pre></td></tr></table></figure>
+<h3 id="停止"><a href="#停止" class="headerlink" title="停止:"></a>停止:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -d stop</div></pre></td></tr></table></figure>
+<h3 id="检查日志"><a href="#检查日志" class="headerlink" title="检查日志:"></a>检查日志:</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo less /<span class="keyword">var</span>/<span class="keyword">log</span>/shadowsocks.<span class="built_in">log</span></div></pre></td></tr></table></figure>
+<h3 id="用-h-查看所有参数"><a href="#用-h-查看所有参数" class="headerlink" title="用 -h 查看所有参数"></a>用 <code>-h</code> 查看所有参数</h3><h2 id="II以配置文件使用-建议"><a href="#II以配置文件使用-建议" class="headerlink" title="II以配置文件使用(建议)"></a>II以配置文件使用(建议)</h2><h3 id="创造配置文件并运行"><a href="#创造配置文件并运行" class="headerlink" title="创造配置文件并运行"></a>创造配置文件并运行</h3><h4 id="创造配置文件-etc-shadowsocks-json"><a href="#创造配置文件-etc-shadowsocks-json" class="headerlink" title="创造配置文件 /etc/shadowsocks.json"></a>创造配置文件 /etc/shadowsocks.json</h4><p>单用户模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;server&quot;:&quot;my_server_ip&quot;,</div><div class="line">    &quot;server_port&quot;:8388,</div><div class="line">    &quot;local_address&quot;: &quot;127.0.0.1&quot;,</div><div class="line">    &quot;local_port&quot;:1080,</div><div class="line">    &quot;password&quot;:&quot;mypassword&quot;,</div><div class="line">    &quot;timeout&quot;:300,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">    &quot;fast_open&quot;: false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>多个用户模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;my_server_ip&quot;,</div><div class="line">&quot;port_password&quot;:&#123;</div><div class="line">     &quot;8381&quot;:&quot;password1&quot;,</div><div class="line">     &quot;8382&quot;:&quot;password2&quot;,</div><div class="line">     &quot;8383&quot;:&quot;password3&quot;,</div><div class="line">     &quot;8384&quot;:&quot;password4&quot;</div><div class="line">     &#125;,</div><div class="line">&quot;timeout&quot;:300</div><div class="line">&quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">&quot;fast_open&quot;:false,</div><div class="line">&quot;workers&quot;:1</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>各个字段的解释:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td>监听的主机地址</td>
+</tr>
+<tr>
+<td>server_port</td>
+<td>服务端口</td>
+</tr>
+<tr>
+<td>local_address</td>
+<td>监听的本地地址</td>
+</tr>
+<tr>
+<td>local_port</td>
+<td>本地端口</td>
+</tr>
+<tr>
+<td>password</td>
+<td>密码(提供给加密)</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>超时</td>
+</tr>
+<tr>
+<td>method</td>
+<td>加密方式，预置: “aes-256-cfb”，见III加密格式(#Encryption)</td>
+</tr>
+<tr>
+<td>fast_open</td>
+<td>使用TCP_FASTOPEN, true /false</td>
+</tr>
+<tr>
+<td>workers</td>
+<td>number of workers, available on Unix/Linux</td>
+</tr>
+</tbody>
+</table>
+<h4 id="前台运行"><a href="#前台运行" class="headerlink" title="前台运行"></a>前台运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json</div></pre></td></tr></table></figure>
+<h4 id="后台运行-1"><a href="#后台运行-1" class="headerlink" title="后台运行"></a>后台运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start</div><div class="line">ssserver -c /etc/shadowsocks.json -d stop</div></pre></td></tr></table></figure>
+<h3 id="开始服务"><a href="#开始服务" class="headerlink" title="开始服务:"></a>开始服务:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json</div></pre></td></tr></table></figure>
+<h2 id="III加密格式"><a href="#III加密格式" class="headerlink" title="III加密格式"></a>III加密格式<span id="Encryption"></span></h2><p>支持的密码类</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Python</th>
+<th>libev</th>
+<th>Go</th>
+<th>Qt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSL library (AES, etc)</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>RC4-MD5</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>Salsa20, Chacha20</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+<h3 id="M2Crypto"><a href="#M2Crypto" class="headerlink" title="M2Crypto"></a>M2Crypto</h3><p>使用<code>M2Crypto</code>会稍微加快加密过程<br>Debian:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install python-m2crypto</div></pre></td></tr></table></figure></p>
+<p>CentOS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install m2crypto</div></pre></td></tr></table></figure></p>
+<h3 id="rc4-md5"><a href="#rc4-md5" class="headerlink" title="rc4-md5"></a>rc4-md5</h3><p><code>rc4-md5</code> 是安全，快速的使用不同的值链接加密方式. 推荐在 OpenWRT路由器上使用.</p>
+<h3 id="salsa20-and-chacha20"><a href="#salsa20-and-chacha20" class="headerlink" title="salsa20 and chacha20"></a>salsa20 and chacha20</h3><p><code>salsa20</code> and <code>chacha20</code> 同是快速的序列密码. 在x86_64系统上最优部署的<code>salsa20</code> 甚至能获得比<code>r4</code>快两倍的速度 (尽管ARM运行较慢).<br>安装 <a href="https://github.com/jedisct1/libsodium" target="_blank" rel="external">libsodium</a> &gt;= 1.0.0 如果你想要使用它们.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential</div><div class="line">wget https://github.com/jedisct1/libsodium/releases/download/1.0.8/libsodium-1.0.8.tar.gz</div><div class="line">tar xf libsodium-1.0.8.tar.gz &amp;&amp; cd libsodium-1.0.8</div><div class="line">./configure &amp;&amp; make -j2</div><div class="line">sudo make install</div><div class="line">sudo ldconfig</div></pre></td></tr></table></figure></p>
+<h3 id="弃用的密码"><a href="#弃用的密码" class="headerlink" title="弃用的密码"></a>弃用的密码</h3><p>这些旧的密码是慢的或者不安全的，不要使用它们:</p>
+<ul>
+<li>rc4</li>
+<li>des-cfb</li>
+<li>table</li>
+<li>salsa20-ctr</li>
+</ul>
+<h2 id="IV文档"><a href="#IV文档" class="headerlink" title="IV文档"></a>IV文档</h2><p>你可以在 <a href="https://github.com/shadowsocks/shadowsocks/wiki" target="_blank" rel="external">Wiki</a>.上找到所有文档</p>
+<h2 id="开源许可证"><a href="#开源许可证" class="headerlink" title="开源许可证"></a>开源许可证</h2><p>Copyright 2015 clowwindy<br>Licensed under the <a href="https://choosealicense.com/licenses/apache-2.0/" target="_blank" rel="external">Apache License</a>; you may not use this file except in compliance with the License. You may obtain a copy of the License at<br>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ss/" rel="tag"># ss</a>
+          
+            <a href="/tags/说明/" rel="tag"># 说明</a>
+          
+            <a href="/tags/centos/" rel="tag"># centos</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/26/自建的DNS服务器，支持番羽土啬挂油管/" rel="next" title="自建的DNS服务器，支持番羽土啬挂油管">
+                <i class="fa fa-chevron-left"></i> 自建的DNS服务器，支持番羽土啬挂油管
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="四维胖次" />
+          <p class="site-author-name" itemprop="name">四维胖次</p>
+           
+              <p class="site-description motion-element" itemprop="description">在中国，每一分钟就有60S过去</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-概要"><span class="nav-number">1.</span> <span class="nav-text">一.概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-服务端"><span class="nav-number">2.</span> <span class="nav-text">二.服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I安装"><span class="nav-number">2.1.</span> <span class="nav-text">I安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debian-Ubuntu"><span class="nav-number">2.1.1.</span> <span class="nav-text">Debian / Ubuntu:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS"><span class="nav-number">2.1.2.</span> <span class="nav-text">CentOS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II使用"><span class="nav-number">2.2.</span> <span class="nav-text">II使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后台运行"><span class="nav-number">2.2.1.</span> <span class="nav-text">后台运行:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止"><span class="nav-number">2.2.2.</span> <span class="nav-text">停止:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查日志"><span class="nav-number">2.2.3.</span> <span class="nav-text">检查日志:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用-h-查看所有参数"><span class="nav-number">2.2.4.</span> <span class="nav-text">用 -h 查看所有参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II以配置文件使用-建议"><span class="nav-number">2.3.</span> <span class="nav-text">II以配置文件使用(建议)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创造配置文件并运行"><span class="nav-number">2.3.1.</span> <span class="nav-text">创造配置文件并运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创造配置文件-etc-shadowsocks-json"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">创造配置文件 /etc/shadowsocks.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前台运行"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">前台运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后台运行-1"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">后台运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始服务"><span class="nav-number">2.3.2.</span> <span class="nav-text">开始服务:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III加密格式"><span class="nav-number">2.4.</span> <span class="nav-text">III加密格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#M2Crypto"><span class="nav-number">2.4.1.</span> <span class="nav-text">M2Crypto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rc4-md5"><span class="nav-number">2.4.2.</span> <span class="nav-text">rc4-md5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#salsa20-and-chacha20"><span class="nav-number">2.4.3.</span> <span class="nav-text">salsa20 and chacha20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弃用的密码"><span class="nav-number">2.4.4.</span> <span class="nav-text">弃用的密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV文档"><span class="nav-number">2.5.</span> <span class="nav-text">IV文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源许可证"><span class="nav-number">2.6.</span> <span class="nav-text">开源许可证</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">四维胖次</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
