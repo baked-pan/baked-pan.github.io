@@ -109,7 +109,7 @@ Git安装下载并安装Git，度娘备份，msysgit 是 Windows 版的 Git，�
 Node.js安装下载并安装Node.js,安装完成后在CMD输入  node -v显示版本表示安装node.">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/Git安装.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/Hexo初始.jpg">
-<meta property="og:updated_time" content="2017-04-27T14:30:44.217Z">
+<meta property="og:updated_time" content="2017-04-27T14:37:45.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo及其环境的搭建">
 <meta name="twitter:description" content="工具 / 原料
@@ -451,7 +451,9 @@ Node.js安装下载并安装Node.js,安装完成后在CMD输入  node -v显示�
 <figure class="highlight vbscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo <span class="built_in">server</span></div></pre></td></tr></table></figure>
 <p><img src="/2017/04/27/hexo及其环境的搭建/Hexo初始.jpg" alt="hexo初始"></p>
 <h2 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h2><h2 id="创建Repository仓库"><a href="#创建Repository仓库" class="headerlink" title="创建Repository仓库"></a>创建Repository仓库</h2><p>新建<code>用户名.github.io</code>的仓库</p>
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>1.到刚创建的Repository下，获得SSH地址<br>2.<br>2.编辑Hexo根目录下的<code>_config.yml</code><br>3.<br>3.修改文件里面的deploy。其中的repository 添加为SSH，如</p>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>1.到刚创建的Repository下，获得SSH地址</p>
+<p>2.编辑Hexo根目录下的<code>_config.yml</code></p>
+<p>3.修改文件里面的deploy。其中的repository 添加为SSH，如</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: git</div><div class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/jasmine-na/jasmine-na.github.io.git</span></div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
 <h2 id="完成部署"><a href="#完成部署" class="headerlink" title="完成部署"></a>完成部署</h2><ol>
 <li>下载hexo-deployer-git</li>
