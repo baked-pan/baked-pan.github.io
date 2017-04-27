@@ -87,8 +87,7 @@
 
 
 
-<meta name="description" content="[TOC]
-一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
+<meta name="description" content="一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
 
 TCP &amp;amp; UDP support
 User management API
@@ -97,13 +96,12 @@ TCP fast open
 Destination IP blacklist
 
 二.服务端I安装Debian / Ubuntu:12apt-get install python-pippip install shadowsocks
-Ce">
+CentOS:1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shadowsocks 使用说明">
 <meta property="og:url" content="https://baked-pan.github.io/2017/04/27/Shadowsocks 使用说明/index.html">
 <meta property="og:site_name" content="未知领域">
-<meta property="og:description" content="[TOC]
-一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
+<meta property="og:description" content="一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
 
 TCP &amp;amp; UDP support
 User management API
@@ -112,13 +110,12 @@ TCP fast open
 Destination IP blacklist
 
 二.服务端I安装Debian / Ubuntu:12apt-get install python-pippip install shadowsocks
-Ce">
+CentOS:1">
 <meta property="og:image" content="https://baked-pan.github.io/./images/Shadowsocks%20Server%20on%20Windows.png">
-<meta property="og:updated_time" content="2017-04-27T10:06:44.690Z">
+<meta property="og:updated_time" content="2017-04-27T10:53:48.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shadowsocks 使用说明">
-<meta name="twitter:description" content="[TOC]
-一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
+<meta name="twitter:description" content="一.概要一个帮你绕过防火墙的迅速的隧道代理.特性:
 
 TCP &amp;amp; UDP support
 User management API
@@ -127,7 +124,7 @@ TCP fast open
 Destination IP blacklist
 
 二.服务端I安装Debian / Ubuntu:12apt-get install python-pippip install shadowsocks
-Ce">
+CentOS:1">
 <meta name="twitter:image" content="https://baked-pan.github.io/./images/Shadowsocks%20Server%20on%20Windows.png">
 
 
@@ -451,8 +448,7 @@ Ce">
       
 
       
-        <p>[TOC]</p>
-<h1 id="一-概要"><a href="#一-概要" class="headerlink" title="一.概要"></a>一.概要</h1><p>一个帮你绕过防火墙的迅速的隧道代理.<br>特性:</p>
+        <h1 id="一-概要"><a href="#一-概要" class="headerlink" title="一.概要"></a>一.概要</h1><p>一个帮你绕过防火墙的迅速的隧道代理.<br>特性:</p>
 <ul>
 <li>TCP &amp; UDP support</li>
 <li>User management API</li>
@@ -475,7 +471,8 @@ Ce">
 <h3 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行:"></a>后台运行:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -p 443 -k password -m aes-256-cfb --user nobody -d start</div></pre></td></tr></table></figure>
 <h3 id="停止"><a href="#停止" class="headerlink" title="停止:"></a>停止:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -d stop</div></pre></td></tr></table></figure>
 <h3 id="检查日志"><a href="#检查日志" class="headerlink" title="检查日志:"></a>检查日志:</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo less /<span class="keyword">var</span>/<span class="keyword">log</span>/shadowsocks.<span class="built_in">log</span></div></pre></td></tr></table></figure>
-<h3 id="用-h-查看所有参数"><a href="#用-h-查看所有参数" class="headerlink" title="用 -h 查看所有参数"></a>用 <code>-h</code> 查看所有参数</h3><h2 id="II以配置文件使用-建议"><a href="#II以配置文件使用-建议" class="headerlink" title="II以配置文件使用(建议)"></a>II以配置文件使用(建议)</h2><h3 id="创造配置文件并运行"><a href="#创造配置文件并运行" class="headerlink" title="创造配置文件并运行"></a>创造配置文件并运行</h3><h4 id="创造配置文件-etc-shadowsocks-json"><a href="#创造配置文件-etc-shadowsocks-json" class="headerlink" title="创造配置文件 /etc/shadowsocks.json"></a>创造配置文件 /etc/shadowsocks.json</h4><p>单用户模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;server&quot;:&quot;my_server_ip&quot;,</div><div class="line">    &quot;server_port&quot;:8388,</div><div class="line">    &quot;local_address&quot;: &quot;127.0.0.1&quot;,</div><div class="line">    &quot;local_port&quot;:1080,</div><div class="line">    &quot;password&quot;:&quot;mypassword&quot;,</div><div class="line">    &quot;timeout&quot;:300,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">    &quot;fast_open&quot;: false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="用-h-查看所有参数"><a href="#用-h-查看所有参数" class="headerlink" title="用 -h 查看所有参数"></a>用 <code>-h</code> 查看所有参数</h3><h2 id="II以配置文件使用-建议"><a href="#II以配置文件使用-建议" class="headerlink" title="II以配置文件使用(建议)"></a>II以配置文件使用(建议)</h2><h3 id="创造配置文件并运行"><a href="#创造配置文件并运行" class="headerlink" title="创造配置文件并运行"></a>创造配置文件并运行</h3><p><span id="config.json"></span></p>
+<h4 id="创造配置文件-etc-shadowsocks-json"><a href="#创造配置文件-etc-shadowsocks-json" class="headerlink" title="创造配置文件 /etc/shadowsocks.json"></a>创造配置文件 /etc/shadowsocks.json</h4><p>单用户模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;server&quot;:&quot;my_server_ip&quot;,</div><div class="line">    &quot;server_port&quot;:8388,</div><div class="line">    &quot;local_address&quot;: &quot;127.0.0.1&quot;,</div><div class="line">    &quot;local_port&quot;:1080,</div><div class="line">    &quot;password&quot;:&quot;mypassword&quot;,</div><div class="line">    &quot;timeout&quot;:300,</div><div class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">    &quot;fast_open&quot;: false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>多个用户模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;my_server_ip&quot;,</div><div class="line">&quot;port_password&quot;:&#123;</div><div class="line">     &quot;8381&quot;:&quot;password1&quot;,</div><div class="line">     &quot;8382&quot;:&quot;password2&quot;,</div><div class="line">     &quot;8383&quot;:&quot;password3&quot;,</div><div class="line">     &quot;8384&quot;:&quot;password4&quot;</div><div class="line">     &#125;,</div><div class="line">&quot;timeout&quot;:300</div><div class="line">&quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">&quot;fast_open&quot;:false,</div><div class="line">&quot;workers&quot;:1</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>各个字段的解释:</p>
 <table>
@@ -512,11 +509,11 @@ Ce">
 </tr>
 <tr>
 <td>method</td>
-<td>加密方式，预置: “aes-256-cfb”，见III加密格式(#Encryption)</td>
+<td>加密方式，预置: “aes-256-cfb”，见<a href="#Encryption">III加密格式</a></td>
 </tr>
 <tr>
 <td>fast_open</td>
-<td>使用TCP_FASTOPEN, true /false</td>
+<td>使用<a href="#fast_open">TCP_FASTOPEN</a>, true /false</td>
 </tr>
 <tr>
 <td>workers</td>
@@ -527,7 +524,8 @@ Ce">
 <h4 id="前台运行"><a href="#前台运行" class="headerlink" title="前台运行"></a>前台运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json</div></pre></td></tr></table></figure>
 <h4 id="后台运行-1"><a href="#后台运行-1" class="headerlink" title="后台运行"></a>后台运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json -d start</div><div class="line">ssserver -c /etc/shadowsocks.json -d stop</div></pre></td></tr></table></figure>
 <h3 id="开始服务"><a href="#开始服务" class="headerlink" title="开始服务:"></a>开始服务:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks.json</div></pre></td></tr></table></figure>
-<h2 id="III加密格式"><a href="#III加密格式" class="headerlink" title="III加密格式"></a>III加密格式<span id="Encryption"></span></h2><p>支持的密码类</p>
+<p><span id="Encryption"></span></p>
+<h2 id="III加密格式"><a href="#III加密格式" class="headerlink" title="III加密格式"></a>III加密格式</h2><p>支持的密码类</p>
 <table>
 <thead>
 <tr>
@@ -571,9 +569,18 @@ Ce">
 <li>rc4</li>
 <li>des-cfb</li>
 <li>table</li>
-<li>salsa20-ctr</li>
+<li>salsa20-ctr<h2 id="IV-其他"><a href="#IV-其他" class="headerlink" title="IV 其他"></a>IV 其他</h2><span id="fast_open"></span><h3 id="fast-open"><a href="#fast-open" class="headerlink" title="fast_open"></a>fast_open</h3>如果你的伺服器和客户程序都部署在 Linux 3.7.1 或者更高版本,你可以打开 fast_open 以获得更低延迟.</li>
 </ul>
-<h2 id="IV文档"><a href="#IV文档" class="headerlink" title="IV文档"></a>IV文档</h2><p>你可以在 <a href="https://github.com/shadowsocks/shadowsocks/wiki" target="_blank" rel="external">Wiki</a>.上找到所有文档</p>
+<p>首先你在的配置文件 <a href="#config.json">config.json</a>将设置<code>fast_open</code>为 <code>true</code></p>
+<p>然后在你的OS上暂时打开<code>fast open</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo 3 &gt; /proc/sys/net/ipv4/tcp_fastopen</div></pre></td></tr></table></figure></p>
+<p>要永久打开<code>fast open</code>, 见 <a href="#Optimizing_Shadowsocks">Optimizing Shadowsocks</a>.<br><span id="Optimizing_Shadowsocks"></span></p>
+<h3 id="Optimizing-Shadowsocks"><a href="#Optimizing-Shadowsocks" class="headerlink" title="Optimizing Shadowsocks"></a>Optimizing Shadowsocks</h3><p>如果你在日志中看到大量<code>error: too many open files</code>, 你应该优化你的系统. 这个引导应用到所有shadowsocks 服务器 (Python, libev, etc).</p>
+<h4 id="在-Debian-7"><a href="#在-Debian-7" class="headerlink" title="在 Debian 7"></a>在 Debian 7</h4><p>新建 <code>/etc/sysctl.d/local.conf</code> 并包含以下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"># max open files</div><div class="line">fs.file-max = 51200</div><div class="line"># max read buffer</div><div class="line">net.core.rmem_max = 67108864</div><div class="line"># max write buffer</div><div class="line">net.core.wmem_max = 67108864</div><div class="line"># default read buffer</div><div class="line">net.core.rmem_default = 65536</div><div class="line"># default write buffer</div><div class="line">net.core.wmem_default = 65536</div><div class="line"># max processor input queue</div><div class="line">net.core.netdev_max_backlog = 4096</div><div class="line"># max backlog</div><div class="line">net.core.somaxconn = 4096</div><div class="line"></div><div class="line"># resist SYN flood attacks</div><div class="line">net.ipv4.tcp_syncookies = 1</div><div class="line"># reuse timewait sockets when safe</div><div class="line">net.ipv4.tcp_tw_reuse = 1</div><div class="line"># turn off fast timewait sockets recycling</div><div class="line">net.ipv4.tcp_tw_recycle = 0</div><div class="line"># short FIN timeout</div><div class="line">net.ipv4.tcp_fin_timeout = 30</div><div class="line"># short keepalive time</div><div class="line">net.ipv4.tcp_keepalive_time = 1200</div><div class="line"># outbound port range</div><div class="line">net.ipv4.ip_local_port_range = 10000 65000</div><div class="line"># max SYN backlog</div><div class="line">net.ipv4.tcp_max_syn_backlog = 4096</div><div class="line"># max timewait sockets held by system simultaneously</div><div class="line">net.ipv4.tcp_max_tw_buckets = 5000</div><div class="line"># turn on TCP Fast Open on both client and server side</div><div class="line">net.ipv4.tcp_fastopen = 3</div><div class="line"># TCP receive buffer</div><div class="line">net.ipv4.tcp_rmem = 4096 87380 67108864</div><div class="line"># TCP write buffer</div><div class="line">net.ipv4.tcp_wmem = 4096 65536 67108864</div><div class="line"># turn on path MTU discovery</div><div class="line">net.ipv4.tcp_mtu_probing = 1</div><div class="line"></div><div class="line"># for high-latency network</div><div class="line">net.ipv4.tcp_congestion_control = hybla</div><div class="line"></div><div class="line"># for low-latency network, use cubic instead</div><div class="line"># net.ipv4.tcp_congestion_control = cubic</div></pre></td></tr></table></figure></p>
+<p>然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl --system</div></pre></td></tr></table></figure></p>
+<p>对于旧的操作系统：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sysctl -p /etc/sysctl.d/local.conf</div></pre></td></tr></table></figure></p>
+<p>注意: <strong>不要启用</strong> <code>net.ipv4.tcp_tw_recycle</code>!!! 见 <a href="http://vincent.bernat.im/en/blog/2014-tcp-time-wait-state-linux.html" target="_blank" rel="external">这个文章</a>.<br>如果你使用 <a href="https://github.com/shadowsocks/shadowsocks/wiki/%E7%94%A8-Supervisor-%E8%BF%90%E8%A1%8C-Shadowsocks" target="_blank" rel="external">Supervisor</a>, 确保你在<code>/etc/default/supervisor</code>有如下行  . 一旦你添加了这一行, 重启 Supervisor (<code>service stop supervisor &amp;&amp; service start supervisor</code>).<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ulimit -n 51200</div></pre></td></tr></table></figure></p>
+<p>如果你用其他方式在后台运行 shadowsocks , 确保你在init 脚本添加了 <code>ulimit -n 51200</code> .<br>优化后，一个执行千计连接的繁忙的Shadowsocks服务器 占用大概30MB 内存 和 10% CPU. 请注意在同样的情况下<strong>Linux kernel 经常使用 &gt;100MB RAM</strong> 去处理 buffer 和 cache. 在使用了上述的 sysct 设置, 你用RAM换取了速度. 如果你想要使用更少的RAM，减少 rmem 和 wmem 的大小.</p>
+<h2 id="V文档"><a href="#V文档" class="headerlink" title="V文档"></a>V文档</h2><p>你可以在 <a href="https://github.com/shadowsocks/shadowsocks/wiki" target="_blank" rel="external">Wiki</a>.上找到所有原版文档</p>
 <h2 id="开源许可证"><a href="#开源许可证" class="headerlink" title="开源许可证"></a>开源许可证</h2><p>Copyright 2015 clowwindy<br>Licensed under the <a href="https://choosealicense.com/licenses/apache-2.0/" target="_blank" rel="external">Apache License</a>; you may not use this file except in compliance with the License. You may obtain a copy of the License at<br>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
 
       
@@ -758,7 +765,7 @@ Ce">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-概要"><span class="nav-number">1.</span> <span class="nav-text">一.概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-服务端"><span class="nav-number">2.</span> <span class="nav-text">二.服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I安装"><span class="nav-number">2.1.</span> <span class="nav-text">I安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debian-Ubuntu"><span class="nav-number">2.1.1.</span> <span class="nav-text">Debian / Ubuntu:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS"><span class="nav-number">2.1.2.</span> <span class="nav-text">CentOS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II使用"><span class="nav-number">2.2.</span> <span class="nav-text">II使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后台运行"><span class="nav-number">2.2.1.</span> <span class="nav-text">后台运行:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止"><span class="nav-number">2.2.2.</span> <span class="nav-text">停止:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查日志"><span class="nav-number">2.2.3.</span> <span class="nav-text">检查日志:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用-h-查看所有参数"><span class="nav-number">2.2.4.</span> <span class="nav-text">用 -h 查看所有参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II以配置文件使用-建议"><span class="nav-number">2.3.</span> <span class="nav-text">II以配置文件使用(建议)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创造配置文件并运行"><span class="nav-number">2.3.1.</span> <span class="nav-text">创造配置文件并运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创造配置文件-etc-shadowsocks-json"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">创造配置文件 /etc/shadowsocks.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前台运行"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">前台运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后台运行-1"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">后台运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始服务"><span class="nav-number">2.3.2.</span> <span class="nav-text">开始服务:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III加密格式"><span class="nav-number">2.4.</span> <span class="nav-text">III加密格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#M2Crypto"><span class="nav-number">2.4.1.</span> <span class="nav-text">M2Crypto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rc4-md5"><span class="nav-number">2.4.2.</span> <span class="nav-text">rc4-md5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#salsa20-and-chacha20"><span class="nav-number">2.4.3.</span> <span class="nav-text">salsa20 and chacha20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弃用的密码"><span class="nav-number">2.4.4.</span> <span class="nav-text">弃用的密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV文档"><span class="nav-number">2.5.</span> <span class="nav-text">IV文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源许可证"><span class="nav-number">2.6.</span> <span class="nav-text">开源许可证</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-概要"><span class="nav-number">1.</span> <span class="nav-text">一.概要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-服务端"><span class="nav-number">2.</span> <span class="nav-text">二.服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I安装"><span class="nav-number">2.1.</span> <span class="nav-text">I安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debian-Ubuntu"><span class="nav-number">2.1.1.</span> <span class="nav-text">Debian / Ubuntu:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS"><span class="nav-number">2.1.2.</span> <span class="nav-text">CentOS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II使用"><span class="nav-number">2.2.</span> <span class="nav-text">II使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后台运行"><span class="nav-number">2.2.1.</span> <span class="nav-text">后台运行:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#停止"><span class="nav-number">2.2.2.</span> <span class="nav-text">停止:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查日志"><span class="nav-number">2.2.3.</span> <span class="nav-text">检查日志:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用-h-查看所有参数"><span class="nav-number">2.2.4.</span> <span class="nav-text">用 -h 查看所有参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II以配置文件使用-建议"><span class="nav-number">2.3.</span> <span class="nav-text">II以配置文件使用(建议)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创造配置文件并运行"><span class="nav-number">2.3.1.</span> <span class="nav-text">创造配置文件并运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创造配置文件-etc-shadowsocks-json"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">创造配置文件 /etc/shadowsocks.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前台运行"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">前台运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后台运行-1"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">后台运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始服务"><span class="nav-number">2.3.2.</span> <span class="nav-text">开始服务:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III加密格式"><span class="nav-number">2.4.</span> <span class="nav-text">III加密格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#M2Crypto"><span class="nav-number">2.4.1.</span> <span class="nav-text">M2Crypto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rc4-md5"><span class="nav-number">2.4.2.</span> <span class="nav-text">rc4-md5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#salsa20-and-chacha20"><span class="nav-number">2.4.3.</span> <span class="nav-text">salsa20 and chacha20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弃用的密码"><span class="nav-number">2.4.4.</span> <span class="nav-text">弃用的密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-其他"><span class="nav-number">2.5.</span> <span class="nav-text">IV 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fast-open"><span class="nav-number">2.5.1.</span> <span class="nav-text">fast_open</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimizing-Shadowsocks"><span class="nav-number">2.5.2.</span> <span class="nav-text">Optimizing Shadowsocks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在-Debian-7"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">在 Debian 7</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V文档"><span class="nav-number">2.6.</span> <span class="nav-text">V文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开源许可证"><span class="nav-number">2.7.</span> <span class="nav-text">开源许可证</span></a></li></ol></li></ol></div>
             
 
           </div>
