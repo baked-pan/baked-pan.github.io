@@ -19,7 +19,7 @@
     <entry>
       <title><![CDATA[利用git-backup插件备份hexo数据]]></title>
       <url>%2F2017%2F04%2F26%2F%E5%88%A9%E7%94%A8git-backup%E6%8F%92%E4%BB%B6%E5%A4%87%E4%BB%BDhexo%E6%95%B0%E6%8D%AE%2F</url>
-      <content type="text"><![CDATA[前言hexo文件夹中重要的是source跟scaffolds，themes目录.gitignore，_config.yml文件，插件目录可以通过命令行重新下载 插件下载git-backup. 如果hexo版本 2.x.x, 执行:1$ npm install hexo-git-backup@0.0.91 --save 如果版本 3.x.x, 执行: 1$ npm install hexo-git-backup --save 升级插件如果你使用 –save安装了插件, 执行： 12$ npm remove hexo-git-backup$ npm install hexo-git-backup --save 设置你应该在 hexo/_config.yml.文件中为插件添加设置 1234567backup: type: git message: update xxx //可选，diy信息 theme: coney,landscape //可选，主题备份 repository: github: git@github.com:xxx/xxx.git,branchName //备份的目的路径，必填branch分支 gitcafe: git@github.com:xxx/xxx.git,branchName //可选，备份到gitcafe Now you can backup all the blog! 问题你可能会遇到系统权限问题。 Error: EISDIR, open it is caused by permission. just do ‘sudo hexo b’1sudo hexo b]]></content>
+      <content type="text"><![CDATA[前言hexo文件夹中重要的是source跟scaffolds，themes目录.gitignore，_config.yml文件，插件目录可以通过命令行重新下载 插件下载git-backup. 如果hexo版本 2.x.x, 执行:1$ npm install hexo-git-backup@0.0.91 --save 如果版本 3.x.x, 执行: 1$ npm install hexo-git-backup --save 升级插件如果你使用 –save安装了插件, 执行： 12$ npm remove hexo-git-backup$ npm install hexo-git-backup --save 设置你应该在 hexo/_config.yml.文件中为插件添加设置 1234567backup: type: git message: update xxx //可选，diy信息 theme: coney,landscape //可选，主题备份 repository: github: git@github.com:xxx/xxx.git,branchName //备份的目的路径，必填branch分支 gitcafe: git@github.com:xxx/xxx.git,branchName //可选，备份到gitcafe Now you can backup all the blog! 用法1hexo backup 或者 1hexo b 问题你可能会遇到系统权限问题。 Error: EISDIR, open it is caused by permission. just do ‘sudo hexo b’1sudo hexo b]]></content>
     </entry>
 
     
