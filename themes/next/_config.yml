@@ -43,7 +43,7 @@ menu:
   archives: /archives
   tags: /tags
   #sitemap: /sitemap.xml
-  #commonweal: /404.html
+  commonweal: /404.html
 
 
 # Enable/Disable menu icons.
@@ -88,7 +88,7 @@ font:
   enable: true
 
   # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
-  host:
+  host: http://fonts.css.network
 
   # Global font settings used on <body> element.
   global:
@@ -466,7 +466,7 @@ use_motion: true
 fancybox: true
 
 # Canvas-nest
-canvas_nest: false
+canvas_nest: true 
 
 # Script Vendors.
 # Set a CDN address for the vendor you want to customize.

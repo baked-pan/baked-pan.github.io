@@ -17,7 +17,7 @@ hexo博文上插入图片一直的惯用方法是使用七牛云或者贴图库�
 
  1. 把主页配置文件`_config.yml` 里边的`post_asset_folder:`设置为 `true`
  2. 在 hexo 目录下执行`npm install hexo-asset-image --save`,这里下载安装一个可以上传本地图片的插件，来自[hexo-asset-image][1]
- 3. 完成后当运行`hexo n "XX.md"生成博文模板时`，会在`/source/_posts`文件夹中额外生成名字为XX的文件夹
+ 3. 完成后当运行`hexo n "XX.md"`生成博文模板时，会在`/source/_posts`文件夹中额外生成名字为XX的文件夹
 
 # 正式使用
 在XX博文中引入图片时，按照 markdown 的格式引入图片，并将图片放入XX文件夹内，格式为
