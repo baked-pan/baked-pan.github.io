@@ -14,7 +14,7 @@ keywords: "四维胖次"
 rss:
 
 # Specify the date when the site was setup
-since: 2017
+since: 2016
 
 # icon between year and author @Footer
 authoricon: heart
@@ -43,7 +43,7 @@ menu:
   archives: /archives
   tags: /tags
   #sitemap: /sitemap.xml
-  commonweal: /404.html
+  #commonweal: /404.html
 
 
 # Enable/Disable menu icons.
@@ -525,6 +525,7 @@ vendors:
 css: css
 js: js
 images: images
+
 
 # Theme version
 version: 5.1.0
