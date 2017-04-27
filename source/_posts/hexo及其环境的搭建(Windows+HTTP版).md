@@ -144,7 +144,7 @@ hexo server -i 192.168.1.1
 ```
 通过这种方式，图片将会同时出现在文章和主页以及归档页中。比如下边的图片
 
-{% asset_img example.jpg This is an example image %}
+{% asset_img example.png [hexo及其环境的搭建(Windows+HTTP版)] %}
 
 
 
