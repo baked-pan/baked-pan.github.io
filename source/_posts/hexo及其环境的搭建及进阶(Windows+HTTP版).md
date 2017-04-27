@@ -143,13 +143,7 @@ hexo server -i 192.168.1.1
 {% asset_img example.jpg This is an example image %}
 
 ```
-通过这种方式，图片将会同时出现在文章和主页以及归档页中。比如下边的图片
-
-{% asset_img example.png [hexo及其环境的搭建及进阶(Windows+HTTP版)] %}
-这里使用的语句是
-```
-{% asset_img example.png [hexo及其环境的搭建及进阶(Windows+HTTP版)] %}
-```
+通过这种方式，图片将会同时出现在文章和主页以及归档页中。
 
 
   [1]: https://git-for-windows.github.io/
