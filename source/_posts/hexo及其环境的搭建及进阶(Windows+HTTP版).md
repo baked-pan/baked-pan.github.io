@@ -1,5 +1,5 @@
 ---
-title: hexo及其环境的搭建(Windows+HTTP版)
+title: hexo及其环境的搭建及进阶(Windows+HTTP版)
 date: 2017-04-20 21:59:07
 update: 2017-04-28 02:00:01
 tags: 
@@ -145,15 +145,15 @@ hexo server -i 192.168.1.1
 ```
 通过这种方式，图片将会同时出现在文章和主页以及归档页中。比如下边的图片
 
-{% asset_img example.png [hexo及其环境的搭建(Windows+HTTP版)] %}
+{% asset_img example.png [hexo及其环境的搭建及进阶(Windows+HTTP版)] %}
 这里使用的语句是
 ```
-{% asset_img example.png [hexo及其环境的搭建(Windows+HTTP版)] %}
+{% asset_img example.png [hexo及其环境的搭建及进阶(Windows+HTTP版)] %}
 ```
 
 
   [1]: https://git-for-windows.github.io/
   [2]: https://pan.baidu.com/s/1kU5OCOB#list/path=/pub/git
-  [3]: hexo及其环境的搭建/Git安装.jpg
+  [3]: hexo及其环境的搭建及进阶(Windows+HTTP版)/Git安装.jpg
   [4]: https://nodejs.org/en/download/
-  [5]: hexo及其环境的搭建/Hexo初始.jpg
+  [5]: hexo及其环境的搭建及进阶(Windows+HTTP版)/Hexo初始.jpg
