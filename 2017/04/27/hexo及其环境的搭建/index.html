@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C 语言," />
+  <meta name="keywords" content="hexo,环境," />
 
 
 
@@ -87,22 +87,40 @@
 
 
 
-<meta name="description" content="二进制数在内存中以补码的形式存储。
-按位取反：二进制每一位取反，0 变 1，1 变 0。123456789~9 的计算步骤：转二进制：0 1001计算补码：0 1001按位取反：1 0110_____转为原码：按位取反：1 1001   末位加一：1 1010符号位为 1 是负数，即 - 10
-1234567~-9 的计算步骤：转二进制：1 1001计算补码：1 0111按位取反：0 1000__">
+<meta name="description" content="工具 / 原料
+Windows（Mac 也是差不多，可参照）  
+Git  
+Node.js
+
+Git安装下载并安装Git，度娘备份，msysgit 是 Windows 版的 Git，按照默认安装。
+安装完成后，在开始菜单里找到 “Git”-&amp;gt;“Git Bash”，如图表示安装成功
+Node.js安装下载并安装Node.js,安装完成后在CMD输入  node -v显示版本表示安装node.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="按位取反运算符 (~) 到底应该怎样计算？">
-<meta property="og:url" content="https://baked-pan.github.io/2017/04/20/按位取反运算符-到底应该怎样计算？/index.html">
+<meta property="og:title" content="hexo及其环境的搭建">
+<meta property="og:url" content="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/index.html">
 <meta property="og:site_name" content="未知领域">
-<meta property="og:description" content="二进制数在内存中以补码的形式存储。
-按位取反：二进制每一位取反，0 变 1，1 变 0。123456789~9 的计算步骤：转二进制：0 1001计算补码：0 1001按位取反：1 0110_____转为原码：按位取反：1 1001   末位加一：1 1010符号位为 1 是负数，即 - 10
-1234567~-9 的计算步骤：转二进制：1 1001计算补码：1 0111按位取反：0 1000__">
-<meta property="og:updated_time" content="2017-04-20T09:35:24.532Z">
+<meta property="og:description" content="工具 / 原料
+Windows（Mac 也是差不多，可参照）  
+Git  
+Node.js
+
+Git安装下载并安装Git，度娘备份，msysgit 是 Windows 版的 Git，按照默认安装。
+安装完成后，在开始菜单里找到 “Git”-&amp;gt;“Git Bash”，如图表示安装成功
+Node.js安装下载并安装Node.js,安装完成后在CMD输入  node -v显示版本表示安装node.">
+<meta property="og:image" content="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/hexo%E5%8F%8A%E5%85%B6%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/Git%E5%AE%89%E8%A3%85.jpg">
+<meta property="og:image" content="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/hexo%E5%8F%8A%E5%85%B6%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/Hexo%E5%88%9D%E5%A7%8B.jpg">
+<meta property="og:updated_time" content="2017-04-27T14:24:04.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="按位取反运算符 (~) 到底应该怎样计算？">
-<meta name="twitter:description" content="二进制数在内存中以补码的形式存储。
-按位取反：二进制每一位取反，0 变 1，1 变 0。123456789~9 的计算步骤：转二进制：0 1001计算补码：0 1001按位取反：1 0110_____转为原码：按位取反：1 1001   末位加一：1 1010符号位为 1 是负数，即 - 10
-1234567~-9 的计算步骤：转二进制：1 1001计算补码：1 0111按位取反：0 1000__">
+<meta name="twitter:title" content="hexo及其环境的搭建">
+<meta name="twitter:description" content="工具 / 原料
+Windows（Mac 也是差不多，可参照）  
+Git  
+Node.js
+
+Git安装下载并安装Git，度娘备份，msysgit 是 Windows 版的 Git，按照默认安装。
+安装完成后，在开始菜单里找到 “Git”-&amp;gt;“Git Bash”，如图表示安装成功
+Node.js安装下载并安装Node.js,安装完成后在CMD输入  node -v显示版本表示安装node.">
+<meta name="twitter:image" content="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/hexo%E5%8F%8A%E5%85%B6%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/Git%E5%AE%89%E8%A3%85.jpg">
 
 
 
@@ -130,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="https://baked-pan.github.io/2017/04/20/按位取反运算符-到底应该怎样计算？/"/>
+  <link rel="canonical" href="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/"/>
 
 
 
 
 
-  <title> 按位取反运算符 (~) 到底应该怎样计算？ | 未知领域 </title>
+  <title> hexo及其环境的搭建 | 未知领域 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -309,7 +327,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://baked-pan.github.io/2017/04/20/按位取反运算符-到底应该怎样计算？/">
+    <link itemprop="mainEntityOfPage" href="https://baked-pan.github.io/2017/04/27/hexo及其环境的搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="四维胖次">
@@ -330,7 +348,7 @@
             
             
               
-                按位取反运算符 (~) 到底应该怎样计算？
+                hexo及其环境的搭建
               
             
           </h1>
@@ -345,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-20T17:03:55+08:00">
-                2017-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T21:59:07+08:00">
+                2017-04-27
               </time>
             
 
@@ -368,8 +386,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -403,17 +432,43 @@
       
 
       
-        <p><strong>二进制数在内存中以补码的形式存储。</strong></p>
-<p>按位取反：二进制每一位取反，0 变 1，1 变 0。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">~9 的计算步骤：</div><div class="line">转二进制：0 1001</div><div class="line">计算补码：0 1001</div><div class="line">按位取反：1 0110</div><div class="line">_____</div><div class="line">转为原码：</div><div class="line">按位取反：1 1001   </div><div class="line">末位加一：1 1010</div><div class="line">符号位为 1 是负数，即 - 10</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">~-9 的计算步骤：</div><div class="line">转二进制：1 1001</div><div class="line">计算补码：1 0111</div><div class="line">按位取反：0 1000</div><div class="line">_____</div><div class="line">转为原码：</div><div class="line">正数的补码和原码相同，仍为：0 1000，即 8</div></pre></td></tr></table></figure>
-<hr>
-<p>原码表示法在数值前面增加了一位符号位（即最高位为符号位）：正数该位为 0，负数该位为 1（0 有两种表示：+0 和 - 0），其余位表示数值的大小。例如，用 8 位二进制表示一个数，+11 的原码为 00001011，-11 的原码就是 10001011。<br>反码表示法规定：正数的反码与其原码相同；负数的反码是对其原码逐位取反，但符号位除外。<br>补码表示法规定：正数的补码与其原码相同；负数的补码是在其反码的末位加 1。</p>
-<p>（1） 原码：在数值前直接加一符号位的表示法。<br>[+7] 原 = 0 0000111 B<br>[-7] 原 = 1 0000111 B<br>注意：<br>a. 数 0 的原码有两种形式：<br>[+0] 原 = 0 0000000 B<br>[-0] 原 = 1 0000000 B<br>b. 8 位二进制原码的表示范围：-127～+127</p>
-<p>（2）反码：<br>正数：正数的反码与原码相同。<br>负数：负数的反码，符号位为 “1”，数值部分按位取反。<br>[+7] 反 = 0 0000111 B<br>[-7] 反 = 1 1111000 B<br>注意：<br>a. 数 0 的反码也有两种形式，即<br>[+0] 反 = 0 0000000 B<br>[-0] 反 = 1 1111111 B<br>b. 8 位二进制反码的表示范围：-127～+127</p>
-<p>（3）补码<br>正数：正数的补码和原码相同。<br>负数：负数的补码则是符号位为 “1”。并且，这个“1” 既是符号位，也是数值位。数值部分按位取反后再在末位（最低位）加 1。也就是“反码 + 1”。<br>求负整数的补码，原码符号位不变，先将原码减去 1，最后数值各位取反。（但由于 2 进制的特殊性，通常先使数值位各位取反，最后整个数加 1。）</p>
-<p>例如： 符号位 数值位<br>[+7] 补 = 0 0000111 B<br>[-7] 补 = 1 1111001 B<br>注意：<br>a. 采用补码后，可以方便地将减法运算转化成加法运算，运算过程得到简化。正数的补码即是它所表示的数的真值，而负数的补码的数值部份却不是它所表示的数的真值。采用补码进行运算，所得结果仍为补码。<br>b. 与原码、反码不同，数值 0 的补码只有一个，即 [0] 补 = 00000000B。<br>c. 若字长为 8 位，则补码所表示的范围为 - 128～+127；进行补码运算时，应注意所得结果不应超过补码所能表示数的范围。</p>
-<p>转化为原码</p>
-<p>已知一个数的补码，求原码的操作其实就是对该补码再求补码：<br>⑴如果补码的符号位为 “0”，表示是一个正数，其原码就是补码。<br>⑵如果补码的符号位为 “1”，表示是一个负数，那么求给定的这个补码的补码就是要求的原码。</p>
+        <h1 id="工具-原料"><a href="#工具-原料" class="headerlink" title="工具 / 原料"></a>工具 / 原料</h1><ul>
+<li>Windows（Mac 也是差不多，可参照）  </li>
+<li>Git  </li>
+<li>Node.js</li>
+</ul>
+<h2 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h2><p>下载并安装<a href="https://git-for-windows.github.io/" target="_blank" rel="external">Git</a>，<a href="https://pan.baidu.com/s/1kU5OCOB#list/path=/pub/git" target="_blank" rel="external">度娘备份</a>，msysgit 是 Windows 版的 Git，按照默认安装。</p>
+<p>安装完成后，在开始菜单里找到 “Git”-&gt;“Git Bash”，如图表示安装成功<br><img src="/2017/04/27/hexo及其环境的搭建/hexo%E5%8F%8A%E5%85%B6%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/Git%E5%AE%89%E8%A3%85.jpg" alt="Git安装"></p>
+<h2 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h2><p>下载并安装<a href="https://nodejs.org/en/download/" target="_blank" rel="external">Node.js</a>,安装完成后在CMD输入  <code>node -v</code>显示版本表示安装node.js成功,输入<code>npm -v</code> 显示版本表示自带的npm环境安装成功</p>
+<p>npm 的作用就是对 Node.js 依赖的包进行管理，也可以理解为用来安装 / 卸载 Node.js 需要装的东西</p>
+<p>注：当不显示版本时请添加对应的环境变量并重启系统</p>
+<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><ol>
+<li>利用 npm 命令即可安装。在任意位置点击鼠标右键，选择 Git Bash。输入命令<code>npm install -g hexo</code>注意：-g是指全局安装hexo。</li>
+</ol>
+<h2 id="创建Hexo文件夹"><a href="#创建Hexo文件夹" class="headerlink" title="创建Hexo文件夹"></a>创建Hexo文件夹</h2><p>1、新建文件夹 Hexo<br>2、</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> Hexo</div><div class="line">hexo init <span class="comment">//Hexo 即会自动在目标文件夹建立网站所需要的所有文件。</span></div><div class="line">npm install <span class="comment">//安装依赖包</span></div></pre></td></tr></table></figure>
+<h2 id="本地查看"><a href="#本地查看" class="headerlink" title="本地查看"></a>本地查看</h2><p>执行以下命令(在Hexo文件夹下)，然后到浏览器输入localhost:4000看看。</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo <span class="built_in">server</span></div></pre></td></tr></table></figure>
+<p><img src="/2017/04/27/hexo及其环境的搭建/hexo%E5%8F%8A%E5%85%B6%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/Hexo%E5%88%9D%E5%A7%8B.jpg" alt="hexo初始"></p>
+<h2 id="注册Github账号"><a href="#注册Github账号" class="headerlink" title="注册Github账号"></a>注册Github账号</h2><h2 id="创建Repository仓库"><a href="#创建Repository仓库" class="headerlink" title="创建Repository仓库"></a>创建Repository仓库</h2><p>新建<code>用户名.github.io</code>的仓库</p>
+<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>1.到刚创建的Repository下，获得SSH地址<br>2.<br>2.编辑Hexo根目录下的<code>_config.yml</code><br>3.<br>3.修改文件里面的deploy。其中的repository 添加为SSH，如</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: git</div><div class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/jasmine-na/jasmine-na.github.io.git</span></div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
+<h2 id="完成部署"><a href="#完成部署" class="headerlink" title="完成部署"></a>完成部署</h2><ol>
+<li>下载hexo-deployer-git</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> hexo-deployer-git –<span class="keyword">save</span></div></pre></td></tr></table></figure>
+<ol>
+<li>最后一步，Git Bash下，依次键入以下指令</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> hexo clean <span class="comment">//清除缓存文件 db.json 和已生成的静态文件 public</span></div><div class="line"></div><div class="line">hexo <span class="keyword">generate</span> <span class="comment">//生成网站静态文件到默认设置的 public 文件夹</span></div><div class="line"></div><div class="line">hexo deploy <span class="comment">//自动生成网站静态文件，并部署到设定的仓库。</span></div></pre></td></tr></table></figure>
+<p>hexo deploy过程中会提示输入账号名和密码，Username是Github账号名称，而不是邮箱；Password就是Github的密码</p>
+<ol>
+<li>访问<code>用户名.github.io</code>进入主页</li>
+</ol>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>hexo现在支持更加简单的命令格式</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">g</span> == hexo <span class="keyword">generate</span></div><div class="line"></div><div class="line">hexo <span class="keyword">d</span> == hexo deploy</div><div class="line"></div><div class="line">hexo s == hexo server</div><div class="line"></div><div class="line">hexo <span class="keyword">n</span> == hexo new</div><div class="line"></div><div class="line">hexo <span class="keyword">g</span> -<span class="keyword">d</span>==hexo <span class="keyword">generate</span>&amp;&amp;hexo deploy</div></pre></td></tr></table></figure>
+<p>更新内容需要执行</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo <span class="keyword">g</span> -<span class="built_in">d</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -443,7 +498,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C-语言/" rel="tag"># C 语言</a>
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/环境/" rel="tag"># 环境</a>
           
         </div>
       
@@ -456,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/20/C-语言中-d-o-f-e-x-的意义/" rel="next" title="C 语言中 %d,%o,%f,%e,%x 的意义">
-                <i class="fa fa-chevron-left"></i> C 语言中 %d,%o,%f,%e,%x 的意义
+              <a href="/2017/04/27/为hexo博文插入图片/" rel="next" title="为hexo博文插入图片">
+                <i class="fa fa-chevron-left"></i> 为hexo博文插入图片
               </a>
             
           </div>
@@ -465,10 +522,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/20/一些实用的在线站点/" rel="prev" title="一些实用的在线站点">
-                一些实用的在线站点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,8 +568,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -578,6 +640,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工具-原料"><span class="nav-number">1.</span> <span class="nav-text">工具 / 原料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git安装"><span class="nav-number">1.1.</span> <span class="nav-text">Git安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js安装"><span class="nav-number">1.2.</span> <span class="nav-text">Node.js安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Hexo"><span class="nav-number">1.3.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Hexo文件夹"><span class="nav-number">1.4.</span> <span class="nav-text">创建Hexo文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地查看"><span class="nav-number">1.5.</span> <span class="nav-text">本地查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册Github账号"><span class="nav-number">1.6.</span> <span class="nav-text">注册Github账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Repository仓库"><span class="nav-number">1.7.</span> <span class="nav-text">创建Repository仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改配置文件"><span class="nav-number">1.8.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成部署"><span class="nav-number">1.9.</span> <span class="nav-text">完成部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tips"><span class="nav-number">1.10.</span> <span class="nav-text">Tips</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
