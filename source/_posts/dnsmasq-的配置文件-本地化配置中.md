@@ -252,7 +252,7 @@ categories:
 
  13.忽略在`dhcp-host` 行或 `etc/ethers`文件 中被指定的客户( clients ). 等同于<span id = "return_from_ISC"></span>[ISC](#ISC)“ deny unkown-clients” .这依赖于
 
- 14.55
+ 14.待添加
  15.
  
  

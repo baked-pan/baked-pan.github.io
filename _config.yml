@@ -68,11 +68,12 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+# pages服务托管在github和oschina的master分支
 deploy:
   type: git
   repo: 
        github: https://github.com/baked-pan/baked-pan.github.io.git,master
-       coding: https://git.coding.net/baked-pan/baked-pan.git,master
+       oschina: https://git.oschina.net/bakedpan/bakedpan.git,master
   
  # 添加百度 / 谷歌 / 本地 自定义站点内容搜索
 search:
@@ -80,11 +81,11 @@ search:
   field: post
   format: html
   limit: 10000
-  
+  # 这里开启备份到GitHub和oschina的backup分支
 backup:
     type: git
     message: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~备份ing，完成后请检查backup-branch分支~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     theme: next,landscape
     repository:
                github: git@github.com:baked-pan/baked-pan.github.io.git,backup
-               coding: git@git.coding.net:baked-pan/baked-pan.git,backup
+               oschina: git@git.oschina.net:bakedpan/bakedpan.git,backup
