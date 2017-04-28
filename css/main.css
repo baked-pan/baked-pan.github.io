@@ -1685,7 +1685,10 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff6c73;
+  background: #9a331b;
+}
+.links-of-author-item {
+  text-align: center;
 }
 .links-of-blogroll {
   font-size: 13px;
