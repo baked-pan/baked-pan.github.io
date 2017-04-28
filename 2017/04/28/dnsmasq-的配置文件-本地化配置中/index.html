@@ -1,0 +1,955 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="http://fonts.css.network/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="dnsmasq,DNS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="dnsmasq 的配置文件(本地化配置中)格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们
+告诉 dnsmasq 过滤那些公共 DNS 不能处理的不需要装在服务器( 特别是根服务器中 )的请求。如果你有个按需拨号（dial-on-de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dnsmasq 的配置文件(本地化配置中)">
+<meta property="og:url" content="https://baked-pan.github.io/2017/04/28/dnsmasq-的配置文件-本地化配置中/index.html">
+<meta property="og:site_name" content="未知领域">
+<meta property="og:description" content="dnsmasq 的配置文件(本地化配置中)格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们
+告诉 dnsmasq 过滤那些公共 DNS 不能处理的不需要装在服务器( 特别是根服务器中 )的请求。如果你有个按需拨号（dial-on-de">
+<meta property="og:updated_time" content="2017-04-28T06:59:46.621Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dnsmasq 的配置文件(本地化配置中)">
+<meta name="twitter:description" content="dnsmasq 的配置文件(本地化配置中)格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们
+告诉 dnsmasq 过滤那些公共 DNS 不能处理的不需要装在服务器( 特别是根服务器中 )的请求。如果你有个按需拨号（dial-on-de">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://baked-pan.github.io/2017/04/28/dnsmasq-的配置文件-本地化配置中/"/>
+
+
+
+
+
+  <title> dnsmasq 的配置文件(本地化配置中) | 未知领域 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1cf665ab422bf343c7297c3efe552bf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">未知领域</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://baked-pan.github.io/2017/04/28/dnsmasq-的配置文件-本地化配置中/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="四维胖次">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未知领域">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                dnsmasq 的配置文件(本地化配置中)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T14:56:26+08:00">
+                2017-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DNS/" itemprop="url" rel="index">
+                    <span itemprop="name">DNS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="dnsmasq-的配置文件-本地化配置中"><a href="#dnsmasq-的配置文件-本地化配置中" class="headerlink" title="dnsmasq 的配置文件(本地化配置中)"></a>dnsmasq 的配置文件(本地化配置中)</h1><h2 id="格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“-usr-sbin-dnsmasq-–help”-或者“man-8-dnsmasq”-里的更多细节。下面的两个选项让你更好地使用网络，因为它们"><a href="#格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“-usr-sbin-dnsmasq-–help”-或者“man-8-dnsmasq”-里的更多细节。下面的两个选项让你更好地使用网络，因为它们" class="headerlink" title="格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们"></a>格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们</h2><ul>
+<li>告诉 dnsmasq 过滤那些公共 DNS 不能处理的不需要装在服务器( 特别是根服务器中 )的请求。如果你有个按需拨号（dial-on-demand）的连接，这些服务器会阻止这些不需要的连接的建立( bring up )。</li>
+<li>不转发那些不存在的名( 没有点或者域部分 )</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">domain-needed</div></pre></td></tr></table></figure>
+<ul>
+<li>不为存在于那些没有根路由（non-routed ）地址的空间转发地址</li>
+</ul>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bogus-priv</div></pre></td></tr></table></figure>
+<h2 id="取消这个注释以过滤无用的来源为Windows的DNS请求，这些请求会引起不必要的按需拨号的连接。注意-在其他地方-，这阻止所有-服务定位资源记录-SRV-，所以除非你使用诸如Kerberos-SIP-XMMP-或者-Google-talk-，不要使用它。这个选项只影响转发-为-dnsmasq-生成的SRV-记录-通过-srv-host-lines-不受其限制"><a href="#取消这个注释以过滤无用的来源为Windows的DNS请求，这些请求会引起不必要的按需拨号的连接。注意-在其他地方-，这阻止所有-服务定位资源记录-SRV-，所以除非你使用诸如Kerberos-SIP-XMMP-或者-Google-talk-，不要使用它。这个选项只影响转发-为-dnsmasq-生成的SRV-记录-通过-srv-host-lines-不受其限制" class="headerlink" title="取消这个注释以过滤无用的来源为Windows的DNS请求，这些请求会引起不必要的按需拨号的连接。注意 ( 在其他地方 )，这阻止所有 服务定位资源记录 (SRV )，所以除非你使用诸如Kerberos, SIP, XMMP 或者 Google-talk ，不要使用它。这个选项只影响转发,为 dnsmasq 生成的SRV 记录 ( 通过 srv-host= lines ) 不受其限制"></a>取消这个注释以过滤无用的来源为Windows的DNS请求，这些请求会引起不必要的按需拨号的连接。注意 ( 在其他地方 )，这阻止所有<span id="return_from_SRV_record"></span> <a href="#SRV_record">服务定位资源记录 (SRV )</a>，所以除非你使用诸如<span id="return_from_Kerberos"><a href="#Kerberos">Kerberos</a>, <span id="return_from_SIP"></span><a href="#SIP">SIP</a>, <span id="return_from_XMPP"></span><a href="#XMPP">XMMP</a> 或者<span id="return_from_Google-talk"></span> <a href="#Google-talk">Google-talk</a> ，不要使用它。这个选项只影响转发,为 dnsmasq 生成的SRV 记录 ( 通过 srv-host= lines ) 不受其限制</span></h2><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">filterwi<span class="symbol">n2</span>k</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="其他注释"><a href="#其他注释" class="headerlink" title="其他注释 (  ) ,"></a>其他注释 (  ) ,</h1><p><span id="SRV_record"></span></p>
+<h2 id="SRV记录"><a href="#SRV记录" class="headerlink" title="SRV记录:"></a>SRV记录:</h2><h3 id="定义-："><a href="#定义-：" class="headerlink" title="定义 ："></a>定义 ：</h3><p>DNS 服务器的数据库中支持的一种资源记录的类型，它记录了哪台计算机提供了哪个服务这么一个简单的信息。一般是为 Microsoft 的活动目录设置时的应用。</p>
+<h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p>DNS 可以独立于活动目录，但是活动目录必须有 DNS 的帮助才能工作。为了活动目录能够正常的工作，DNS 服务器必须支持服务定位（SRV）资源记录，资源记录把服务名字映射为提供服务的服务器名字。活动目录客户和域控制器使用 SRV 资源记录决定域控制器的 IP 地址。<br><a href="#return_from_SRV_record">返回</a></p>
+<h3 id="SRV-记录功能包括（基于它们在-DNS-控制台的分组）"><a href="#SRV-记录功能包括（基于它们在-DNS-控制台的分组）" class="headerlink" title="SRV 记录功能包括（基于它们在 DNS 控制台的分组）"></a>SRV 记录功能包括（基于它们在 DNS 控制台的分组）</h3><p> 1.‘　_MSDCS。这个分组中，SRV 记录是根据它们的状态来收集的。各种状态包括 DC、域调用、GC 以及 PDC。DC 和 GC 按站点来划分，这样一来，AD 客户端就能快速的知道去哪里寻找本地服务。“域调用” 用于支持复制。每个 DC 都获得了一个 GUID，它会在调用复制时用到。PDC 条目包含了被设定为 PDC 模拟器的 DC 的 SRV 记录。<br> 2.‘ _SITES。站点代表的是一个高速连接区域，根据 DC 的站点从属关系来建立了 DC 索引之后，客户端就可以检查_SITES 来寻找本地服务，而不必通过 WAN 来发送它们的 LDAP 查询请求。标准 LDAP 查询端口是 389，全局编录查询则使用 3268。<br> 3.‘　_TCP。在这个分组中，收集了 DNS 区域中的所有 DC。如果客户端找不到它们特定的站点，或者具有本地 SRV 记录的任何 DC 都没有响应，需要寻找网络中其他地方的 DC，就应该将这些客户端放到这个分组中。<br> 4.‘　_UDP。Keberos v5 允许客户端使用 “无连接” 服务来获取票证并更改密码。这是通过与相同服务的 TCP 端口对应的 UDP 端口来完成的。具体说，票证交换使用 UDP 的 88 端口，而密码更改使用 464。</p>
+<hr>
+<p><span id="Kerberos"><span></span></span></p>
+<h2 id="Kerberos："><a href="#Kerberos：" class="headerlink" title="Kerberos："></a>Kerberos：</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>一种网络认证协议，其设计目标是通过密钥系统为客户机 / 服务器应用程序提供强大的认证服务。该认证过程的实现不依赖于主机操作系统的认证，无需基于主机地址的信任，不要求网络上所有主机的物理安全，并假定网络上传送的数据包可以被任意地读取、修改和插入数据。在以上情况下， Kerberos 作为一种可信任的第三方认证服务，是通过传统的密码技术（如：共享密钥）执行认证服务的。</p>
+<h3 id="认证过程"><a href="#认证过程" class="headerlink" title="认证过程"></a>认证过程</h3><p>具体如下：客户机向认证服务器（AS）发送请求，要求得到某服务器的证书，然后 AS 的响应包含这些用客户端密钥加密的证书。证书的构成为： 1) 服务器 “ticket” ； 2) 一个临时加密密钥（又称为会话密钥 “session key”） 。客户机将 ticket （包括用服务器密钥加密的客户机身份和一份会话密钥的拷贝）传送到服务器上。会话密钥可以（现已经由客户机和服务器共享）用来认证客户机或认证服务器，也可用来为通信双方以后的通讯提供加密服务，或通过交换独立子会话密钥为通信双方提供进一步的通信加密服务。</p>
+<p>上述认证交换过程需要只读方式访问 Kerberos 数据库。但有时，数据库中的记录必须进行修改，如添加新的规则或改变规则密钥时。修改过程通过客户机和第三方 Kerberos 服务器（Kerberos 管理器 KADM）间的协议完成。有关管理协议在此不作介绍。另外也有一种协议用于维护多份 Kerberos 数据库的拷贝，这可以认为是执行过程中的细节问题，并且会不断改变以适应各种不同数据库技术。</p>
+<p>Kerberos 又指麻省理工学院为这个协议开发的一套计算机网络安全系统。系统设计上采用客户端 / 服务器结构与 DES 加密技术，并且能够进行相互认证，即客户端和服务器端均可对对方进行身份认证。可以用于防止窃听、防止 replay 攻击、保护数据完整性等场合，是一种应用对称密钥体制进行密钥管理的系统。Kerberos 的扩展产品也使用公开密钥加密方法进行认证。</p>
+<hr>
+<p><a href="#return_from_Kerberos">返回</a><br><span id="SIP"></span></p>
+<h2 id="SIP"><a href="#SIP" class="headerlink" title="SIP"></a>SIP</h2><h3 id="SIP-（会话发起协议）"><a href="#SIP-（会话发起协议）" class="headerlink" title="SIP （会话发起协议）"></a>SIP （会话发起协议）</h3><p>SIP(Session Initiation Protocol) 是一个应用层的信令控制协议。用于创建、修改和释放一个或多个参与者的会话。这些会话可以是 Internet 多媒体会议 、IP 电话或多媒体分发。会话的参与者可以通过组播（multicast）、网状单播（unicast）或两者的混合体进行通信。</p>
+<p>SIP 与负责语音质量的资源预留协议 (RSVP) 互操作。它还与若干个其他协议进行协作，包括负责定位的轻型目录访问协议 (LDAP)、负责身份验证的远程身份验证拨入用户服务 (RADIUS) 以及负责实时传输的 RTP 等多个协议。</p>
+<h3 id="压缩机制"><a href="#压缩机制" class="headerlink" title="压缩机制"></a>压缩机制</h3><p>SIP 压缩机制主要是通过改变 SIP 消息的长度来降低时延。典型的 SIP 消息的大小由几百到几千字节，为了适合在窄带无线信道上传输，IMS 对 SIP 进行了扩展，支持 SIP 消息的压缩。当无线信道一定时， 一条 SIP 消息所含帧数 k 仅取决于消息大小。从时延模型可以看出，不仅影响 SIP 消息传输时延， 还影响 SIP 重传的概率， 对自适应的定时器来说，k 还成了影响定时器初值的关键因素。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>google 发布世界上首个开源的 Html5 sip 客户端<br>HTML5 SIP 客户端是一款开源的，完全利用 JavaScript 编写的集社交 (FaceBook，Twitter，Google+)，在线游戏，电子商务等应用于一体。无扩展，无插件或是必备的网关，视频堆栈技术依赖于 WebRTC。如同主页里的 Demo 视频演示，你可以轻松实现 Chrome 和 IOS/Android 移动设备之间的实时视频 / 音频通话。<br>该客户端是一项在浏览器中可被用来连接任意 SIP 或者 IMS 网络进行拨打和接收音频 / 视频通话及即时信息技术。该协议解析器 (SIP，SDP…) 通过使用 Ragel 查找表进行了高度优化，很适合硬件（内存和运算能力）受限的嵌入式系统使用。</p>
+<p><a href="#return_from_SIP">返回</a><br><span id="XMPP"></span></p>
+<h2 id="XMPP-可扩展通讯和表示协议"><a href="#XMPP-可扩展通讯和表示协议" class="headerlink" title="XMPP( 可扩展通讯和表示协议 )"></a>XMPP( 可扩展通讯和表示协议 )</h2><p>简介:<br>可扩展通讯和表示协议 (XMPP) 可用于服务类实时通讯、表示和需求响应服务中的 XML 数据元流式传输。XMPP 以 Jabber 协议为基础，而 Jabber 是即时通讯中常用的开放式协议。XMPP is the IETF’s formalization of the base XML streaming protocols for instant messaging and presence developed within the Jabber open-source community in 1999<br>XMPP（可扩展消息处理现场协议）是基于可扩展标记语言（XML）的协议，它用于即时消息（IM）以及在线现场探测。它在促进服务器之间的准即时操作。这个协议可能最终允许因特网用户向因特网上的其他任何人发送即时消息，即使其操作系统和浏览器不同。<br>XMPP 的前身是 Jabber，一个开源形式组织产生的网络即时通信协议。XMPP 目前被 IETF 国际标准组织完成了标准化工作。标准化的核心结果分为两部分；</p>
+<ul>
+<li><p>核心的 XML 流传输协议</p>
+</li>
+<li><p>基于 XMLFreeEIM 流传输的即时通讯扩展应用</p>
+</li>
+</ul>
+<p>XMPP 的核心 XML 流传输协议的定义使得 XMPP 能够在一个比以往网络通信协议更规范的平台上。借助于 XML 易于解析和阅读的特性，使得 XMPP 的协议能够非常漂亮。<br>XMPP 的即时通讯扩展应用部分是根据 IETF 在这之前对即时通讯的一个抽象定义的，与其他业已得到广泛使用的即时通讯协议，诸如 AIM，QQ 等有功能完整，完善等先进性。<br>XMPP 的扩展协议 Jingle 使得其支持语音和视频。<br>XMPP 的官方文档是 RFC 3920.<br><a href="#return_from_XMPP">返回</a></p>
+<p><span id="Google-talk"></span></p>
+<h2 id="Google-talk"><a href="#Google-talk" class="headerlink" title="Google-talk"></a>Google-talk</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>Google Talk 是 Google 的 IM 工具，除了具有 IM 功能外，另外还加上了 Voip 功能，界面清新大方，可直接链接 Gmail，接受查看邮件。</p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>Google Talk 的一个优势是，它能够与其它即时通讯软件服务进行连接。由于 Google Talk 是基于 Jabber 开源标准，这种标准允许用户和其它的即时讯息系统相连，比如苹果电脑的 iChat，GAIM，Trillian Pro 以及 Psi。Google Talk 只能够在 Windows 平台上运行。如果要进行语音通话，用户需要配备麦克风与音箱。</p>
+<p>Google Talk 的用户无法使用这种软件与 AIM，MSN Messenger 或者雅虎 Messenger 的用户进行互通。</p>
+<p>在使用了 Google Talk 之后，Sullivan 对这种软件的声音质量给了高分，但是，Google Talk 缺乏视频聊天功能，另外， Google Talk 还缺乏目录索引以及聊天文本的搜索功能。</p>
+<p><a href="#return_from_Google-talk">返回</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dnsmasq/" rel="tag"># dnsmasq</a>
+          
+            <a href="/tags/DNS/" rel="tag"># DNS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/28/dnsmasq-conf/" rel="next" title="dnsmasq-conf">
+                <i class="fa fa-chevron-left"></i> dnsmasq-conf
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="四维胖次" />
+          <p class="site-author-name" itemprop="name">四维胖次</p>
+           
+              <p class="site-description motion-element" itemprop="description">在中国，每一分钟就有60S过去</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dnsmasq-的配置文件-本地化配置中"><span class="nav-number">1.</span> <span class="nav-text">dnsmasq 的配置文件(本地化配置中)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“-usr-sbin-dnsmasq-–help”-或者“man-8-dnsmasq”-里的更多细节。下面的两个选项让你更好地使用网络，因为它们"><span class="nav-number">1.1.</span> <span class="nav-text">格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取消这个注释以过滤无用的来源为Windows的DNS请求，这些请求会引起不必要的按需拨号的连接。注意-在其他地方-，这阻止所有-服务定位资源记录-SRV-，所以除非你使用诸如Kerberos-SIP-XMMP-或者-Google-talk-，不要使用它。这个选项只影响转发-为-dnsmasq-生成的SRV-记录-通过-srv-host-lines-不受其限制"><span class="nav-number">1.2.</span> <span class="nav-text">取消这个注释以过滤无用的来源为Windows的DNS请求，这些请求会引起不必要的按需拨号的连接。注意 ( 在其他地方 )，这阻止所有 服务定位资源记录 (SRV )，所以除非你使用诸如Kerberos, SIP, XMMP 或者 Google-talk ，不要使用它。这个选项只影响转发,为 dnsmasq 生成的SRV 记录 ( 通过 srv-host= lines ) 不受其限制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他注释"><span class="nav-number">2.</span> <span class="nav-text">其他注释 (  ) ,</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SRV记录"><span class="nav-number">2.1.</span> <span class="nav-text">SRV记录:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-："><span class="nav-number">2.1.1.</span> <span class="nav-text">定义 ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介："><span class="nav-number">2.1.2.</span> <span class="nav-text">简介：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRV-记录功能包括（基于它们在-DNS-控制台的分组）"><span class="nav-number">2.1.3.</span> <span class="nav-text">SRV 记录功能包括（基于它们在 DNS 控制台的分组）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kerberos："><span class="nav-number">2.2.</span> <span class="nav-text">Kerberos：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">2.2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认证过程"><span class="nav-number">2.2.2.</span> <span class="nav-text">认证过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIP"><span class="nav-number">2.3.</span> <span class="nav-text">SIP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SIP-（会话发起协议）"><span class="nav-number">2.3.1.</span> <span class="nav-text">SIP （会话发起协议）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩机制"><span class="nav-number">2.3.2.</span> <span class="nav-text">压缩机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">2.3.3.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XMPP-可扩展通讯和表示协议"><span class="nav-number">2.4.</span> <span class="nav-text">XMPP( 可扩展通讯和表示协议 )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Google-talk"><span class="nav-number">2.5.</span> <span class="nav-text">Google-talk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能"><span class="nav-number">2.5.2.</span> <span class="nav-text">功能</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">四维胖次</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" rel="external nofollow">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
