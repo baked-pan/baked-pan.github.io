@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="未知领域">
 <meta property="og:description" content="dnsmasq 的配置文件(本地化配置中)前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们
 告诉 dnsmasq 过滤那些公共 DNS 不">
-<meta property="og:updated_time" content="2017-04-28T09:14:46.380Z">
+<meta property="og:updated_time" content="2017-04-28T09:16:13.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dnsmasq 的配置文件(本地化配置中)">
 <meta name="twitter:description" content="dnsmasq 的配置文件(本地化配置中)前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们
@@ -449,60 +449,40 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-range=192.168.0.50,192.168.0.150,12h</div></pre></td></tr></table></figure>
 <h2 id="这是一个拥有电子掩码DHCP-范围的例子。在我们通过一个中继代理（relay-agent）到达dnsmasq-DHCP-服务的情况下，电子掩码是必须的。如果你并不知道什么是DHCP-中继代理，你大概不需要注意这个"><a href="#这是一个拥有电子掩码DHCP-范围的例子。在我们通过一个中继代理（relay-agent）到达dnsmasq-DHCP-服务的情况下，电子掩码是必须的。如果你并不知道什么是DHCP-中继代理，你大概不需要注意这个" class="headerlink" title="这是一个拥有电子掩码DHCP 范围的例子。在我们通过一个中继代理（relay agent）到达dnsmasq DHCP 服务的情况下，电子掩码是必须的。如果你并不知道什么是DHCP 中继代理，你大概不需要注意这个"></a>这是一个拥有电子掩码DHCP 范围的例子。在我们通过一个中继代理（relay agent）到达dnsmasq DHCP 服务的情况下，电子掩码是必须的。如果你并不知道什么是DHCP 中继代理，你大概不需要注意这个</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-range=<span class="number">192.168</span>.<span class="number">0.50</span>,<span class="number">192.168</span>.<span class="number">0.150</span>,<span class="number">255.255</span>.<span class="number">255.0</span>,<span class="number">12</span>h</div></pre></td></tr></table></figure>
 <h2 id="这是一个拥有网络ID（network-id）的DHCP范围的例子，所以一些DHCP选项可以被设置仅对这个网络生效"><a href="#这是一个拥有网络ID（network-id）的DHCP范围的例子，所以一些DHCP选项可以被设置仅对这个网络生效" class="headerlink" title="这是一个拥有网络ID（network-id）的DHCP范围的例子，所以一些DHCP选项可以被设置仅对这个网络生效"></a>这是一个拥有网络ID（network-id）的DHCP范围的例子，所以一些DHCP选项可以被设置仅对这个网络生效</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-range=red,192.168.0.50,192.168.0.150</div></pre></td></tr></table></figure>
-<h2 id="使用DHCP-为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子-注意IP-地址不应该出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name-adddress-和-MAC-的任意排序是允许的。"><a href="#使用DHCP-为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子-注意IP-地址不应该出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name-adddress-和-MAC-的任意排序是允许的。" class="headerlink" title="使用DHCP 为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子.注意IP 地址不应该出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name,adddress 和 MAC 的任意排序是允许的。"></a>使用DHCP 为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子.注意IP 地址<strong>不应该</strong>出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name,adddress 和 MAC 的任意排序是允许的。</h2><ol>
-<li>总是为主机分配以太网地址。</li>
-</ol>
+<h2 id="使用DHCP-为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子-注意IP-地址不应该出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name-adddress-和-MAC-的任意排序是允许的。"><a href="#使用DHCP-为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子-注意IP-地址不应该出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name-adddress-和-MAC-的任意排序是允许的。" class="headerlink" title="使用DHCP 为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子.注意IP 地址不应该出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name,adddress 和 MAC 的任意排序是允许的。"></a>使用DHCP 为特定主机应用参数。这里是一些有效的选择，所以我们为每个提供了例子.注意IP 地址<strong>不应该</strong>出现在上述的范围中，它们只需要在同一个网络。参数的顺序不做要求，name,adddress 和 MAC 的任意排序是允许的。</h2><p> 1.总是为主机分配以太网地址。</p>
 <ul>
 <li>11:22:33:44:55:66</li>
 <li>The IP address 192.168.0.60 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#dhcp-host=11:22:33:44:55:66,192.168.0.60</div></pre></td></tr></table></figure>
-<ol>
-<li>总是用硬件地址为主机设置名</li>
-</ol>
+<p> 2.总是用硬件地址为主机设置名</p>
 <ul>
 <li>11:22:33:44:55:66 to be “fred”</li>
 </ul>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=<span class="number">11</span>:<span class="number">22</span>:<span class="number">33</span>:<span class="number">44</span>:<span class="number">55</span>:<span class="number">66</span>,fred</div></pre></td></tr></table></figure>
-<ol>
-<li>总是给书记以太网地址，名字“fred”，ip地址，租借时间45分</li>
-</ol>
+<p> 3.总是给书记以太网地址，名字“fred”，ip地址，租借时间45分</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=<span class="number">11</span>:<span class="number">22</span>:<span class="number">33</span>:<span class="number">44</span>:<span class="number">55</span>:<span class="number">66</span>,fred,<span class="number">192.168</span>.<span class="number">0.60</span>,<span class="number">45</span>m</div></pre></td></tr></table></figure>
-<ol>
-<li>给一个主机两个以太网地址（用”,”分隔)和IP地址.dnsmasq会假定这两个以太网接口没有被在同一时间使用，然后把IP地址分配给第二个，尽管这个IP地址已经被第一个接口使用。在使用无线和有线地址的笔记本上十分有用</li>
-</ol>
+<p> 4.给一个主机两个以太网地址（用”,”分隔)和IP地址.dnsmasq会假定这两个以太网接口没有被在同一时间使用，然后把IP地址分配给第二个，尽管这个IP地址已经被第一个接口使用。在使用无线和有线地址的笔记本上十分有用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=11:22:33:44:55:66,12:34:56:78:90:12,192.168.0.60</div></pre></td></tr></table></figure>
-<ol>
-<li>给一个声称它的名是“bert”的主机 IP 地址和无限（infinite）租借时间</li>
-</ol>
+<p> 5.给一个声称它的名是“bert”的主机 IP 地址和无限（infinite）租借时间</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=bert,192.168.0.70,infinite</div></pre></td></tr></table></figure>
-<ol>
-<li>总是给主机客户机标识符</li>
-</ol>
+<p> 6.总是给主机客户机标识符</p>
 <ul>
 <li>标识符 01:02:02:04</li>
 <li>IP 地址 192.168.0.60</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=id:01:02:02:04,192.168.0.60</div></pre></td></tr></table></figure>
-<ol>
-<li>总是给主机客户标识符</li>
-</ol>
+<p> 7.总是给主机客户标识符</p>
 <ul>
 <li>标识符 marjorie</li>
 <li>IP地址 192.168.0.60  </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=id:marjorie,192.168.0.60</div></pre></td></tr></table></figure>
-<ol>
-<li>启用在<code>/etc/hosts</code>中赋予名“judge”的地址，当一个机器声称自己名是”judge“的主机请求 DHCP 租借时，将地址赋予它</li>
-</ol>
+<p> 8.启用在<code>/etc/hosts</code>中赋予名“judge”的地址，当一个机器声称自己名是”judge“的主机请求 DHCP 租借时，将地址赋予它</p>
 <figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#dhcp-host=judge</span></div></pre></td></tr></table></figure>
-<ol>
-<li>永远不给以太网地址是11:22:33:44:55:66的机器提供DHCP服务</li>
-</ol>
+<p> 9.永远不给以太网地址是11:22:33:44:55:66的机器提供DHCP服务</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=11:22:33:44:55:66,ignore</div></pre></td></tr></table></figure>
-<ol>
-<li>填入中</li>
-</ol>
+<p> 10.填入中</p>
 <hr>
 <h1 id="其他注释"><a href="#其他注释" class="headerlink" title="其他注释 (  ) ,"></a>其他注释 (  ) ,</h1><p><span id="SRV_record"></span></p>
 <h2 id="SRV记录"><a href="#SRV记录" class="headerlink" title="SRV记录:"></a>SRV记录:</h2><h3 id="定义-："><a href="#定义-：" class="headerlink" title="定义 ："></a>定义 ：</h3><p>DNS 服务器的数据库中支持的一种资源记录的类型，它记录了哪台计算机提供了哪个服务这么一个简单的信息。一般是为 Microsoft 的活动目录设置时的应用。</p>
