@@ -72,7 +72,7 @@ deploy:
   type: git
   repo: 
        github: https://github.com/baked-pan/baked-pan.github.io.git,master
-       gitcafe: https://git.coding.net/baked-pan/baked-pan.git,master
+       coding: https://git.coding.net/baked-pan/baked-pan.git,master
   
  # 添加百度 / 谷歌 / 本地 自定义站点内容搜索
 search:
@@ -86,5 +86,5 @@ backup:
     message: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~备份ing，完成后请检查backup-branch分支~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     theme: next,landscape
     repository:
-               github: https://github.com/baked-pan/baked-pan.github.io.git,backup
-               gitcafe: https://git.coding.net/baked-pan/baked-pan.git,backup
+               github: git@github.com:baked-pan/baked-pan.github.io.git,backup
+               coding: git@git.coding.net:baked-pan/baked-pan.git,backup
