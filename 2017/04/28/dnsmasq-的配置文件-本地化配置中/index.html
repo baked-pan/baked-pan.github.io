@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="未知领域">
 <meta property="og:description" content="dnsmasq 的配置文件(本地化配置中)前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们
 告诉 dnsmasq 过滤那些公共 DNS 不">
-<meta property="og:updated_time" content="2017-04-28T09:05:45.941Z">
+<meta property="og:updated_time" content="2017-04-28T09:14:46.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dnsmasq 的配置文件(本地化配置中)">
 <meta name="twitter:description" content="dnsmasq 的配置文件(本地化配置中)前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们
@@ -484,17 +484,25 @@
 <li>IP 地址 192.168.0.60</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=id:01:02:02:04,192.168.0.60</div></pre></td></tr></table></figure>
-<p> 7.总是给主机客户标识符</p>
+<ol>
+<li>总是给主机客户标识符</li>
+</ol>
 <ul>
 <li>标识符 marjorie</li>
 <li>IP地址 192.168.0.60  </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=id:marjorie,192.168.0.60</div></pre></td></tr></table></figure>
-<p> 8.启用在<code>/etc/hosts</code>中赋予名“judge”的地址，当一个机器声称自己名是”judge“的主机请求 DHCP 租借时，将地址赋予它</p>
+<ol>
+<li>启用在<code>/etc/hosts</code>中赋予名“judge”的地址，当一个机器声称自己名是”judge“的主机请求 DHCP 租借时，将地址赋予它</li>
+</ol>
 <figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#dhcp-host=judge</span></div></pre></td></tr></table></figure>
-<p> 9.永远不给以太网地址是11:22:33:44:55:66的机器提供DHCP服务</p>
+<ol>
+<li>永远不给以太网地址是11:22:33:44:55:66的机器提供DHCP服务</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-host=11:22:33:44:55:66,ignore</div></pre></td></tr></table></figure>
-<p> 10.55</p>
+<ol>
+<li>填入中</li>
+</ol>
 <hr>
 <h1 id="其他注释"><a href="#其他注释" class="headerlink" title="其他注释 (  ) ,"></a>其他注释 (  ) ,</h1><p><span id="SRV_record"></span></p>
 <h2 id="SRV记录"><a href="#SRV记录" class="headerlink" title="SRV记录:"></a>SRV记录:</h2><h3 id="定义-："><a href="#定义-：" class="headerlink" title="定义 ："></a>定义 ：</h3><p>DNS 服务器的数据库中支持的一种资源记录的类型，它记录了哪台计算机提供了哪个服务这么一个简单的信息。一般是为 Microsoft 的活动目录设置时的应用。</p>
