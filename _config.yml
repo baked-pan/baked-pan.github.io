@@ -87,4 +87,4 @@ backup:
     theme: next,landscape
     repository:
                github: github.com/baked-pan/baked-pan.github.io.git,backup
-               coding: git.coding.net/baked-pan/baked-pan.git
+               coding: git.coding.net/baked-pan/baked-pan.git,backup
