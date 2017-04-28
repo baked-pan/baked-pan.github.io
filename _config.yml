@@ -71,8 +71,8 @@ theme: next
 deploy:
   type: git
   repo: 
-        https://github.com/baked-pan/baked-pan.github.io.git,master
-        https://git.coding.net/baked-pan/baked-pan.git,master
+       github: https://github.com/baked-pan/baked-pan.github.io.git,master
+       coding: https://git.coding.net/baked-pan/baked-pan.git,master
   branch: master
  # 添加百度 / 谷歌 / 本地 自定义站点内容搜索
 search:
