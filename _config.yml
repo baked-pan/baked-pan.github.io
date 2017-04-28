@@ -86,5 +86,5 @@ backup:
     message: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~备份ing，完成后请检查backup-branch分支~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     theme: next,landscape
     repository:
-       github: https://github.com/baked-pan/baked-pan.github.io.git,backup
-       coding: https://git.coding.net/baked-pan/baked-pan.git,backup
+               github: github.com/baked-pan/baked-pan.github.io.git,backup
+               coding: git.coding.net/baked-pan/baked-pan.git
