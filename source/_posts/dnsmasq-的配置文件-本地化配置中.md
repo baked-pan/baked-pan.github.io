@@ -185,7 +185,7 @@ categories:
 ``` stylus
 #dhcp-host=11:22:33:44:55:66,fred
 ```
- 3.总是给书记以太网地址，名字“fred”，ip地址，租借时间45分
+ 3.总是给主机以太网地址，名字“fred”，ip地址，租借时间45分
 
 
 ``` stylus

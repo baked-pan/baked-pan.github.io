@@ -42,7 +42,7 @@ menu:
   #about: /about
   archives: /archives
   tags: /tags
-  #sitemap: /sitemap.xml
+  sitemap: /sitemap.xml
   #commonweal: /404.html
 
 
@@ -63,6 +63,8 @@ menu_icons:
   sitemap: sitemap
   commonweal: heartbeat
 
+sitemap:
+path: sitemap.xml
 
 
 
@@ -127,6 +129,8 @@ font:
 
 # ---------------------------------------------------------------
 # Sidebar Settings
+social:
+  GitHub: https://github.com/baked-pan
 # ---------------------------------------------------------------
 
 
@@ -414,7 +418,7 @@ busuanzi_count:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: false
+baidu_push: true
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -518,6 +522,7 @@ vendors:
   # Internal version: 1.0.0
   # https://github.com/hustcc/canvas-nest.js
   canvas_nest:
+
 
 
 
