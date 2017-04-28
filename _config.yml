@@ -88,4 +88,4 @@ backup:
     theme: next,landscape
     repository:
                github: git@github.com:baked-pan/baked-pan.github.io.git,backup
-               oschina: git@git.oschina.net:bakedpan/bakedpan.git,backup
+               githcafe: git@git.oschina.net:bakedpan/bakedpan.git,backup
