@@ -81,11 +81,10 @@ search:
   field: post
   format: html
   limit: 10000
-  # 这里开启备份到GitHub和oschina的backup分支
+  # 这里开启备份到GitHub的backup分支
 backup:
     type: git
     message: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~备份ing，完成后请检查backup-branch分支~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     theme: next,landscape
     repository:
                github: git@github.com:baked-pan/baked-pan.github.io.git,backup
-               githcafe: git@git.oschina.net:bakedpan/bakedpan.git,backup
