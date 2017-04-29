@@ -1,35 +1,38 @@
 ---
-title: dnsmasq 的配置文件(修改版)
+title: DNSmasq-conf(中文版)
 date: 2017-04-28 14:56:26
-updated:
+updated: 2017-04-29 22:22:26
 tags:
-- dnsmasq
+- DNSmasq
 - DNS
+- conf
 categories:
 - DNS
 
 ---
 
 
-# 前言 
+# 前言<span id = "return_from_DNSmasq"></span> 
+这里是关于[DNSmasq](#DNSmasq)的定义
  - 在代码格式中我使用了诸如“// 1”的注释表示，1表示取消当前注释则开启说明所表示的功能，0则相反
  - 在这篇文章中你会见到一些专业术语，这里尽可能地将它们列出来，并尽可能地在文末提供了注释
-
+---
 | 中文 | 英文 |  缩写   |     |  
 | ---- | ---- | --- | --- | 
-|  按需拨号    |  dial-on-demand    |     |     |  
-|  选项    |  option    |     |     |  
+|  按需拨号    |  dial-on-demand    |    | 
+|  选项    |  option    |  DDR    |   
 |域|domain||
 |主机|host||
+|规格|specs||
 |非路由|non-routed||
 |空间|space||
-| 服务定位资源记录||SRV||
-|会话初始协议|Session Initiation Protocol|SIP||
+| 服务定位资源记录||SRV|
+|会话初始协议|Session Initiation Protocol|SIP|
 |域名服务器|nameserver||
 |域名|domain name||
 |会话|talk||
-|用户身份证明|User Identification|UID||
-|组身份证明|group Identification|GID||
+|用户身份证明|User Identification|UID|
+|组身份证明|group Identification|GID|
 |接口|Interface||
 |监听|listen||
 |租借|lease||
@@ -38,7 +41,7 @@ categories:
 |网络 ID|network-id||
 |参数|parameter||
 |客户机标识符|client identifier||
-|操作系统|Operating System|OS||
+|操作系统|Operating System|OS|
 |启动|boot||
 | 标志|flag||
 | 供应商类| vendorclass||
@@ -47,8 +50,8 @@ categories:
 |模式|pattern||
 | 映射|mappings||
 |预设路径|default route||
-|网络时间协议|Network Time Protocol|NTP||
-|存活时间|time-to-live|ttl||
+|网络时间协议|Network Time Protocol|NTP|
+|存活时间|time-to-live|ttl|
 |子网|subnet||
 |静态|static||
 |特性|specific||
@@ -58,14 +61,14 @@ categories:
 |装载|Load||
 |多路广播|multicast||
 |广播|broadcast||
-|简单文件传输协议|Trivial File Transfer Protocol|TFTP||
+|简单文件传输协议|Trivial File Transfer Protocol|TFTP|
 |电子签名|Verisign||
-|邮件交换|Mail Exchanger|MX||
-|指针记录|Pointer Record|PTR||
+|邮件交换|Mail Exchanger|MX|
+|指针记录|Pointer Record|PTR|
 |别名|alias||
 
 
-
+---
 # DNS
 ## 基础转发规则
 格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们告诉 dnsmasq 过滤那些公共 DNS 不能处理的不需要装在服务器( 特别是根服务器中 )的请求。如果你有个按需拨号（dial-on-demand）的连接，这些服务器会阻止这些不需要的连接的建立( bring up )。
@@ -153,8 +156,8 @@ or
 - 这个设置与10.1.2.3的会话的源(ie local  )地址到192.168.1.1，端口（port）55(显然这个机器必须要有与这个IP绑定的接口)：`server=10.1.2.3@192.168.1.1#55`
 
 
-## 改变uid和gid
-如果你想要dnsmasq改变uid和gid到其他设置，而不使用预设值，编辑下边的行
+## 改变UID和GID
+如果你想要dnsmasq改变uid和gid到其他值，而不使用预设值，编辑下边的行
 
 ``` 
 #user=
@@ -232,6 +235,7 @@ or
 ``` stylus
 #domain=reserved.thekelleys.org.uk,192.68.3.100,192.168.3.200
 ```
+---
 # DHCP
 ## 启用完整的 DHCP
 注释掉这一行以启用完整的 DHCP 服务，你需要提供地址（addresses）范围（range）以供租借（租借时间是可选的）。
@@ -636,13 +640,14 @@ DHCP 服务器需要一定的磁盘空间保存数据库. 默认全路径, 改�
 ``` vala
 #cache-size=150
 ```
-#### 关闭 negative caching
+<span id = "return_from_negative_caching"></span>
+#### 关闭 [negative caching](#negative_caching)
 取消这个注释
 
 ``` vala
 #no-negcache
 ```
-#### 个存活时间
+#### 存活时间
 一般地, 来源于 `/etc/hosts` 和 `DHCP lease file` 有一个0的存活时间设定，习惯上约定不要进行进一步缓存( cache further ),如果你想要在服务器上低负载地为可能过期的数据进行交换, 设置一个存活时间( Time-To-Live )
 
 ``` shell
@@ -748,7 +753,7 @@ srv-host=_ldap._tcp.example.com,ldapserver.example.com,389,1
 ``` vala
 #cname=bertand,bert
 ```
-
+---
 ## 日志 log
 ### 想要 debugging, 通过 dnsmasq 为每个 DNS 查询保存日志( log )
 
@@ -770,7 +775,16 @@ srv-host=_ldap._tcp.example.com,ldapserver.example.com,389,1
 
 
 ---
-# 其他注释 (  ) ,
+# 其他注释 (  ) 
+<span id = "DNSmasq"><span>
+## DNSmasq
+### 定义
+DNSmasq 是一个小巧且方便地用于配置 DNS 和 DHCP 的工具
+### 简介
+它提供了 DNS 功能和可选择的 DHCP 功能。它服务那些只在本地适用的域名，这些域名是不会在全球的 DNS 服务器中出现的。DHCP 服务器和 DNS 服务器结合，并且允许 DHCP 分配的地址能在 DNS 中正常解析，而这些 DHCP 分配的地址和相关命令可以配置到每台主机中，也可以配置到一台核心设备中（比如路由器），DNSmasq 支持静态和动态两种 DHCP 配置方式。    
+
+[返回](#return_from_DNSmasq)
+
 <span id = "SRV_record" ></span>
 ## SRV记录:
 ### 定义 ：
@@ -865,4 +879,14 @@ ISC 服务器控制。是 Intel 的服务器管理软件。只适用于使用 In
 [返回](#return_from_ISC)
 
 ---
+# negative_caching<span id = "negative_caching"></span>
+## 定义
+避免重复失败的 DNS 解析请求
+## 原理
+当客户端尝试通过 DNS 解析某个域名但解析失败后，客户端依然会在自己的缓存中记录相关的信息，但这里记录的并非解析结果，而是”Negative caching”。这样当客户端尝试再次访问不存在的域名时，因为本地的 DNS 缓存中已经有了相关的 Negative caching 记录，因此客户端不会频繁尝试通过 DNS 进行解析. 比较恰当的翻译是消极缓存或者未果缓冲.
 
+
+
+[返回](#return_from_negative_caching)
+
+---

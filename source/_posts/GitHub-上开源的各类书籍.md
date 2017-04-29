@@ -6,16 +6,14 @@ tags:
 - GitHub
 - 书籍
 categories:
-- 书籍
-keywords:
 - GitHub
-description:
+
 ---
 
 # 挂载地址
-## [GitHub 漫游指南][1]
-## [笔试面试知识整理][2]
-## [计算机相关技术资料整理][3]
+ - [GitHub 漫游指南][1]
+ - [笔试面试知识整理][2]
+ - [计算机相关技术资料整理][3]
 
 
   [1]: http://hexo.mantoujun.top/github-roam/

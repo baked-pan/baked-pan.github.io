@@ -1,5 +1,5 @@
 ---
-title: dnsmasq-conf
+title: dnsmasq-conf(英文原版)
 date: 2017-04-28 13:30:23
 updated:
 tags:
