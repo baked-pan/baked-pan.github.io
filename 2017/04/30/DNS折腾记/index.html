@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DNS,hosts,dnsmasq,ss," />
+  <meta name="keywords" content="DNS,ss,hosts,dnsmasq," />
 
 
 
@@ -119,7 +119,7 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/wall-lay.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/扇扇子.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/眼神犀利.jpg">
-<meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/搞事.gif">
+<meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/羞羞.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/啊呀呀.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/喝水.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/diu.jpg">
@@ -128,7 +128,7 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/yellow.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/OK.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/告辞.jpg">
-<meta property="og:updated_time" content="2017-04-29T19:32:44.619Z">
+<meta property="og:updated_time" content="2017-04-29T19:36:40.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS折腾记">
 <meta name="twitter:description" content="前言一直使用人家开源的hosts替换笔记本上的或者Android 手机上的文件, 但是又不免遇到几个问题
@@ -459,7 +459,7 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">匹配 # 字符删除所在行</div></pre></td></tr></table></figure>
 <p>复制进去，<img src="/2017/04/30/DNS折腾记/喝茶.jpg" alt="喝茶.jpg">等插件下载进度慢慢跑完，boom，改一下手机的 DNS 到路由器地址，可以用，真是皆大欢喜<img src="/2017/04/30/DNS折腾记/哈哈哈.jpg" alt="哈哈哈.jpg"><br>再偷懒一点，用 winscp 进入路由器<code>etc</code> 目录找到 hosts 文件，直接将仅执行换行的记录文本复制进去，重启下路由器，测试一下，貌似工作正常，再进去查看下文件，简直了——直接少了一半的记录，我还是选择插件大法吧——停，好像这跟我的出发点不太一样，为什么我想要偷懒反而变得复杂了<img src="/2017/04/30/DNS折腾记/embarrassed.jpg" alt="embarrassed.jpg"><br>总之先问问度娘可行的替代方法~<br>先逛逛极路由官方论坛，简直了，hosts 修改全是吐槽难用的，然后下边给出的解决方法是换个360路由——我 Dr.com 认证就是用修改版极路由做的，不干——主要是懒癌<img src="/2017/04/30/DNS折腾记/wall-lay.gif" alt="wall-lay.gif"><br>事到如今我只能祭出杀手锏了——腾讯云上边的主机，要不我自建个 DNS 服务器吧</p>
-<h1 id="主线二号"><a href="#主线二号" class="headerlink" title="主线二号"></a>主线二号</h1><p>服务器上跑的是CentOs系统，这下有搞头<img src="/2017/04/30/DNS折腾记/扇扇子.jpg" alt="扇扇子.jpg">，找找可选方案，java环境?玩不开，滚蛋. python环境？还是玩不开，滚犊子. 捕捉到一个特别的——DNSmasq，原生方案，高度可定制<br><img src="/2017/04/30/DNS折腾记/眼神犀利.jpg" alt="眼神犀利.jpg">，就是你了. 下边全程使用winscp跟putty软件.<br>找到<code>dnsmasq-conf</code>文件，参照网上各种不负责任复制粘贴的博客内容，翻译一下文件指引，开始<img src="/2017/04/30/DNS折腾记/搞事.gif" alt="搞事.gif"><br>先写好基础的配置</p>
+<h1 id="主线二号"><a href="#主线二号" class="headerlink" title="主线二号"></a>主线二号</h1><p>服务器上跑的是CentOs系统，这下有搞头<img src="/2017/04/30/DNS折腾记/扇扇子.jpg" alt="扇扇子.jpg">，找找可选方案，java环境?玩不开，滚蛋. python环境？还是玩不开，滚犊子. 捕捉到一个特别的——DNSmasq，原生方案，高度可定制<br><img src="/2017/04/30/DNS折腾记/眼神犀利.jpg" alt="眼神犀利.jpg">，就是你了. 下边全程使用winscp跟putty软件.<br>找到<code>dnsmasq-conf</code>文件，参照网上各种不负责任复制粘贴的博客内容，翻译一下文件指引，开始搞事<img src="/2017/04/30/DNS折腾记/羞羞.jpg" alt="羞羞.jpg"><br>先写好基础的配置</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">no-resolv  <span class="comment">//不使用/etc/resolv.conf指定上游 DNS 服务器，直接下方给出</span></div><div class="line">server=<span class="number">119.29</span>.<span class="number">29.29</span></div><div class="line">server=<span class="number">114.114</span>.<span class="number">114.114</span>  <span class="comment">//上游服务器选用了腾讯和114</span></div><div class="line">server=/<span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="number">222.200</span>.<span class="number">115.251</span> <span class="comment">//针对校园网内访问使用校内 DNS </span></div><div class="line">server=/google.com/<span class="number">139</span><span class="selector-class">.x</span><span class="selector-class">.x</span><span class="selector-class">.x</span> <span class="comment">//避免谷歌用自己的dns重定向，强制转向自己的服务器地址</span></div><div class="line">addn-hosts=/etc/dnsmasq<span class="selector-class">.host</span> <span class="comment">//挂载hosts文件</span></div></pre></td></tr></table></figure>
 <p><code>dnsmasq-conf</code>文件中还可加入特别的解析地址和广告屏蔽，比如我就为了日服fgo 加入了如下配置</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">address=/data.fate-go.jp/<span class="number">54.230</span><span class="number">.249</span><span class="number">.7</span></div><div class="line">address=/view.fate-go.jp/<span class="number">54.192</span><span class="number">.75</span><span class="number">.120</span></div><div class="line">address=/ocsp.digicert.com/<span class="number">117.18</span><span class="number">.237</span><span class="number">.29</span></div></pre></td></tr></table></figure>
@@ -524,11 +524,11 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
           
             <a href="/tags/DNS/" rel="tag"># DNS</a>
           
+            <a href="/tags/ss/" rel="tag"># ss</a>
+          
             <a href="/tags/hosts/" rel="tag"># hosts</a>
           
             <a href="/tags/dnsmasq/" rel="tag"># dnsmasq</a>
-          
-            <a href="/tags/ss/" rel="tag"># ss</a>
           
         </div>
       
