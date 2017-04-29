@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="dnsmasq,DNS," />
+  <meta name="keywords" content="dnsmasq" />
 
 
 
@@ -87,16 +87,148 @@
 
 
 
-<meta name="description" content="dnsmasq 的配置文件(修改版)前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反DNS基础转发规则格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们告诉 dnsmasq 过滤那些公共">
+<meta name="description" content="前言
+在代码格式中我使用了诸如“// 1”的注释表示，1表示取消当前注释则开启说明所表示的功能，0则相反
+在这篇文章中你会见到一些专业术语，这里尽可能地将它们列出来，并尽可能地在文末提供了注释
+
+
+
+
+
+中文
+英文
+缩写
+
+
+
+
+
+按需拨号
+dial-on-demand
+
+
+
+
+选项
+option
+
+
+
+
+域
+domain
+
+
+
+主机
+host
+
+
+
+非路由
+non-routed
+
+
+
+空间
+sp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dnsmasq 的配置文件(修改版)">
 <meta property="og:url" content="https://baked-pan.github.io/2017/04/28/dnsmasq-的配置文件-修改版/index.html">
 <meta property="og:site_name" content="未知领域">
-<meta property="og:description" content="dnsmasq 的配置文件(修改版)前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反DNS基础转发规则格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们告诉 dnsmasq 过滤那些公共">
-<meta property="og:updated_time" content="2017-04-29T12:59:57.587Z">
+<meta property="og:description" content="前言
+在代码格式中我使用了诸如“// 1”的注释表示，1表示取消当前注释则开启说明所表示的功能，0则相反
+在这篇文章中你会见到一些专业术语，这里尽可能地将它们列出来，并尽可能地在文末提供了注释
+
+
+
+
+
+中文
+英文
+缩写
+
+
+
+
+
+按需拨号
+dial-on-demand
+
+
+
+
+选项
+option
+
+
+
+
+域
+domain
+
+
+
+主机
+host
+
+
+
+非路由
+non-routed
+
+
+
+空间
+sp">
+<meta property="og:updated_time" content="2017-04-29T13:50:24.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dnsmasq 的配置文件(修改版)">
-<meta name="twitter:description" content="dnsmasq 的配置文件(修改版)前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反DNS基础转发规则格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们告诉 dnsmasq 过滤那些公共">
+<meta name="twitter:description" content="前言
+在代码格式中我使用了诸如“// 1”的注释表示，1表示取消当前注释则开启说明所表示的功能，0则相反
+在这篇文章中你会见到一些专业术语，这里尽可能地将它们列出来，并尽可能地在文末提供了注释
+
+
+
+
+
+中文
+英文
+缩写
+
+
+
+
+
+按需拨号
+dial-on-demand
+
+
+
+
+选项
+option
+
+
+
+
+域
+domain
+
+
+
+主机
+host
+
+
+
+非路由
+non-routed
+
+
+
+空间
+sp">
 
 
 
@@ -379,6 +511,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DNS/dnsmasq/" itemprop="url" rel="index">
+                    <span itemprop="name">dnsmasq</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -407,9 +550,268 @@
       
 
       
-        <h1 id="dnsmasq-的配置文件-修改版"><a href="#dnsmasq-的配置文件-修改版" class="headerlink" title="dnsmasq 的配置文件(修改版)"></a>dnsmasq 的配置文件(修改版)</h1><h2 id="前言，在命令行格式中我使用了1-0-表示，1表示取消当前注释则开启说明所表示的功能，0则相反"><a href="#前言，在命令行格式中我使用了1-0-表示，1表示取消当前注释则开启说明所表示的功能，0则相反" class="headerlink" title="前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反"></a>前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反</h2><h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><h2 id="基础转发规则"><a href="#基础转发规则" class="headerlink" title="基础转发规则"></a>基础转发规则</h2><p>格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们告诉 dnsmasq 过滤那些公共 DNS 不能处理的不需要装在服务器( 特别是根服务器中 )的请求。如果你有个按需拨号（dial-on-demand）的连接，这些服务器会阻止这些不需要的连接的建立( bring up )。</p>
-<h3 id="不转发那些不存在的名-没有点或者域部分"><a href="#不转发那些不存在的名-没有点或者域部分" class="headerlink" title="不转发那些不存在的名( 没有点或者域部分 )"></a>不转发那些不存在的名( 没有点或者域部分 )</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#domain-needed //1</div></pre></td></tr></table></figure>
-<h3 id="为存在于那些没有根路由（non-routed-）地址的空间转发地址"><a href="#为存在于那些没有根路由（non-routed-）地址的空间转发地址" class="headerlink" title="为存在于那些没有根路由（non-routed ）地址的空间转发地址"></a>为存在于那些没有根路由（non-routed ）地址的空间转发地址</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#bogus-priv   //1</span></div></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li>在代码格式中我使用了诸如“// 1”的注释表示，1表示取消当前注释则开启说明所表示的功能，0则相反</li>
+<li>在这篇文章中你会见到一些专业术语，这里尽可能地将它们列出来，并尽可能地在文末提供了注释</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th>中文</th>
+<th>英文</th>
+<th>缩写</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>按需拨号</td>
+<td>dial-on-demand</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>选项</td>
+<td>option</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>域</td>
+<td>domain</td>
+<td></td>
+</tr>
+<tr>
+<td>主机</td>
+<td>host</td>
+<td></td>
+</tr>
+<tr>
+<td>非路由</td>
+<td>non-routed</td>
+<td></td>
+</tr>
+<tr>
+<td>空间</td>
+<td>space</td>
+<td></td>
+</tr>
+<tr>
+<td>服务定位资源记录</td>
+<td></td>
+<td>SRV</td>
+<td></td>
+</tr>
+<tr>
+<td>会话初始协议</td>
+<td>Session Initiation Protocol</td>
+<td>SIP</td>
+<td></td>
+</tr>
+<tr>
+<td>域名服务器</td>
+<td>nameserver</td>
+<td></td>
+</tr>
+<tr>
+<td>域名</td>
+<td>domain name</td>
+<td></td>
+</tr>
+<tr>
+<td>会话</td>
+<td>talk</td>
+<td></td>
+</tr>
+<tr>
+<td>用户身份证明</td>
+<td>User Identification</td>
+<td>UID</td>
+<td></td>
+</tr>
+<tr>
+<td>组身份证明</td>
+<td>group Identification</td>
+<td>GID</td>
+<td></td>
+</tr>
+<tr>
+<td>接口</td>
+<td>Interface</td>
+<td></td>
+</tr>
+<tr>
+<td>监听</td>
+<td>listen</td>
+<td></td>
+</tr>
+<tr>
+<td>租借</td>
+<td>lease</td>
+<td></td>
+</tr>
+<tr>
+<td>中继代理</td>
+<td>relay agent</td>
+<td></td>
+</tr>
+<tr>
+<td>电子掩码</td>
+<td>netmask</td>
+<td></td>
+</tr>
+<tr>
+<td>网络 ID</td>
+<td>network-id</td>
+<td></td>
+</tr>
+<tr>
+<td>参数</td>
+<td>parameter</td>
+<td></td>
+</tr>
+<tr>
+<td>客户机标识符</td>
+<td>client identifier</td>
+<td></td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>Operating System</td>
+<td>OS</td>
+<td></td>
+</tr>
+<tr>
+<td>启动</td>
+<td>boot</td>
+<td></td>
+</tr>
+<tr>
+<td>标志</td>
+<td>flag</td>
+<td></td>
+</tr>
+<tr>
+<td>供应商类</td>
+<td>vendorclass</td>
+<td></td>
+</tr>
+<tr>
+<td>用户类</td>
+<td>userclass</td>
+<td></td>
+</tr>
+<tr>
+<td>字串</td>
+<td>substring</td>
+<td></td>
+</tr>
+<tr>
+<td>模式</td>
+<td>pattern</td>
+<td></td>
+</tr>
+<tr>
+<td>映射</td>
+<td>mappings</td>
+<td></td>
+</tr>
+<tr>
+<td>预设路径</td>
+<td>default route</td>
+<td></td>
+</tr>
+<tr>
+<td>网络时间协议</td>
+<td>Network Time Protocol</td>
+<td>NTP</td>
+<td></td>
+</tr>
+<tr>
+<td>存活时间</td>
+<td>time-to-live</td>
+<td>ttl</td>
+<td></td>
+</tr>
+<tr>
+<td>子网</td>
+<td>subnet</td>
+<td></td>
+</tr>
+<tr>
+<td>静态</td>
+<td>static</td>
+<td></td>
+</tr>
+<tr>
+<td>特性</td>
+<td>specific</td>
+<td></td>
+</tr>
+<tr>
+<td>封装</td>
+<td>encapsulate</td>
+<td></td>
+</tr>
+<tr>
+<td>前缀</td>
+<td>prefix</td>
+<td></td>
+</tr>
+<tr>
+<td>超时</td>
+<td>timeout</td>
+<td></td>
+</tr>
+<tr>
+<td>装载</td>
+<td>Load</td>
+<td></td>
+</tr>
+<tr>
+<td>多路广播</td>
+<td>multicast</td>
+<td></td>
+</tr>
+<tr>
+<td>广播</td>
+<td>broadcast</td>
+<td></td>
+</tr>
+<tr>
+<td>简单文件传输协议</td>
+<td>Trivial File Transfer Protocol</td>
+<td>TFTP</td>
+<td></td>
+</tr>
+<tr>
+<td>电子签名</td>
+<td>Verisign</td>
+<td></td>
+</tr>
+<tr>
+<td>邮件交换</td>
+<td>Mail Exchanger</td>
+<td>MX</td>
+<td></td>
+</tr>
+<tr>
+<td>指针记录</td>
+<td>Pointer Record</td>
+<td>PTR</td>
+<td></td>
+</tr>
+<tr>
+<td>别名</td>
+<td>alias</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><h2 id="基础转发规则"><a href="#基础转发规则" class="headerlink" title="基础转发规则"></a>基础转发规则</h2><p>格式是一个选项一行，合法的多个选项跟在命令行中的多个合格的选项一样。见“/usr/sbin/dnsmasq –help” 或者“man 8 dnsmasq” 里的更多细节。下面的两个选项让你更好地使用网络，因为它们告诉 dnsmasq 过滤那些公共 DNS 不能处理的不需要装在服务器( 特别是根服务器中 )的请求。如果你有个按需拨号（dial-on-demand）的连接，这些服务器会阻止这些不需要的连接的建立( bring up )。</p>
+<h3 id="从不转发那些不存在的名-没有点或者域部分"><a href="#从不转发那些不存在的名-没有点或者域部分" class="headerlink" title="从不转发那些不存在的名( 没有点或者域部分 )"></a>从不转发那些不存在的名( 没有点或者域部分 )</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#domain-needed //1</div></pre></td></tr></table></figure>
+<h3 id="从不为存在于那些非路由（non-routed-）地址的空间转发地址"><a href="#从不为存在于那些非路由（non-routed-）地址的空间转发地址" class="headerlink" title="从不为存在于那些非路由（non-routed ）地址的空间转发地址"></a>从不为存在于那些非路由（non-routed ）地址的空间转发地址</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#bogus-priv   //1</span></div></pre></td></tr></table></figure>
 <h3 id="过滤无用的来源为Windows的DNS请求"><a href="#过滤无用的来源为Windows的DNS请求" class="headerlink" title="过滤无用的来源为Windows的DNS请求"></a>过滤无用的来源为Windows的DNS请求</h3><p>取消这个注释以过滤无用的来源为Windows的DNS请求，这些请求会引起不必要的按需拨号的连接。注意 ( 在其他地方 )，这阻止所有<span id="return_from_SRV_record"></span> <a href="#SRV_record">服务定位资源记录 (SRV )</a>，所以除非你使用诸如<span id="return_from_Kerberos"><a href="#Kerberos">Kerberos</a>, <span id="return_from_SIP"></span><a href="#SIP">SIP</a>, <span id="return_from_XMPP"></span><a href="#XMPP">XMMP</a> 或者<span id="return_from_Google-talk"></span> <a href="#Google-talk">Google-talk</a> ，不要使用它。这个选项只影响转发,为 dnsmasq 生成的SRV 记录 ( 通过 srv-host= lines ) 不受其限制</span></p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">#filterwin2</span>k <span class="comment">//1</span></div></pre></td></tr></table></figure>
 <h2 id="上游服务器相关"><a href="#上游服务器相关" class="headerlink" title="上游服务器相关"></a>上游服务器相关</h2><h3 id="从上游服务器中获取-dns"><a href="#从上游服务器中获取-dns" class="headerlink" title="从上游服务器中获取 dns"></a>从上游服务器中获取 dns</h3><p>改变这一行如果你想要从上游服务器中获取dns，上游的设置文件在<code>/etc/resolv.conf</code></p>
@@ -478,6 +880,7 @@
 <li>更多选项，比子网更加扩展</li>
 </ul>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#domain=reserved<span class="selector-class">.thekelleys</span><span class="selector-class">.org</span><span class="selector-class">.uk</span>,<span class="number">192.68</span>.<span class="number">3.100</span>,<span class="number">192.168</span>.<span class="number">3.200</span></div></pre></td></tr></table></figure>
+<hr>
 <h1 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h1><h2 id="启用完整的-DHCP"><a href="#启用完整的-DHCP" class="headerlink" title="启用完整的 DHCP"></a>启用完整的 DHCP</h2><p>注释掉这一行以启用完整的 DHCP 服务，你需要提供地址（addresses）范围（range）以供租借（租借时间是可选的）。<br>如果你有多个网络，在每个应用DHCP 服务的网络重复这个</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#dhcp-range=192.168.0.50,192.168.0.150,12h</div></pre></td></tr></table></figure>
 <h2 id="DHCP-范围类型"><a href="#DHCP-范围类型" class="headerlink" title="DHCP 范围类型"></a>DHCP 范围类型</h2><h3 id="电子掩码"><a href="#电子掩码" class="headerlink" title="电子掩码"></a>电子掩码</h3><p>这是一个拥有电子掩码DHCP 范围的例子。在我们通过一个中继代理（relay agent）到达dnsmasq DHCP 服务的情况下，电子掩码是必须的。如果你并不知道什么是DHCP 中继代理，你大概不需要注意这个</p>
@@ -690,6 +1093,7 @@
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#Example</span> SPF.</div><div class="line"></div><div class="line">#txt-record=example<span class="selector-class">.com</span>,”v=spf1 <span class="selector-tag">a</span> -all”</div><div class="line"></div><div class="line"><span class="selector-id">#Example</span> zeroconf</div><div class="line"></div><div class="line">#txt-record=_http._tcp<span class="selector-class">.example</span><span class="selector-class">.com</span>,name=value,paper=A4</div></pre></td></tr></table></figure>
 <h2 id="别名-alias"><a href="#别名-alias" class="headerlink" title="别名 alias"></a>别名 alias</h2><p>为一个 “local” DNS 名提供别名( alias ). 注意：这只为那些名来源于<code>DHCP</code> 和 <code>/etc/hosts</code> 的目标工作. 给主机 “ bert ” 其他的名,bertrand</p>
 <figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#cname=bertand,bert</span></div></pre></td></tr></table></figure>
+<hr>
 <h2 id="日志-log"><a href="#日志-log" class="headerlink" title="日志 log"></a>日志 log</h2><h3 id="想要-debugging-通过-dnsmasq-为每个-DNS-查询保存日志-log"><a href="#想要-debugging-通过-dnsmasq-为每个-DNS-查询保存日志-log" class="headerlink" title="想要 debugging, 通过 dnsmasq 为每个 DNS 查询保存日志( log )"></a>想要 debugging, 通过 dnsmasq 为每个 DNS 查询保存日志( log )</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#log-queries</span>  <span class="comment">//1</span></div></pre></td></tr></table></figure>
 <h3 id="为-DHCP-交换的额外信息保存日志"><a href="#为-DHCP-交换的额外信息保存日志" class="headerlink" title="为 DHCP 交换的额外信息保存日志"></a>为 DHCP 交换的额外信息保存日志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#log-dhcp  //1</div></pre></td></tr></table></figure>
 <h1 id="包括其他多项的设置选项-configuration-options"><a href="#包括其他多项的设置选项-configuration-options" class="headerlink" title="包括其他多项的设置选项( configuration options)"></a>包括其他多项的设置选项( configuration options)</h1><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#<span class="keyword">conf</span>-<span class="keyword">file</span>=/etc/dnsmasq.<span class="keyword">more</span>.<span class="keyword">conf</span></div><div class="line"></div><div class="line">#<span class="keyword">conf</span>-<span class="keyword">dir</span>=/etc/dnsmasq.<span class="built_in">d</span></div></pre></td></tr></table></figure>
@@ -872,7 +1276,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -929,7 +1333,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dnsmasq-的配置文件-修改版"><span class="nav-number">1.</span> <span class="nav-text">dnsmasq 的配置文件(修改版)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言，在命令行格式中我使用了1-0-表示，1表示取消当前注释则开启说明所表示的功能，0则相反"><span class="nav-number">1.1.</span> <span class="nav-text">前言，在命令行格式中我使用了1 / 0 表示，1表示取消当前注释则开启说明所表示的功能，0则相反</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">2.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础转发规则"><span class="nav-number">2.1.</span> <span class="nav-text">基础转发规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不转发那些不存在的名-没有点或者域部分"><span class="nav-number">2.1.1.</span> <span class="nav-text">不转发那些不存在的名( 没有点或者域部分 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为存在于那些没有根路由（non-routed-）地址的空间转发地址"><span class="nav-number">2.1.2.</span> <span class="nav-text">为存在于那些没有根路由（non-routed ）地址的空间转发地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤无用的来源为Windows的DNS请求"><span class="nav-number">2.1.3.</span> <span class="nav-text">过滤无用的来源为Windows的DNS请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上游服务器相关"><span class="nav-number">2.2.</span> <span class="nav-text">上游服务器相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从上游服务器中获取-dns"><span class="nav-number">2.2.1.</span> <span class="nav-text">从上游服务器中获取 dns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制上游-DNS-寻找顺序"><span class="nav-number">2.2.2.</span> <span class="nav-text">强制上游 DNS 寻找顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不读取conf-或其他文件"><span class="nav-number">2.2.3.</span> <span class="nav-text">不读取conf 或其他文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不查找conf，resolv文件"><span class="nav-number">2.2.4.</span> <span class="nav-text">不查找conf，resolv文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他域名服务器"><span class="nav-number">2.2.5.</span> <span class="nav-text">其他域名服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求转发类型"><span class="nav-number">2.3.</span> <span class="nav-text">请求转发类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路由器选择"><span class="nav-number">2.3.1.</span> <span class="nav-text">路由器选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仅本地域名"><span class="nav-number">2.3.2.</span> <span class="nav-text">仅本地域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制跳转"><span class="nav-number">2.3.3.</span> <span class="nav-text">强制跳转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制会话方式"><span class="nav-number">2.4.</span> <span class="nav-text">控制会话方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变uid和gid"><span class="nav-number">2.5.</span> <span class="nav-text">改变uid和gid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-number">2.6.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#监听"><span class="nav-number">2.6.1.</span> <span class="nav-text">监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个接口上提供-DNS"><span class="nav-number">2.6.2.</span> <span class="nav-text">一个接口上提供 DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口接受通配符地址"><span class="nav-number">2.6.3.</span> <span class="nav-text">接口接受通配符地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hosts"><span class="nav-number">2.7.</span> <span class="nav-text">hosts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读取-etc-hosts文件"><span class="nav-number">2.7.1.</span> <span class="nav-text">读取/etc/hosts文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加其他hosts文件"><span class="nav-number">2.7.2.</span> <span class="nav-text">添加其他hosts文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域名自动添加"><span class="nav-number">2.7.3.</span> <span class="nav-text">域名自动添加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dnsmasq-域名"><span class="nav-number">2.8.</span> <span class="nav-text">dnsmasq 域名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为dnsmasq设置一个域名，这是可选的，但一旦设置，它执行了如下行为"><span class="nav-number">2.8.1.</span> <span class="nav-text">为dnsmasq设置一个域名，这是可选的，但一旦设置，它执行了如下行为</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP"><span class="nav-number">3.</span> <span class="nav-text">DHCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启用完整的-DHCP"><span class="nav-number">3.1.</span> <span class="nav-text">启用完整的 DHCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP-范围类型"><span class="nav-number">3.2.</span> <span class="nav-text">DHCP 范围类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#电子掩码"><span class="nav-number">3.2.1.</span> <span class="nav-text">电子掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络ID"><span class="nav-number">3.2.2.</span> <span class="nav-text">网络ID</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对主机的处理"><span class="nav-number">3.3.</span> <span class="nav-text">对主机的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对发现的物理地址-IP对执行动作"><span class="nav-number">3.4.</span> <span class="nav-text">对发现的物理地址/IP对执行动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送的选项"><span class="nav-number">3.5.</span> <span class="nav-text">发送的选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路径"><span class="nav-number">3.5.1.</span> <span class="nav-text">路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络时间协议-NTP"><span class="nav-number">3.6.</span> <span class="nav-text">网络时间协议 NTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存活时间"><span class="nav-number">3.7.</span> <span class="nav-text">存活时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标志类"><span class="nav-number">3.8.</span> <span class="nav-text">标志类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标志-选项类"><span class="nav-number">3.9.</span> <span class="nav-text">标志+选项类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-dnsmasq"><span class="nav-number">3.10.</span> <span class="nav-text">建立 dnsmasq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名查找"><span class="nav-number">3.11.</span> <span class="nav-text">域名查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-域名查找-DHCP"><span class="nav-number">3.11.1.</span> <span class="nav-text">DNS 域名查找 DHCP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态路径"><span class="nav-number">3.12.</span> <span class="nav-text">静态路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送-RFC-3442-无分级-classless-静态路径-注意网络掩码的编码"><span class="nav-number">3.13.</span> <span class="nav-text">发送 RFC-3442 无分级( classless  )静态路径( 注意网络掩码的编码 )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供商类特性选项"><span class="nav-number">3.14.</span> <span class="nav-text">提供商类特性选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PXELinux"><span class="nav-number">3.15.</span> <span class="nav-text">PXELinux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送选项给-PXELinux"><span class="nav-number">3.15.1.</span> <span class="nav-text">发送选项给 PXELinux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件名"><span class="nav-number">3.15.2.</span> <span class="nav-text">配置文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路径前缀-prefix"><span class="nav-number">3.15.3.</span> <span class="nav-text">路径前缀( prefix )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启时间-注意“-i-”发送-32-bit-值"><span class="nav-number">3.15.4.</span> <span class="nav-text">重启时间( 注意“ i ”发送 32-bit 值 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为-netboot-PXE-设置-boot-文件名"><span class="nav-number">3.15.5.</span> <span class="nav-text">为 netboot/PXE 设置 boot 文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boot-for-Etherboot-gPXE"><span class="nav-number">3.15.6.</span> <span class="nav-text">Boot for Etherboot gPXE.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Encapsulated-options-for-Etherboot-gPXE"><span class="nav-number">3.15.7.</span> <span class="nav-text">Encapsulated options for Etherboot gPXE.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-for-the-architecture-of-a-netboot-client-PXE-clients-如-option-93-发送它们的结构"><span class="nav-number">3.15.8.</span> <span class="nav-text">Test for the architecture of a netboot client. PXE clients 如 option 93 发送它们的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行"><span class="nav-number">3.15.9.</span> <span class="nav-text">执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行真正的-PXE，不要仅启动单个文件"><span class="nav-number">3.15.9.1.</span> <span class="nav-text">执行真正的 PXE，不要仅启动单个文件,</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Available-boot-services-for-PXE"><span class="nav-number">3.15.9.2.</span> <span class="nav-text">Available boot services. for PXE.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装载"><span class="nav-number">3.15.10.</span> <span class="nav-text">装载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bootserver"><span class="nav-number">3.16.</span> <span class="nav-text">bootserver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TFTP"><span class="nav-number">3.17.</span> <span class="nav-text">TFTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启用-dnsmasq’s-built-in-TFTP-server"><span class="nav-number">3.17.1.</span> <span class="nav-text">启用 dnsmasq’s built-in TFTP server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-FTP-文件-root-directory"><span class="nav-number">3.17.2.</span> <span class="nav-text">设置 FTP  文件 root directory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使-TFTP-伺服器更加安全"><span class="nav-number">3.17.3.</span> <span class="nav-text">使 TFTP 伺服器更加安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只有“red”标志被设定的时候设置-boot-文件名"><span class="nav-number">3.17.4.</span> <span class="nav-text">只有“red”标志被设定的时候设置 boot 文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">3.17.5.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">3.18.</span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#租借"><span class="nav-number">3.18.1.</span> <span class="nav-text">租借</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#租借限制"><span class="nav-number">3.18.1.1.</span> <span class="nav-text">租借限制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘"><span class="nav-number">3.18.2.</span> <span class="nav-text">磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库占用"><span class="nav-number">3.18.2.1.</span> <span class="nav-text">数据库占用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#authoritative-模式"><span class="nav-number">3.18.3.</span> <span class="nav-text">authoritative 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建或者销毁"><span class="nav-number">3.18.4.</span> <span class="nav-text">创建或者销毁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">3.18.5.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置缓存大小"><span class="nav-number">3.18.5.1.</span> <span class="nav-text">设置缓存大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭-negative-caching"><span class="nav-number">3.18.5.2.</span> <span class="nav-text">关闭 negative caching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个存活时间"><span class="nav-number">3.18.5.3.</span> <span class="nav-text">个存活时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果你想要-dnsmasq-去检测依据电子签名-Verisign-的尝试从而发送未注册的-com-和-net-主机到它的网站发现服务然后让-dnsmasq-替代性地返回正确的-NXDOMAIN-回答-respond-取消这一行的注释-你可以添加类似的-多-行为其他的注册-使用通配符-A-记录-执行同一效果"><span class="nav-number">3.19.</span> <span class="nav-text">如果你想要 dnsmasq 去检测依据电子签名( Verisign )的尝试从而发送未注册的 .com 和 .net 主机到它的网站发现服务然后让 dnsmasq 替代性地返回正确的 NXDOMAIN 回答( respond ), 取消这一行的注释. 你可以添加类似的(多)行为其他的注册( 使用通配符 A 记录 )执行同一效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改DNS结果"><span class="nav-number">3.20.</span> <span class="nav-text">修改DNS结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MX-记录"><span class="nav-number">3.21.</span> <span class="nav-text">MX 记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-localmx-option-为创建的-MX-记录设置默认目标"><span class="nav-number">3.21.1.</span> <span class="nav-text">使用 localmx option 为创建的 MX 记录设置默认目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为所有本地机器返回一个指向-mx-target-的-MX-记录"><span class="nav-number">3.21.2.</span> <span class="nav-text">为所有本地机器返回一个指向 mx-target 的 MX 记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为所有本地机器返回一个指向它们自己的-MX-记录"><span class="nav-number">3.21.3.</span> <span class="nav-text">为所有本地机器返回一个指向它们自己的 MX 记录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SRV-记录"><span class="nav-number">3.22.</span> <span class="nav-text">SRV 记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PTR-记录"><span class="nav-number">3.23.</span> <span class="nav-text">PTR 记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TXT-记录"><span class="nav-number">3.24.</span> <span class="nav-text">TXT 记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别名-alias"><span class="nav-number">3.25.</span> <span class="nav-text">别名 alias</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志-log"><span class="nav-number">3.26.</span> <span class="nav-text">日志 log</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#想要-debugging-通过-dnsmasq-为每个-DNS-查询保存日志-log"><span class="nav-number">3.26.1.</span> <span class="nav-text">想要 debugging, 通过 dnsmasq 为每个 DNS 查询保存日志( log )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为-DHCP-交换的额外信息保存日志"><span class="nav-number">3.26.2.</span> <span class="nav-text">为 DHCP 交换的额外信息保存日志</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包括其他多项的设置选项-configuration-options"><span class="nav-number">4.</span> <span class="nav-text">包括其他多项的设置选项( configuration options)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他注释"><span class="nav-number">5.</span> <span class="nav-text">其他注释 (  ) ,</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SRV记录"><span class="nav-number">5.1.</span> <span class="nav-text">SRV记录:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-："><span class="nav-number">5.1.1.</span> <span class="nav-text">定义 ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介："><span class="nav-number">5.1.2.</span> <span class="nav-text">简介：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRV-记录功能包括（基于它们在-DNS-控制台的分组）"><span class="nav-number">5.1.3.</span> <span class="nav-text">SRV 记录功能包括（基于它们在 DNS 控制台的分组）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kerberos："><span class="nav-number">5.2.</span> <span class="nav-text">Kerberos：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">5.2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认证过程"><span class="nav-number">5.2.2.</span> <span class="nav-text">认证过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIP"><span class="nav-number">5.3.</span> <span class="nav-text">SIP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SIP-（会话发起协议）"><span class="nav-number">5.3.1.</span> <span class="nav-text">SIP （会话发起协议）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩机制"><span class="nav-number">5.3.2.</span> <span class="nav-text">压缩机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">5.3.3.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XMPP-可扩展通讯和表示协议"><span class="nav-number">5.4.</span> <span class="nav-text">XMPP( 可扩展通讯和表示协议 )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Google-talk"><span class="nav-number">5.5.</span> <span class="nav-text">Google-talk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">5.5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能"><span class="nav-number">5.5.2.</span> <span class="nav-text">功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ISC"><span class="nav-number">5.6.</span> <span class="nav-text">ISC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-2"><span class="nav-number">5.6.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">2.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础转发规则"><span class="nav-number">2.1.</span> <span class="nav-text">基础转发规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从不转发那些不存在的名-没有点或者域部分"><span class="nav-number">2.1.1.</span> <span class="nav-text">从不转发那些不存在的名( 没有点或者域部分 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从不为存在于那些非路由（non-routed-）地址的空间转发地址"><span class="nav-number">2.1.2.</span> <span class="nav-text">从不为存在于那些非路由（non-routed ）地址的空间转发地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤无用的来源为Windows的DNS请求"><span class="nav-number">2.1.3.</span> <span class="nav-text">过滤无用的来源为Windows的DNS请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上游服务器相关"><span class="nav-number">2.2.</span> <span class="nav-text">上游服务器相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从上游服务器中获取-dns"><span class="nav-number">2.2.1.</span> <span class="nav-text">从上游服务器中获取 dns</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制上游-DNS-寻找顺序"><span class="nav-number">2.2.2.</span> <span class="nav-text">强制上游 DNS 寻找顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不读取conf-或其他文件"><span class="nav-number">2.2.3.</span> <span class="nav-text">不读取conf 或其他文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不查找conf，resolv文件"><span class="nav-number">2.2.4.</span> <span class="nav-text">不查找conf，resolv文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他域名服务器"><span class="nav-number">2.2.5.</span> <span class="nav-text">其他域名服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求转发类型"><span class="nav-number">2.3.</span> <span class="nav-text">请求转发类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路由器选择"><span class="nav-number">2.3.1.</span> <span class="nav-text">路由器选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仅本地域名"><span class="nav-number">2.3.2.</span> <span class="nav-text">仅本地域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制跳转"><span class="nav-number">2.3.3.</span> <span class="nav-text">强制跳转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制会话方式"><span class="nav-number">2.4.</span> <span class="nav-text">控制会话方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变uid和gid"><span class="nav-number">2.5.</span> <span class="nav-text">改变uid和gid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-number">2.6.</span> <span class="nav-text">接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#监听"><span class="nav-number">2.6.1.</span> <span class="nav-text">监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个接口上提供-DNS"><span class="nav-number">2.6.2.</span> <span class="nav-text">一个接口上提供 DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口接受通配符地址"><span class="nav-number">2.6.3.</span> <span class="nav-text">接口接受通配符地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hosts"><span class="nav-number">2.7.</span> <span class="nav-text">hosts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读取-etc-hosts文件"><span class="nav-number">2.7.1.</span> <span class="nav-text">读取/etc/hosts文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加其他hosts文件"><span class="nav-number">2.7.2.</span> <span class="nav-text">添加其他hosts文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域名自动添加"><span class="nav-number">2.7.3.</span> <span class="nav-text">域名自动添加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dnsmasq-域名"><span class="nav-number">2.8.</span> <span class="nav-text">dnsmasq 域名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为dnsmasq设置一个域名，这是可选的，但一旦设置，它执行了如下行为"><span class="nav-number">2.8.1.</span> <span class="nav-text">为dnsmasq设置一个域名，这是可选的，但一旦设置，它执行了如下行为</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP"><span class="nav-number">3.</span> <span class="nav-text">DHCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#启用完整的-DHCP"><span class="nav-number">3.1.</span> <span class="nav-text">启用完整的 DHCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP-范围类型"><span class="nav-number">3.2.</span> <span class="nav-text">DHCP 范围类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#电子掩码"><span class="nav-number">3.2.1.</span> <span class="nav-text">电子掩码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络ID"><span class="nav-number">3.2.2.</span> <span class="nav-text">网络ID</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对主机的处理"><span class="nav-number">3.3.</span> <span class="nav-text">对主机的处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对发现的物理地址-IP对执行动作"><span class="nav-number">3.4.</span> <span class="nav-text">对发现的物理地址/IP对执行动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送的选项"><span class="nav-number">3.5.</span> <span class="nav-text">发送的选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路径"><span class="nav-number">3.5.1.</span> <span class="nav-text">路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络时间协议-NTP"><span class="nav-number">3.6.</span> <span class="nav-text">网络时间协议 NTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存活时间"><span class="nav-number">3.7.</span> <span class="nav-text">存活时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标志类"><span class="nav-number">3.8.</span> <span class="nav-text">标志类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标志-选项类"><span class="nav-number">3.9.</span> <span class="nav-text">标志+选项类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立-dnsmasq"><span class="nav-number">3.10.</span> <span class="nav-text">建立 dnsmasq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名查找"><span class="nav-number">3.11.</span> <span class="nav-text">域名查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-域名查找-DHCP"><span class="nav-number">3.11.1.</span> <span class="nav-text">DNS 域名查找 DHCP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态路径"><span class="nav-number">3.12.</span> <span class="nav-text">静态路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送-RFC-3442-无分级-classless-静态路径-注意网络掩码的编码"><span class="nav-number">3.13.</span> <span class="nav-text">发送 RFC-3442 无分级( classless  )静态路径( 注意网络掩码的编码 )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供商类特性选项"><span class="nav-number">3.14.</span> <span class="nav-text">提供商类特性选项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PXELinux"><span class="nav-number">3.15.</span> <span class="nav-text">PXELinux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送选项给-PXELinux"><span class="nav-number">3.15.1.</span> <span class="nav-text">发送选项给 PXELinux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件名"><span class="nav-number">3.15.2.</span> <span class="nav-text">配置文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路径前缀-prefix"><span class="nav-number">3.15.3.</span> <span class="nav-text">路径前缀( prefix )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启时间-注意“-i-”发送-32-bit-值"><span class="nav-number">3.15.4.</span> <span class="nav-text">重启时间( 注意“ i ”发送 32-bit 值 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为-netboot-PXE-设置-boot-文件名"><span class="nav-number">3.15.5.</span> <span class="nav-text">为 netboot/PXE 设置 boot 文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boot-for-Etherboot-gPXE"><span class="nav-number">3.15.6.</span> <span class="nav-text">Boot for Etherboot gPXE.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Encapsulated-options-for-Etherboot-gPXE"><span class="nav-number">3.15.7.</span> <span class="nav-text">Encapsulated options for Etherboot gPXE.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-for-the-architecture-of-a-netboot-client-PXE-clients-如-option-93-发送它们的结构"><span class="nav-number">3.15.8.</span> <span class="nav-text">Test for the architecture of a netboot client. PXE clients 如 option 93 发送它们的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行"><span class="nav-number">3.15.9.</span> <span class="nav-text">执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行真正的-PXE，不要仅启动单个文件"><span class="nav-number">3.15.9.1.</span> <span class="nav-text">执行真正的 PXE，不要仅启动单个文件,</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Available-boot-services-for-PXE"><span class="nav-number">3.15.9.2.</span> <span class="nav-text">Available boot services. for PXE.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装载"><span class="nav-number">3.15.10.</span> <span class="nav-text">装载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bootserver"><span class="nav-number">3.16.</span> <span class="nav-text">bootserver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TFTP"><span class="nav-number">3.17.</span> <span class="nav-text">TFTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启用-dnsmasq’s-built-in-TFTP-server"><span class="nav-number">3.17.1.</span> <span class="nav-text">启用 dnsmasq’s built-in TFTP server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置-FTP-文件-root-directory"><span class="nav-number">3.17.2.</span> <span class="nav-text">设置 FTP  文件 root directory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使-TFTP-伺服器更加安全"><span class="nav-number">3.17.3.</span> <span class="nav-text">使 TFTP 伺服器更加安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只有“red”标志被设定的时候设置-boot-文件名"><span class="nav-number">3.17.4.</span> <span class="nav-text">只有“red”标志被设定的时候设置 boot 文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">3.17.5.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">3.18.</span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#租借"><span class="nav-number">3.18.1.</span> <span class="nav-text">租借</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#租借限制"><span class="nav-number">3.18.1.1.</span> <span class="nav-text">租借限制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘"><span class="nav-number">3.18.2.</span> <span class="nav-text">磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库占用"><span class="nav-number">3.18.2.1.</span> <span class="nav-text">数据库占用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#authoritative-模式"><span class="nav-number">3.18.3.</span> <span class="nav-text">authoritative 模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建或者销毁"><span class="nav-number">3.18.4.</span> <span class="nav-text">创建或者销毁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">3.18.5.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置缓存大小"><span class="nav-number">3.18.5.1.</span> <span class="nav-text">设置缓存大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关闭-negative-caching"><span class="nav-number">3.18.5.2.</span> <span class="nav-text">关闭 negative caching</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#个存活时间"><span class="nav-number">3.18.5.3.</span> <span class="nav-text">个存活时间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如果你想要-dnsmasq-去检测依据电子签名-Verisign-的尝试从而发送未注册的-com-和-net-主机到它的网站发现服务然后让-dnsmasq-替代性地返回正确的-NXDOMAIN-回答-respond-取消这一行的注释-你可以添加类似的-多-行为其他的注册-使用通配符-A-记录-执行同一效果"><span class="nav-number">3.19.</span> <span class="nav-text">如果你想要 dnsmasq 去检测依据电子签名( Verisign )的尝试从而发送未注册的 .com 和 .net 主机到它的网站发现服务然后让 dnsmasq 替代性地返回正确的 NXDOMAIN 回答( respond ), 取消这一行的注释. 你可以添加类似的(多)行为其他的注册( 使用通配符 A 记录 )执行同一效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改DNS结果"><span class="nav-number">3.20.</span> <span class="nav-text">修改DNS结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MX-记录"><span class="nav-number">3.21.</span> <span class="nav-text">MX 记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-localmx-option-为创建的-MX-记录设置默认目标"><span class="nav-number">3.21.1.</span> <span class="nav-text">使用 localmx option 为创建的 MX 记录设置默认目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为所有本地机器返回一个指向-mx-target-的-MX-记录"><span class="nav-number">3.21.2.</span> <span class="nav-text">为所有本地机器返回一个指向 mx-target 的 MX 记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为所有本地机器返回一个指向它们自己的-MX-记录"><span class="nav-number">3.21.3.</span> <span class="nav-text">为所有本地机器返回一个指向它们自己的 MX 记录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SRV-记录"><span class="nav-number">3.22.</span> <span class="nav-text">SRV 记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PTR-记录"><span class="nav-number">3.23.</span> <span class="nav-text">PTR 记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TXT-记录"><span class="nav-number">3.24.</span> <span class="nav-text">TXT 记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别名-alias"><span class="nav-number">3.25.</span> <span class="nav-text">别名 alias</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志-log"><span class="nav-number">3.26.</span> <span class="nav-text">日志 log</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#想要-debugging-通过-dnsmasq-为每个-DNS-查询保存日志-log"><span class="nav-number">3.26.1.</span> <span class="nav-text">想要 debugging, 通过 dnsmasq 为每个 DNS 查询保存日志( log )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为-DHCP-交换的额外信息保存日志"><span class="nav-number">3.26.2.</span> <span class="nav-text">为 DHCP 交换的额外信息保存日志</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#包括其他多项的设置选项-configuration-options"><span class="nav-number">4.</span> <span class="nav-text">包括其他多项的设置选项( configuration options)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他注释"><span class="nav-number">5.</span> <span class="nav-text">其他注释 (  ) ,</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SRV记录"><span class="nav-number">5.1.</span> <span class="nav-text">SRV记录:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-："><span class="nav-number">5.1.1.</span> <span class="nav-text">定义 ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简介："><span class="nav-number">5.1.2.</span> <span class="nav-text">简介：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRV-记录功能包括（基于它们在-DNS-控制台的分组）"><span class="nav-number">5.1.3.</span> <span class="nav-text">SRV 记录功能包括（基于它们在 DNS 控制台的分组）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kerberos："><span class="nav-number">5.2.</span> <span class="nav-text">Kerberos：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">5.2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认证过程"><span class="nav-number">5.2.2.</span> <span class="nav-text">认证过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIP"><span class="nav-number">5.3.</span> <span class="nav-text">SIP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SIP-（会话发起协议）"><span class="nav-number">5.3.1.</span> <span class="nav-text">SIP （会话发起协议）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩机制"><span class="nav-number">5.3.2.</span> <span class="nav-text">压缩机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">5.3.3.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XMPP-可扩展通讯和表示协议"><span class="nav-number">5.4.</span> <span class="nav-text">XMPP( 可扩展通讯和表示协议 )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Google-talk"><span class="nav-number">5.5.</span> <span class="nav-text">Google-talk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">5.5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能"><span class="nav-number">5.5.2.</span> <span class="nav-text">功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ISC"><span class="nav-number">5.6.</span> <span class="nav-text">ISC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-2"><span class="nav-number">5.6.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
