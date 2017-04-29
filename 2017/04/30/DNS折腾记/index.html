@@ -109,6 +109,8 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/藐视.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/极路由参数.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/bamp.gif">
+<meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/极路由参数.jpg">
+<meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/bamp.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/疑问.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/疑问.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/喝茶.jpg">
@@ -117,7 +119,7 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/wall-lay.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/扇扇子.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/眼神犀利.jpg">
-<meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/搞事搞事.gif">
+<meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/搞事.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/啊呀呀.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/喝水.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/diu.jpg">
@@ -126,7 +128,7 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/yellow.gif">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/OK.jpg">
 <meta property="og:image" content="https://baked-pan.github.io/2017/04/30/DNS折腾记/告辞.jpg">
-<meta property="og:updated_time" content="2017-04-29T19:21:37.416Z">
+<meta property="og:updated_time" content="2017-04-29T19:32:44.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS折腾记">
 <meta name="twitter:description" content="前言一直使用人家开源的hosts替换笔记本上的或者Android 手机上的文件, 但是又不免遇到几个问题
@@ -453,11 +455,11 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 </ol>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">用 Notepad++ 打开 hosts 文件 </div><div class="line">点击菜单中的视图–显示符号–显示所有字符”</div><div class="line">将所有 <span class="string">"CR LF"</span> 的换行符换成 <span class="string">"LF "</span></div></pre></td></tr></table></figure>
 <ol>
-<li>未 root 的 Android 手机和未越狱的 IOS 设备无法修改 hosts 文件<br>这就很卧槽了<img src="/2017/04/30/DNS折腾记/草泥马.jpg" alt="草泥马.jpg">，难道我改个 DNS 记录还要去承担 root  和越狱的未知风险么，于是情节开始有了发展<img src="/2017/04/30/DNS折腾记/捣蒜.gif" alt="捣蒜.gif"><h1 id="进入主线"><a href="#进入主线" class="headerlink" title="进入主线"></a>进入主线</h1>寻思着从身边的东西下手解决需求，路由器———就是你了嘿嘿<img src="/2017/04/30/DNS折腾记/藐视.jpg" alt="enter description here"><br>路由器的型号是极路由二，既然主打智能就应该能用来完成 DNS 解析，再瞅瞅插件，发现彩蛋一枚<br>![极路由自定义 hosts-1.jpg][6]<br>安装下来看看详情页面<br>![极路由自定义 hosts-2.jpg][7]，这程序猿还是挺懂人心的，预置了不少域名. 看看使用说明，发现个最大问题———支持条目太少，为什么会这样呢，再去瞅瞅路由器参数<br><img src="/2017/04/30/DNS折腾记/极路由参数.jpg" alt="极路由参数.jpg">这参数我给8分，满点100. 不管了先搞搞先<img src="/2017/04/30/DNS折腾记/bamp.gif" alt="enter description here"><br>首先确认好流程，极路底层系统从 LINUX 开发，那么我必须先处理好换行符，然后把全部记录一次性复制进去——插件提示超过限制<img src="/2017/04/30/DNS折腾记/疑问.jpg" alt="疑问.jpg">，一定是哪里搞错了，<br>首先试着把空白行删除再复制——还是超出限制<img src="/2017/04/30/DNS折腾记/疑问.jpg" alt="疑问.jpg"><br>我服，我把注释删掉好了</li>
+<li>未 root 的 Android 手机和未越狱的 IOS 设备无法修改 hosts 文件<br>这就很卧槽了<img src="/2017/04/30/DNS折腾记/草泥马.jpg" alt="草泥马.jpg">，难道我改个 DNS 记录还要去承担 root  和越狱的未知风险么，于是情节开始有了发展<img src="/2017/04/30/DNS折腾记/捣蒜.gif" alt="捣蒜.gif"><h1 id="进入主线"><a href="#进入主线" class="headerlink" title="进入主线"></a>进入主线</h1>寻思着从身边的东西下手解决需求，路由器———就是你了嘿嘿<img src="/2017/04/30/DNS折腾记/藐视.jpg" alt="enter description here"><br>路由器的型号是极路由二，既然主打智能就应该能用来完成 DNS 解析，再瞅瞅插件，发现彩蛋一枚<br><img src="/2017/04/30/DNS折腾记/极路由参数.jpg" alt="极路由自定义 hosts-1.jpg"><br>安装下来看看详情页面<br><img src="/2017/04/30/DNS折腾记/bamp.gif" alt="极路由自定义 hosts-2.jpg">，这程序猿还是挺懂人心的，预置了不少域名. 看看使用说明，发现个最大问题———支持条目太少，为什么会这样呢，再去瞅瞅路由器参数<br><img src="/2017/04/30/DNS折腾记/极路由参数.jpg" alt="极路由参数.jpg">这参数我给8分，满点100. 不管了先搞搞先<img src="/2017/04/30/DNS折腾记/bamp.gif" alt="enter description here"><br>首先确认好流程，极路底层系统从 LINUX 开发，那么我必须先处理好换行符，然后把全部记录一次性复制进去——插件提示超过限制<img src="/2017/04/30/DNS折腾记/疑问.jpg" alt="疑问.jpg">，一定是哪里搞错了，<br>首先试着把空白行删除再复制——还是超出限制<img src="/2017/04/30/DNS折腾记/疑问.jpg" alt="疑问.jpg"><br>我服，我把注释删掉好了</li>
 </ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">匹配 # 字符删除所在行</div></pre></td></tr></table></figure>
 <p>复制进去，<img src="/2017/04/30/DNS折腾记/喝茶.jpg" alt="喝茶.jpg">等插件下载进度慢慢跑完，boom，改一下手机的 DNS 到路由器地址，可以用，真是皆大欢喜<img src="/2017/04/30/DNS折腾记/哈哈哈.jpg" alt="哈哈哈.jpg"><br>再偷懒一点，用 winscp 进入路由器<code>etc</code> 目录找到 hosts 文件，直接将仅执行换行的记录文本复制进去，重启下路由器，测试一下，貌似工作正常，再进去查看下文件，简直了——直接少了一半的记录，我还是选择插件大法吧——停，好像这跟我的出发点不太一样，为什么我想要偷懒反而变得复杂了<img src="/2017/04/30/DNS折腾记/embarrassed.jpg" alt="embarrassed.jpg"><br>总之先问问度娘可行的替代方法~<br>先逛逛极路由官方论坛，简直了，hosts 修改全是吐槽难用的，然后下边给出的解决方法是换个360路由——我 Dr.com 认证就是用修改版极路由做的，不干——主要是懒癌<img src="/2017/04/30/DNS折腾记/wall-lay.gif" alt="wall-lay.gif"><br>事到如今我只能祭出杀手锏了——腾讯云上边的主机，要不我自建个 DNS 服务器吧</p>
-<h1 id="主线二号"><a href="#主线二号" class="headerlink" title="主线二号"></a>主线二号</h1><p>服务器上跑的是CentOs系统，这下有搞头<img src="/2017/04/30/DNS折腾记/扇扇子.jpg" alt="扇扇子.jpg">，找找可选方案，java环境?玩不开，滚蛋. python环境？还是玩不开，滚犊子. 捕捉到一个特别的——DNSmasq，原生方案，高度可定制<br><img src="/2017/04/30/DNS折腾记/眼神犀利.jpg" alt="眼神犀利.jpg">，就是你了. 下边全程使用winscp跟putty软件.<br>找到<code>dnsmasq-conf</code>文件，参照网上各种不负责任复制粘贴的博客内容，翻译一下文件指引，开始<img src="/2017/04/30/DNS折腾记/搞事搞事.gif" alt="搞事搞事.gif"><br>先写好基础的配置</p>
+<h1 id="主线二号"><a href="#主线二号" class="headerlink" title="主线二号"></a>主线二号</h1><p>服务器上跑的是CentOs系统，这下有搞头<img src="/2017/04/30/DNS折腾记/扇扇子.jpg" alt="扇扇子.jpg">，找找可选方案，java环境?玩不开，滚蛋. python环境？还是玩不开，滚犊子. 捕捉到一个特别的——DNSmasq，原生方案，高度可定制<br><img src="/2017/04/30/DNS折腾记/眼神犀利.jpg" alt="眼神犀利.jpg">，就是你了. 下边全程使用winscp跟putty软件.<br>找到<code>dnsmasq-conf</code>文件，参照网上各种不负责任复制粘贴的博客内容，翻译一下文件指引，开始<img src="/2017/04/30/DNS折腾记/搞事.gif" alt="搞事.gif"><br>先写好基础的配置</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">no-resolv  <span class="comment">//不使用/etc/resolv.conf指定上游 DNS 服务器，直接下方给出</span></div><div class="line">server=<span class="number">119.29</span>.<span class="number">29.29</span></div><div class="line">server=<span class="number">114.114</span>.<span class="number">114.114</span>  <span class="comment">//上游服务器选用了腾讯和114</span></div><div class="line">server=/<span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="number">222.200</span>.<span class="number">115.251</span> <span class="comment">//针对校园网内访问使用校内 DNS </span></div><div class="line">server=/google.com/<span class="number">139</span><span class="selector-class">.x</span><span class="selector-class">.x</span><span class="selector-class">.x</span> <span class="comment">//避免谷歌用自己的dns重定向，强制转向自己的服务器地址</span></div><div class="line">addn-hosts=/etc/dnsmasq<span class="selector-class">.host</span> <span class="comment">//挂载hosts文件</span></div></pre></td></tr></table></figure>
 <p><code>dnsmasq-conf</code>文件中还可加入特别的解析地址和广告屏蔽，比如我就为了日服fgo 加入了如下配置</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">address=/data.fate-go.jp/<span class="number">54.230</span><span class="number">.249</span><span class="number">.7</span></div><div class="line">address=/view.fate-go.jp/<span class="number">54.192</span><span class="number">.75</span><span class="number">.120</span></div><div class="line">address=/ocsp.digicert.com/<span class="number">117.18</span><span class="number">.237</span><span class="number">.29</span></div></pre></td></tr></table></figure>
@@ -490,7 +492,7 @@ Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n
 <li>我在这里填上了自己的 DNS 服务器地址，接上失效的 SS 服务器，打开了谷歌站点，回到软件统计页面，页面数据是<strong>代理流量0 K，直连流量  26 k</strong><br>我特么终于解决温饱需求了<img src="/2017/04/30/DNS折腾记/拍肩.gif" alt="拍肩.gif">，至此为 未root Android 手机和 未越狱 IOS 设备 提供自定义 DNS 的需求得到了完美解决，你问我翻墙是不是想做一些羞羞的见不得人的事情，我只能送你这个表情了<img src="/2017/04/30/DNS折腾记/yellow.gif" alt="enter description here"></li>
 </ol>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>关于 shaowsocks 的账号，可以在主机上搭建，参见我另一篇文章” Shadowsocks服务器端的搭建 “,对了你也许需要一个主机，这里是给学生党的经济选择 “<a href="https://www.qcloud.com/act/campus" target="_blank" rel="external">腾讯云云+校园计划</a>” “<a href="https://promotion.aliyun.com/ntms/campus2017.html" target="_blank" rel="external">阿里云云翼计划</a>”<br>起初一个很平常微小的需求被我放大到了进行 DNS 服务搭建才能满足的地步，不过在这过程中我学到了不少的东西，当然这些知识可能不太见得了光，但无论如何，有收获就是好的<img src="/2017/04/30/DNS折腾记/OK.jpg" alt="OK.jpg"><br>最后来个告别：祝大家撸得愉快<img src="/2017/04/30/DNS折腾记/告辞.jpg" alt="告辞.jpg"></p>
-<p>  [6]: DNS折腾记/极路由自定义 hosts-1.jpg<br>  [7]: DNS折腾记/极路由自定义 hosts-2.jpg</p>
+<p>  <a href="DNS折腾记/极路由参数.jpg">6</a>: DNS折腾记/极路由自定义 hosts-1.jpg<br>  <a href="DNS折腾记/bamp.gif">7</a>: DNS折腾记/极路由自定义 hosts-2.jpg</p>
 
       
     </div>
