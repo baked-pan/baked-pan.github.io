@@ -170,11 +170,6 @@ FINAL,PROXY
 最后来个告别：祝大家撸得愉快![告辞.jpg][28]
 
 
-  [6]: DNS折腾记/极路由自定义 hosts-1.jpg
-  [7]: DNS折腾记/极路由自定义 hosts-2.jpg
-
-
-  [6]: DNS折腾记/极路由自定义 hosts1.jpg
 
 
   [1]: https://github.com/DonQvixote/GoogleHosts.git
