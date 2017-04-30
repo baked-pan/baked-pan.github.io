@@ -52,8 +52,8 @@
 
     
     <entry>
-      <title><![CDATA[利用git-backup插件备份hexo数据]]></title>
-      <url>%2F2017%2F04%2F26%2F%E5%88%A9%E7%94%A8git-backup%E6%8F%92%E4%BB%B6%E5%A4%87%E4%BB%BDhexo%E6%95%B0%E6%8D%AE%2F</url>
+      <title><![CDATA[利用 git-backup 插件备份hexo数据]]></title>
+      <url>%2F2017%2F04%2F26%2F%E5%88%A9%E7%94%A8%20git-backup%20%E6%8F%92%E4%BB%B6%E5%A4%87%E4%BB%BDhexo%E6%95%B0%E6%8D%AE%2F</url>
       <content type="text"><![CDATA[前言hexo文件夹中重要的是source跟scaffolds，themes目录.gitignore，_config.yml文件，插件目录可以通过命令行重新下载 插件下载项目地址. 如果hexo版本 2.x.x, 执行:1$ npm install hexo-git-backup@0.0.91 --save 如果版本 3.x.x, 执行: 1$ npm install hexo-git-backup --save 升级插件如果你使用 –save安装了插件, 执行： 12$ npm remove hexo-git-backup$ npm install hexo-git-backup --save 设置你应该在 hexo/_config.yml.文件中为插件添加设置 1234567backup: type: git message: update xxx //可选，diy信息 theme: coney,landscape //可选，主题备份 repository: github: git@github.com:xxx/xxx.git,branchName //备份的目的路径，必填branch分支 gitcafe: git@github.com:xxx/xxx.git,branchName //可选，备份到gitcafe Now you can backup all the blog! 用法1hexo backup 或者 1hexo b 问题你可能会遇到系统权限问题。 Error: EISDIR, open it is caused by permission. just do ‘sudo hexo b’1sudo hexo b]]></content>
     </entry>
 
@@ -80,8 +80,8 @@
 
     
     <entry>
-      <title><![CDATA[为hexo博文插入图片]]></title>
-      <url>%2F2017%2F04%2F21%2F%E4%B8%BAhexo%E5%8D%9A%E6%96%87%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%2F</url>
+      <title><![CDATA[利用 hexo-asset-image 插件为hexo博文插入图片]]></title>
+      <url>%2F2017%2F04%2F21%2F%E5%88%A9%E7%94%A8%20hexo-asset-image%20%E6%8F%92%E4%BB%B6%E4%B8%BAhexo%E5%8D%9A%E6%96%87%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%2F</url>
       <content type="text"><![CDATA[前言hexo博文上插入图片一直的惯用方法是使用七牛云或者贴图库又或者新浪，但考虑到七牛存储的不直观，贴图库的不稳定跟新浪不知道什么时候会关闭的接口，不如将图片存放在github上边，下边是一个可行的方法 开始 把主页配置文件_config.yml 里边的post_asset_folder:设置为 true 在 hexo 目录下执行npm install hexo-asset-image --save,这里下载安装一个可以上传本地图片的插件，来自hexo-asset-image 完成后当运行hexo n &quot;XX.md&quot;生成博文模板时，会在/source/_posts文件夹中额外生成名字为XX的文件夹 正式使用在XX博文中引入图片时，按照 markdown 的格式引入图片，并将图片放入XX文件夹内，格式为1![你想输入的替代文字](xx/图片名.jpg)]]></content>
     </entry>
 
