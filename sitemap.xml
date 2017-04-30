@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://baked-pan.github.io/2017/04/28/DNSmasq-conf(%E8%8B%B1%E6%96%87%E5%8E%9F%E7%89%88)/</loc>
+    <loc>https://baked-pan.github.io/2017/04/30/DNS%E6%8A%98%E8%85%BE%E8%AE%B0/</loc>
     
-    <lastmod>2017-04-30T10:07:17.499Z</lastmod>
+    <lastmod>2017-04-30T10:12:03.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://baked-pan.github.io/2017/04/26/%E5%88%A9%E7%94%A8%20git-backup%20%E6%8F%92%E4%BB%B6%E5%A4%87%E4%BB%BDhexo%E6%95%B0%E6%8D%AE/</loc>
+    <loc>https://baked-pan.github.io/2017/04/26/Shadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
     
-    <lastmod>2017-04-30T10:04:32.157Z</lastmod>
+    <lastmod>2017-04-30T10:11:01.329Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://baked-pan.github.io/2017/04/25/%E5%88%A9%E7%94%A8%20git-backup%20%E6%8F%92%E4%BB%B6%E5%A4%87%E4%BB%BDhexo%E6%95%B0%E6%8D%AE/</loc>
+    
+    <lastmod>2017-04-30T10:10:36.732Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://baked-pan.github.io/2017/04/28/DNSmasq-conf(%E8%8B%B1%E6%96%87%E5%8E%9F%E7%89%88)/</loc>
+    
+    <lastmod>2017-04-30T10:07:17.499Z</lastmod>
     
   </url>
   
@@ -26,20 +40,6 @@
     <loc>https://baked-pan.github.io/2017/04/30/Openshift-%E6%90%AD%E5%BB%BA-%E8%B4%B4%E5%90%A7%E4%BA%91%E7%AD%BE%E5%88%B0/</loc>
     
     <lastmod>2017-04-30T09:55:58.899Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://baked-pan.github.io/2017/04/27/Shadowsocks%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
-    
-    <lastmod>2017-04-30T08:58:51.810Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://baked-pan.github.io/2017/04/30/DNS%E6%8A%98%E8%85%BE%E8%AE%B0/</loc>
-    
-    <lastmod>2017-04-30T08:43:28.353Z</lastmod>
     
   </url>
   
