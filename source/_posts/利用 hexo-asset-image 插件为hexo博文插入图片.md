@@ -1,12 +1,12 @@
 ---
-title: 为hexo博文插入图片
+title: 利用 hexo-asset-image 插件为hexo博文插入图片
 date: 2017-04-21 21:31:43
 tags: 
 - hexo
-- 图片
+- 插件
 categories:
 - hexo
-- 技巧
+- 插件
 
 
 ---

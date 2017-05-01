@@ -1,16 +1,17 @@
 ---
-title: 利用git-backup插件备份hexo数据
-date: 2017-04-26 13:14:36
+title: 利用 git-backup 插件备份hexo数据
+date: 2017-04-25 13:14:36
 tags: 
 - hexo
 - 备份
+- 插件
 categories:
 - hexo
-- 备份
+- 插件
 ---
 
 # 前言
-hexo文件夹中重要的是`source`跟`scaffolds`，`themes`目录`.gitignore`，`_config.yml`文件，插件目录可以通过命令行重新下载
+hexo文件夹中重要的是`source`跟`scaffolds`，`themes`目录`.gitignore`，`_config.yml`文件，插件目录可以通过命令行重新下载，只要备份了这些便可以恢复原先的内容
 
 # 插件下载
 
@@ -62,13 +63,19 @@ hexo b
 
 
 # 问题
-你可能会遇到系统权限问题。
+## 你可能会遇到系统权限问题。
 
 ### Error: EISDIR, open it is caused by permission. just do 'sudo hexo b'
 
 ``` nginx
 sudo hexo b
 ```
+## 恢复
+重装系统或者在其他电脑上修改博客时，执行以下不走
 
+ 1. 安装 hexo 环境
+ 2. `git clone `执行克隆
+ 3. 将 backup（取决于备份时候的设定） 分支复制到 hexo 目录
+ 4. 执行`hexo -d `, 重新配置账户
 
   [1]: https://github.com/coneycode/hexo-git-backup.git

@@ -1,14 +1,14 @@
 ---
 title: Shadowsocks服务器端的搭建(请善用返回功能)
-date: 2017-04-27 21:59:00
+date: 2017-04-26 21:59:00
 tags: 
-- ss
+- SS
 - centos
 - 搭建
 - 服务器
 categories: 
 - 服务器
-- ss
+- SS
 
 ---
 # 一.概要
@@ -70,7 +70,7 @@ sudo less /var/log/shadowsocks.log
 ### 创造配置文件并运行
 <span id = "config.json"></span>
 #### 创造配置文件 /etc/shadowsocks.json
-单用户模板
+ - 单用户模板
 ``` 
 {
     "server":"my_server_ip",
@@ -83,7 +83,7 @@ sudo less /var/log/shadowsocks.log
     "fast_open": false
 }
 ```
-多个用户模板
+ - 多个用户模板
 ``` 
 {
 "server":"my_server_ip",
@@ -121,14 +121,14 @@ ssserver -c /etc/shadowsocks.json
 ```
 #### 后台运行
 ``` 
-ssserver -c /etc/shadowsocks.json -d start
-ssserver -c /etc/shadowsocks.json -d stop
+ssserver -c /etc/shadowsocks.json -d start //启动服务
+ssserver -c /etc/shadowsocks.json -d stop  //关闭服务
 ```
 
 
 ### 开始服务:
 ``` 
-ssserver -c /etc/shadowsocks.json
+ssserver -c /etc/shadowsocks.json //前台运行
 ```
 <span id = "Encryption"></span>
 ## III加密格式
@@ -373,10 +373,16 @@ supervisorctl update
 
 ## V文档
 你可以在 [Wiki][17].上找到所有原版文档
-## 开源许可证
+## VI开源许可证
 Copyright 2015 clowwindy
 Licensed under the [Apache License][18]; you may not use this file except in compliance with the License. You may obtain a copy of the License at
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+
+
+## VII后记
+在腾讯云上搭建的时候遇到了端口初始化失败的问题，后来发现`"server"`这一行填写的必须是内网 IP. 
+
 
 
   [1]: https://www.python.org/downloads/windows/

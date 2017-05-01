@@ -1,14 +1,15 @@
 ---
-title: dnsmasq-conf(英文原版)
+title: DNSmasq-conf(英文原版)
 date: 2017-04-28 13:30:23
 updated:
 tags:
 - dnsmasq
 - conf
 categories:
+- 服务器
+- DNS
 - dnsmasq
 keywords:
-- dnsmasq
 description:
 ---
 # Configuration file for dnsmasq.

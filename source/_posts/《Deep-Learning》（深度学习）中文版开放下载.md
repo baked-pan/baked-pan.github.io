@@ -10,7 +10,7 @@ tags: [下载,深度学习]
 
 <p><span style="font-size:14px">《<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.deeplearningbook.org%2F" target="_blank">Deep Learning</a>》（深度学习）是一本皆在帮助学生和从业人员进入<strong>机器学习</strong>领域的教科书，以开源的形式免费在网络上提供，这本书是由学界领军人物&nbsp;<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.iangoodfellow.com%2F" target="_blank">Ian Goodfellow</a>、<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.iro.umontreal.ca%2F~bengioy%2Fyoshua_en%2F" target="_blank">Yoshua Bengio</a>&nbsp;和&nbsp;<a href="http://www.yilan.io/article/redirect?url=https%3A%2F%2Faaroncourville.wordpress.com%2F" target="_blank">Aaron Courville</a>&nbsp;合力打造。@Appinn</span></p>
 
-<p><span style="font-size:14px"><img alt="" src="http://hexo.mantoujun.top/2017/04/20/%E3%80%8ADeep-Learning%E3%80%8B%EF%BC%88%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%89%E4%B8%AD%E6%96%87%E7%89%88%E5%BC%80%E6%94%BE%E4%B8%8B%E8%BD%BD/《Deep Learning》（深度学习）中文版开放下载.jpg" style="float:left; height:420px; width:315px" /></span></p>
+<p><span style="font-size:14px"><img alt="" src="http://hexo.mantoujun.top/2017/04/24/%E3%80%8ADeep-Learning%E3%80%8B%EF%BC%88%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%89%E4%B8%AD%E6%96%87%E7%89%88%E5%BC%80%E6%94%BE%E4%B8%8B%E8%BD%BD/《Deep Learning》（深度学习）中文版开放下载.jpg" style="float:left; height:420px; width:315px" /></span></p>
 
 <hr />
 <p>来自<a href="http://www.yilan.io/article/redirect?url=http%3A%2F%2Fwww.jiqizhixin.com%2Farticle%2F2647" target="_blank">机器之心</a>的消息。</p>

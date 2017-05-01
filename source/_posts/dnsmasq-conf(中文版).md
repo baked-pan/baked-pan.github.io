@@ -3,11 +3,13 @@ title: DNSmasq-conf(中文版)
 date: 2017-04-28 14:56:26
 updated: 2017-04-29 22:22:26
 tags:
-- DNSmasq
+- dnsmasq
 - DNS
 - conf
 categories:
+- 服务器
 - DNS
+- dnsmasq
 
 ---
 
