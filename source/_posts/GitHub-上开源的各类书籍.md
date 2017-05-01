@@ -7,6 +7,7 @@ tags:
 - 书籍
 categories:
 - GitHub
+- 书籍
 
 ---
 
@@ -17,7 +18,7 @@ categories:
  - [如何用 golang 建立一个网站][4]
 
 
-  [1]: http://hexo.mantoujun.top/github-roam/
-  [2]: http://hexo.mantoujun.top/-interview/
+  [1]: http://tools.mantoujun.top/books/GitHub%20%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97/
+  [2]: http://tools.mantoujun.top/books/笔试面试知识整理/
   [3]: http://hexo.mantoujun.top/practical-programming-books/
   [4]: https://github.com/astaxie/build-web-application-with-golang
