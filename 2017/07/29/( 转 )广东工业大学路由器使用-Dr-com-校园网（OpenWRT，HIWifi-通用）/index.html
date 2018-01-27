@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="OpenWRT," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="广工最近校园网换了客户端（dr.com）, 使用有各种限制（禁止开热点，开代理，等等…）虽然我不是用校园网的，但我的几个很好的朋友用校园网，所以我就本着兴趣研究研究, 把成果和大家分享。对于那些动不动就推广（wifi 共享大师）的 “能用党”（指代能用就好，不屑他人提供的想法的人）, 我不想理会。PC 端的 drcom-generic，在广工贴吧有很多教程。  2016 年 11 月 16 日 2">
+<meta name="keywords" content="OpenWRT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="( 转 )广东工业大学路由器使用-Dr-com-校园网（OpenWRT，HIWifi-通用）">
+<meta property="og:url" content="http://hexo.mantoujun.top/2017/07/29/( 转 )广东工业大学路由器使用-Dr-com-校园网（OpenWRT，HIWifi-通用）/index.html">
+<meta property="og:site_name" content="未知领域">
+<meta property="og:description" content="广工最近校园网换了客户端（dr.com）, 使用有各种限制（禁止开热点，开代理，等等…）虽然我不是用校园网的，但我的几个很好的朋友用校园网，所以我就本着兴趣研究研究, 把成果和大家分享。对于那些动不动就推广（wifi 共享大师）的 “能用党”（指代能用就好，不屑他人提供的想法的人）, 我不想理会。PC 端的 drcom-generic，在广工贴吧有很多教程。  2016 年 11 月 16 日 2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-29T10:14:44.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="( 转 )广东工业大学路由器使用-Dr-com-校园网（OpenWRT，HIWifi-通用）">
+<meta name="twitter:description" content="广工最近校园网换了客户端（dr.com）, 使用有各种限制（禁止开热点，开代理，等等…）虽然我不是用校园网的，但我的几个很好的朋友用校园网，所以我就本着兴趣研究研究, 把成果和大家分享。对于那些动不动就推广（wifi 共享大师）的 “能用党”（指代能用就好，不屑他人提供的想法的人）, 我不想理会。PC 端的 drcom-generic，在广工贴吧有很多教程。  2016 年 11 月 16 日 2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hexo.mantoujun.top/2017/07/29/( 转 )广东工业大学路由器使用-Dr-com-校园网（OpenWRT，HIWifi-通用）/"/>
+
+
+
+
+
+  <title>( 转 )广东工业大学路由器使用-Dr-com-校园网（OpenWRT，HIWifi-通用） | 未知领域</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">未知领域</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">女装是最吼的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hexo.mantoujun.top/2017/07/29/( 转 )广东工业大学路由器使用-Dr-com-校园网（OpenWRT，HIWifi-通用）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pancc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未知领域">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">( 转 )广东工业大学路由器使用-Dr-com-校园网（OpenWRT，HIWifi-通用）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T17:43:05+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/路由器/" itemprop="url" rel="index">
+                    <span itemprop="name">路由器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>广工最近校园网换了客户端（dr.com）, 使用有各种限制（禁止开热点，开代理，等等…）<br>虽然我不是用校园网的，但我的几个很好的朋友用校园网，所以我就本着兴趣研究研究, 把成果和大家分享。<br>对于那些动不动就推广（wifi 共享大师）的 “能用党”（指代能用就好，不屑他人提供的想法的人）, 我不想理会。<br>PC 端的 drcom-generic，在广工贴吧有很多教程。</p>
+<blockquote>
+<p>2016 年 11 月 16 日 21:44:02<br>听说由于校园网心跳包又双叒叕改了。<br>但是我同学似乎还没告诉我旧的配置不行了。<br>所以我先保留旧的包下载链接，然后更新新的包下载链接<br>心跳包脚本来源于猫娘 dalao。原贴链接：<a href="http://tieba.baidu.com/p/4863798100" target="_blank" rel="noopener">跳转</a><br>所以新配置用户请使用新的工具包</p>
+</blockquote>
+<h1 id="环境要求："><a href="#环境要求：" class="headerlink" title="环境要求："></a>环境要求：</h1><ul>
+<li>一个刷了 OpenWRT/PandoraBox 的路由器 / 官方固件的极路由</li>
+<li>putty 和 winscp（windows 用户）</li>
+<li>我打包好的工具包:</li>
+</ul>
+<p>大学城：<a href="http://7xsscj.com2.z0.glb.clouddn.com/drcom_shell.tar.gz?094136" target="_blank" rel="noopener">下载 (旧)</a>  <a href="http://7xsscj.com2.z0.glb.clouddn.com/new/drcom_shell.tar.gz?215247" target="_blank" rel="noopener">下载 (新)</a><br>龙洞：<a href="http://7xsscj.com2.z0.glb.clouddn.com/longdong/drcom_shell.tar.gz?094136" target="_blank" rel="noopener">下载 (旧)</a>  <a href="http://7xsscj.com2.z0.glb.clouddn.com/new/longdong/drcom_shell.tar.gz?215247" target="_blank" rel="noopener">下载 (新)</a><br>东风路：<a href="http://7xsscj.com2.z0.glb.clouddn.com/dongfenglu/drcom_shell.tar.gz?094136" target="_blank" rel="noopener">下载 (旧)</a>  <a href="http://7xsscj.com2.z0.glb.clouddn.com/new/dongfenglu/drcom_shell.tar.gz?215247" target="_blank" rel="noopener">下载 (新)</a></p>
+<h1 id="使用者技能要求："><a href="#使用者技能要求：" class="headerlink" title="使用者技能要求："></a>使用者技能要求：</h1><ul>
+<li>必要的 linux 操作技能</li>
+<li>问题的独立解决能力</li>
+</ul>
+<h1 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h1><ol>
+<li>登陆路由器管理，进入智能插件（云平台），点击路由器信息，点击高级设置，开通开发者模式（会失去保修，你自己决定吧）</li>
+<li>安装” 开发者模式 “插件</li>
+<li>使用 putty 登陆路由器后台（windows）/ 通过 ssh 登陆后台（linux）端口为 1022</li>
+<li>使用 winscp 把下载好的工具包放到路由器的 / tmp 目录下</li>
+<li><p>解压工具包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> cd /tmp</span><br><span class="line">tar -xzvf drcom_shell.tar.gz</span><br><span class="line">cd drcom_shell/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（这一步骤的脚本是一键配置脚本，可跳过直接进行步骤#7）这脚本是整合了接下来全部步骤，若成功执行则无需进行往后的步骤，但作者不推荐使用，由于整合了下面的操作，定位错误会相对困难。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> chmod +x ./drcom-configure.sh</span><br><span class="line">./drcom-configure.sh</span><br><span class="line"></span><br><span class="line">cat /etc/rc.local</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><span id="7"></span></p>
+<ol>
+<li><p>安装 libffi + python-mini 环境，需要大概 2.1~2.4M 的空间，可以通过 df -h 查看剩余空间 （ipk 包安装可能会出现兼容性问题，请浏览相关疑问中的解答）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opkg install *.ipk</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若上一步安装失败，请重置路由腾出空间进行安装</p>
+</li>
+<li><p>修改 pppoe 拨号脚本的用户名转义字符的处理（由于 drcom 拨号时会在账号前加 \ r\n 转义字符）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> chmod +x ./pppoe-configure.sh</span><br><span class="line">./pppoe-configure.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后在路由器的上网方式设置为宽带拨号，用户名为 \ r\n + 学号，密码为校园网密码</p>
+</li>
+<li>尝试拨号，尝试拨号的时间大概 1~3 分钟，出现已连接就进行下一步操作，否则查看拨号日志查找问题所在</li>
+<li><p>然后配置 drcom-generic 脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> cp ./drcom.conf /etc/drcom.conf</span><br><span class="line"></span><br><span class="line">cp ./drcom /usr/bin/drcom</span><br><span class="line">chmod +x /usr/bin/drcom</span><br><span class="line"></span><br><span class="line">cp ./pppoe.sh /usr/bin/pppoe.sh</span><br><span class="line">chmod +x /usr/bin/pppoe.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置自启动脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> vi /etc/rc.local</span><br><span class="line">// 在 exit 0 前加入以下两行</span><br><span class="line">sleep 15</span><br><span class="line">pppoe.sh</span><br><span class="line">// 退出 vi。操作是: 按一下 esc，按住 shift+ZZ</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进行以下配置以保证重拨后仍能自启动心跳脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> cp ./99-drcom /etc/hotplug.d/iface/99-drcom</span><br><span class="line">chmod +x /etc/hotplug.d/iface/99-drcom</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置到此完毕。重启路由器，观察路由器能否拨号成功并保持连接。（极路由官方固件的用户请关闭自动更新，避免更新导致配置失效）</p>
+<h1 id="相关疑问"><a href="#相关疑问" class="headerlink" title="相关疑问"></a>相关疑问</h1><p>$. 假如拨号成功，但是定时断线。</p>
+</li>
+</ol>
+<p>A: 进入路由器后台执行 pppoe.sh , 看看心跳脚本报什么错。然后到 <a href="https://github.com/drcoms/drcom-generic" target="_blank" rel="noopener">drcom-generic Github</a> 查看 issue</p>
+<p>$. 假如环境安装失败。</p>
+<p>A: 查看空间是否足够安装环境</p>
+<p>$. 这脚本是否全通用，如何针对特殊情况修改配置</p>
+<p>A：这个脚本是面向广工的。drcom.conf 只测试过两栋宿舍楼，目测是全校通用。<br>若特殊配置可参考 “p 版简略使用和配置说明” 对 drcom.conf 进行配置<br>外校可以修改你们本校定制的 latest-pppoe.py 改名为 drcom 放置到 / usr/bin / 中</p>
+<p>$. 掉线后重连，出现每隔一两分钟掉线一次的现象</p>
+<p>A：由于我的脚本是基于原版 Hiwifi 系统进行的设置，在该系统中掉线重连唤醒的接口是 “wan”，部分 Openwrt 唤醒的接口是 “pppoe-wan”<br>看当前系统的外网接口是什么接口名可以通过<br><code>vi /etc/config/network</code><br>看里面存在 wan 还是 pppoe-wan（一般只存在任意一个） 然后进行配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hotplug.d/iface/99-drcom</span><br><span class="line">//把当中的&quot;$&#123;INTERFACE&#125;&quot; = &quot;wan&quot;</span><br><span class="line">//改成&quot;$&#123;INTERFACE&#125;&quot; = &quot;你在上一步看到的接口名&quot;</span><br></pre></td></tr></table></figure></p>
+<p>$. 脚本执行时出现 NOT FOUND，如何解决</p>
+<p>A：十分抱歉，由于工具包上一版本 CRLF 换行符的问题导致，建议对以下脚本文件使用 vim 打开并检查其中是否存在 “^M” 的特殊字符，删除特殊字符即可。并重新进行以上除了<a href="#7">#7</a> 的步骤</p>
+<p><code>99-drcom drcom.conf drcom_configure.sh pppoe.sh pppoe-configure.sh</code><br>或者下载最新工具包重新进行配置</p>
+<p>$. 如何鉴别是否整个流程配置成功</p>
+<p>A：执行以下命令，假如出现 python drcom 则表示心跳脚本正常执行，否则就是配置有出错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps | grep python</span><br></pre></td></tr></table></figure></p>
+<p>$. 在执行 opkg install *.ipk 时，出现 <code>“pkg_hash_fetch_best_installation_candidate.....”</code></p>
+<p>A：由于工具包中的 ipk 是对应极路由的 CPU 的。因此对于其他 CPU 的路由器可能会出现不兼容的情况。 因此可在相关资料中的 “package<br>source” 中下载对应自己路由器 CPU 的的 python-mini、libffi 的 ipk 包进行替换。</p>
+<p>$.AR9XXX 系列装什么 IPK 的包</p>
+<p>A：AR9XXX 系列装 AR71XX，原因 AR71XX 指从 AR7130 开始的一系列兼容 CPU，包含 AR9XXX 在内<br>或者可以查看 openwrt 官方 ar71xx 的通用固件包中搜索是否有自己的路由器型号<a href="https://downloads.openwrt.org/chaos_calmer/15.05.1/ar71xx/generic/" target="_blank" rel="noopener">：Openwrt Ar71xx 固件包列表</a></p>
+<p>$. 假如龙洞校区出现拨号成功，但是定时断线的情况</p>
+<p>若使用龙洞版工具包出现每一两分钟掉线一次的话，可以尝试下载大学城版工具包，修改 pppoe.sh 和 drcom.conf<br>把两个文件中的 ip 地址改为<code>10.0.3.6</code> 然后按照教程进行一次配置</p>
+<p>$.AR71XX 由于 python-mini 版本过低的问题<br><a href="https://downloads.openwrt.org/barrier_breaker/14.07/ar71xx/generic/packages/packages/libffi_3.0.13-1_ar71xx.ipk" target="_blank" rel="noopener">libffi_3.0.13-1 下载</a><br><a href="https://downloads.openwrt.org/barrier_breaker/14.07/ar71xx/generic/packages/oldpackages/python-mini_2.7.3-2_ar71xx.ipk" target="_blank" rel="noopener">python-mini_2.7.3-2</a><br><a href="http://openwrt.proxy.ustclug.org/barrier_breaker/14.07/ar71xx/generic/packages/base/zlib_1.2.8-1_ar71xx.ipk" target="_blank" rel="noopener">zlib_1.2.8-1</a><br><a href="http://openwrt.proxy.ustclug.org/barrier_breaker/14.07/ar71xx/generic/packages/base/libpthread_0.9.33.2-1_ar71xx.ipk" target="_blank" rel="noopener">libpthread_0.9.33.2</a></p>
+<h1 id="Changelog"><a href="#Changelog" class="headerlink" title="Changelog"></a>Changelog</h1><blockquote>
+<p>2016 年 11 月 10 日 09:34:56<br>@czh66888 吧友提供了东风路的心跳包配置。<br>修正了大学城 drcom 文件中的中的错误。以及注释掉 socket 可重用的设置。<br>重新打包三个校区的工具包。</p>
+<p>2016 年 11 月 8 日 13:16:23<br>有吧友反映在贴中提供的源对应 AR71XX 的 IPK 包相对旧<br>所以在相关疑问中新增了这个问题的解决方案和新增一个源的地址</p>
+<p>2016 年 11 月 7 日 20:07:35<br>贴吧中喵娘 dalao 分享了 11-7 的心跳包脚本。<br>我经过 10 分钟测试后验证可行（大学城），由此更新了两个校区的工具包。<br>在此感谢喵娘 dalao 的分享。原帖地址: 跳转<br>原本已配置过的可以下载新工具包只进行步骤 #12 即可<br>大学城有些楼的心跳包配置是 \ x2b，我提供的包中的的配置是 \ x6a，所以如果使用了工具包但依旧出现无限掉，可以尝试把 drcom.conf 中的 \ x6a 改成 \ x2b</p>
+<p>2016 年 11 月 7 日 18:15:13<br>由于广东工业大学的大学城校区和龙洞校区的心跳包加密方式进行了更改。<br>我已在 Github 上给 Drcom_generic 的作者提交了 issue。<br>由于本人是 AD 用户并非校园网用户，因此期望有能力的人能积极地参与到 issue #148 中讨论和测试 Drcom_generic 作者提供的最新方案。<br>工具包的地址已全部撤下，等待心跳包的更新。</p>
+<p>2016 年 11 月 7 日 17:06:06<br>听说大学城和龙洞心跳包大部分死了，但我同学没反应给我，所以我一个外网的人也没法测试。</p>
+<p>2016 年 11 月 3 日 19:31:04<br>由于大部分龙洞同学反映，改自吧友提供的脚本的龙洞工具包无法正常收发心跳包<br>但使用大学城的工具包通过修改 ip 即可正常使用的情况。<br>由此教程贴提供第二个龙洞工具包的下载链接，本质就是大学城工具包修改了 ip 地址<br>过往的教程更新说明请看 changelog。</p>
+<p>2016 年 10 月 30 日 23:10:56<br>由于龙洞的版本我没办法测试。龙洞的脚本是根据龙洞吧友帖子提供的脚本去修改的。<br>目前不知道龙洞版工具包在龙洞是否普遍通用。<br>若使用龙洞版工具包出现每一两分钟掉线一次的话，可以尝试下载大学城版工具包，修改 pppoe.sh 和 drcom.conf<br>把两个文件中的 ip 地址改为 10.0.3.6 然后按照教程进行一次配置</p>
+<p>2016 年 10 月 29 日 19:18:06<br>更新了一个龙洞的工具包，请根据校区去下载。龙洞心跳包配置来源：广工吧友 @jexhen 帖子传送门<br>虽然我更新了龙洞的包，但改变不了我是大学城校区的事实，所以我没亲自测试过 =_=，不过我还是信得过吧友提供的配置。</p>
+<p>2016 年 10 月 14 日 12:56:02<br>根据评论的提醒，昨晚开始出现无法拨号的情况。大概原因是极路由昨晚推送了更新，导致之前的配置被覆盖。<br>请按照教程重新进行一次路由器的配置，并关闭路由器固件的自动更新，避免该情况再次发生。<br>步骤 #13 增添了退出 vi 的操作方法</p>
+<p>2016 年 10 月 13 日 16:56:41<br>根据评论，在步骤 #6 #9 添加赋予脚本可执行属性的命令，避免可能出现 “permission denied”<br>修改了步骤 #6 的文字说明，由于 #6 一键脚本本人未执行过，不建议新手使用。同时也接纳各位技术 dalao 对 #6 一键脚本的修改建议。</p>
+<p>2016 年 10 月 13 日 22:07:05<br>对 AR9XXX 系列的 ipk 包选择，在相关疑问中进行了解答</p>
+<p>$2016 年 10 月 12 日 00:11:00<br>真是不好意思，因为我是使用 Win10 RS 的 bash 进行操作，所以疏忽看导致脚本的换行符没从 CRLF 换成 LF，导致出现运行脚本时提示 NOT<br>FOUND。 我已把工具包中的脚本更新重传了。 除了步骤 #7 其他按照步骤重新执行即可。</p>
+<p>$2016 年 10 月 11 日 23:27:20<br>更新了工具包，修复了掉线后重连不会自动重新唤醒心跳包脚本的 BUG（文件：99-drcom</p>
+</blockquote>
+<h1 id="资料来源"><a href="#资料来源" class="headerlink" title="资料来源"></a>资料来源</h1><p><a href="https://github.com/drcoms/drcom-generic" target="_blank" rel="noopener">drcom-generic Github</a><br><a href="https://github.com/drcoms/drcom-generic/issues/82" target="_blank" rel="noopener">广东工业大学 p 版 #82</a><br><a href="http://mengzhexin.top/2016/01/02/jiluyou/" target="_blank" rel="noopener">极路由 1s（HiWiFi） HC5661A 安装 python 环境和 dr.com</a><br><a href="https://github.com/drcoms/drcom-generic/wiki/p%E7%89%88%E7%AE%80%E7%95%A5%E4%BD%BF%E7%94%A8%E5%92%8C%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E" target="_blank" rel="noopener">p 版简略使用和配置说明</a><br><a href="https://github.com/drcoms/drcom-generic/wiki/%E5%85%B3%E4%BA%8EP%E7%89%88%E7%9A%84PPPoE%E6%8B%A8%E5%8F%B7%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">关于 P 版的 PPPoE 拨号问题</a><br><a href="http://jingyan.baidu.com/article/4f7d5712ca0d031a21192779.html" target="_blank" rel="noopener">极路由怎么申请开发者权限</a><br><a href="http://www.right.com.cn/forum/thread-172038-1-1.html" target="_blank" rel="noopener">怎么样实现 VPN 断线重拨时，自动执行以下语句</a><br><a href="http://downloads.openwrt.org.cn/backfire/10.03.1/" target="_blank" rel="noopener">package source 1</a><br><a href="https://downloads.openwrt.org/barrier_breaker/14.07/" target="_blank" rel="noopener">package source 2</a><br><a href="http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=164218" target="_blank" rel="noopener">OP 固件 AR71XX 是不是包含 AR9331 也能刷？</a><br><a href="https://downloads.openwrt.org/chaos_calmer/15.05.1/" target="_blank" rel="noopener">OpenWrt 官方固件包列表</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenWRT/" rel="tag"># OpenWRT</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/27/java-中-public，private，protected-等关键字的使用场景/" rel="next" title="java 中 public，private，protected 等关键字的使用场景">
+                <i class="fa fa-chevron-left"></i> java 中 public，private，protected 等关键字的使用场景
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/13/久违的网络更新/" rel="prev" title="久违的网络更新">
+                久违的网络更新 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="pancc" />
+            
+              <p class="site-author-name" itemprop="name">pancc</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境要求："><span class="nav-number">1.</span> <span class="nav-text">环境要求：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用者技能要求："><span class="nav-number">2.</span> <span class="nav-text">使用者技能要求：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤："><span class="nav-number">3.</span> <span class="nav-text">步骤：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关疑问"><span class="nav-number">4.</span> <span class="nav-text">相关疑问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Changelog"><span class="nav-number">5.</span> <span class="nav-text">Changelog</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资料来源"><span class="nav-number">6.</span> <span class="nav-text">资料来源</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pancc</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

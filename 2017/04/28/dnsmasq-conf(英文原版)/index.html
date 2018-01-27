@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="dnsmasq,conf," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Configuration file for dnsmasq.# Format is one option per line, legal options are the sameas the long options legal on the command line. See“/usr/sbin/dnsmasq –help” or “man 8 dnsmasq” for details.The">
+<meta name="keywords" content="dnsmasq,conf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dnsmasq-conf(英文原版)">
+<meta property="og:url" content="http://hexo.mantoujun.top/2017/04/28/dnsmasq-conf(英文原版)/index.html">
+<meta property="og:site_name" content="未知领域">
+<meta property="og:description" content="Configuration file for dnsmasq.# Format is one option per line, legal options are the sameas the long options legal on the command line. See“/usr/sbin/dnsmasq –help” or “man 8 dnsmasq” for details.The">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-05-11T15:44:44.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="dnsmasq-conf(英文原版)">
+<meta name="twitter:description" content="Configuration file for dnsmasq.# Format is one option per line, legal options are the sameas the long options legal on the command line. See“/usr/sbin/dnsmasq –help” or “man 8 dnsmasq” for details.The">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hexo.mantoujun.top/2017/04/28/dnsmasq-conf(英文原版)/"/>
+
+
+
+
+
+  <title>dnsmasq-conf(英文原版) | 未知领域</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">未知领域</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">女装是最吼的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hexo.mantoujun.top/2017/04/28/dnsmasq-conf(英文原版)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pancc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未知领域">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">dnsmasq-conf(英文原版)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T13:30:23+08:00">
+                2017-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/DNS/" itemprop="url" rel="index">
+                    <span itemprop="name">DNS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/DNS/dnsmasq/" itemprop="url" rel="index">
+                    <span itemprop="name">dnsmasq</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Configuration-file-for-dnsmasq"><a href="#Configuration-file-for-dnsmasq" class="headerlink" title="Configuration file for dnsmasq."></a>Configuration file for dnsmasq.</h1><p>#</p>
+<h1 id="Format-is-one-option-per-line-legal-options-are-the-same"><a href="#Format-is-one-option-per-line-legal-options-are-the-same" class="headerlink" title="Format is one option per line, legal options are the same"></a>Format is one option per line, legal options are the same</h1><h1 id="as-the-long-options-legal-on-the-command-line-See"><a href="#as-the-long-options-legal-on-the-command-line-See" class="headerlink" title="as the long options legal on the command line. See"></a>as the long options legal on the command line. See</h1><h1 id="“-usr-sbin-dnsmasq-–help”-or-“man-8-dnsmasq”-for-details"><a href="#“-usr-sbin-dnsmasq-–help”-or-“man-8-dnsmasq”-for-details" class="headerlink" title="“/usr/sbin/dnsmasq –help” or “man 8 dnsmasq” for details."></a>“/usr/sbin/dnsmasq –help” or “man 8 dnsmasq” for details.</h1><h1 id="The-following-two-options-make-you-a-better-netizen-since-they"><a href="#The-following-two-options-make-you-a-better-netizen-since-they" class="headerlink" title="The following two options make you a better netizen, since they"></a>The following two options make you a better netizen, since they</h1><h1 id="tell-dnsmasq-to-filter-out-queries-which-the-public-DNS-cannot"><a href="#tell-dnsmasq-to-filter-out-queries-which-the-public-DNS-cannot" class="headerlink" title="tell dnsmasq to filter out queries which the public DNS cannot"></a>tell dnsmasq to filter out queries which the public DNS cannot</h1><h1 id="answer-and-which-load-the-servers-especially-the-root-servers"><a href="#answer-and-which-load-the-servers-especially-the-root-servers" class="headerlink" title="answer, and which load the servers (especially the root servers)"></a>answer, and which load the servers (especially the root servers)</h1><h1 id="uneccessarily-If-you-have-a-dial-on-demand-link-they-also-stop"><a href="#uneccessarily-If-you-have-a-dial-on-demand-link-they-also-stop" class="headerlink" title="uneccessarily. If you have a dial-on-demand link they also stop"></a>uneccessarily. If you have a dial-on-demand link they also stop</h1><h1 id="these-requests-from-bringing-up-the-link-uneccessarily"><a href="#these-requests-from-bringing-up-the-link-uneccessarily" class="headerlink" title="these requests from bringing up the link uneccessarily."></a>these requests from bringing up the link uneccessarily.</h1><h1 id="Never-forward-plain-names-without-a-dot-or-domain-part"><a href="#Never-forward-plain-names-without-a-dot-or-domain-part" class="headerlink" title="Never forward plain names (without a dot or domain part)"></a>Never forward plain names (without a dot or domain part)</h1><p>#domain-needed</p>
+<h1 id="Never-forward-addresses-in-the-non-routed-address-spaces"><a href="#Never-forward-addresses-in-the-non-routed-address-spaces" class="headerlink" title="Never forward addresses in the non-routed address spaces."></a>Never forward addresses in the non-routed address spaces.</h1><p>#bogus-priv</p>
+<h1 id="Uncomment-this-to-filter-useless-windows-originated-DNS-requests"><a href="#Uncomment-this-to-filter-useless-windows-originated-DNS-requests" class="headerlink" title="Uncomment this to filter useless windows-originated DNS requests"></a>Uncomment this to filter useless windows-originated DNS requests</h1><h1 id="which-can-trigger-dial-on-demand-links-needlessly"><a href="#which-can-trigger-dial-on-demand-links-needlessly" class="headerlink" title="which can trigger dial-on-demand links needlessly."></a>which can trigger dial-on-demand links needlessly.</h1><h1 id="Note-that-amongst-other-things-this-blocks-all-SRV-requests"><a href="#Note-that-amongst-other-things-this-blocks-all-SRV-requests" class="headerlink" title="Note that (amongst other things) this blocks all SRV requests,"></a>Note that (amongst other things) this blocks all SRV requests,</h1><h1 id="so-don’t-use-it-if-you-use-eg-Kerberos-SIP-XMMP-or-Google-talk"><a href="#so-don’t-use-it-if-you-use-eg-Kerberos-SIP-XMMP-or-Google-talk" class="headerlink" title="so don’t use it if you use eg Kerberos, SIP, XMMP or Google-talk."></a>so don’t use it if you use eg Kerberos, SIP, XMMP or Google-talk.</h1><h1 id="This-option-only-affects-forwarding-SRV-records-originating-for"><a href="#This-option-only-affects-forwarding-SRV-records-originating-for" class="headerlink" title="This option only affects forwarding, SRV records originating for"></a>This option only affects forwarding, SRV records originating for</h1><h1 id="dnsmasq-via-srv-host-lines-are-not-suppressed-by-it"><a href="#dnsmasq-via-srv-host-lines-are-not-suppressed-by-it" class="headerlink" title="dnsmasq (via srv-host= lines) are not suppressed by it."></a>dnsmasq (via srv-host= lines) are not suppressed by it.</h1><p>#filterwin2k</p>
+<h1 id="Change-this-line-if-you-want-dns-to-get-its-upstream-servers-from"><a href="#Change-this-line-if-you-want-dns-to-get-its-upstream-servers-from" class="headerlink" title="Change this line if you want dns to get its upstream servers from"></a>Change this line if you want dns to get its upstream servers from</h1><h1 id="somewhere-other-that-etc-resolv-conf"><a href="#somewhere-other-that-etc-resolv-conf" class="headerlink" title="somewhere other that /etc/resolv.conf"></a>somewhere other that /etc/resolv.conf</h1><p>#resolv-file=</p>
+<h1 id="By-default-dnsmasq-will-send-queries-to-any-of-the-upstream"><a href="#By-default-dnsmasq-will-send-queries-to-any-of-the-upstream" class="headerlink" title="By  default,  dnsmasq  will  send queries to any of the upstream"></a>By  default,  dnsmasq  will  send queries to any of the upstream</h1><h1 id="servers-it-knows-about-and-tries-to-favour-servers-to-are-known"><a href="#servers-it-knows-about-and-tries-to-favour-servers-to-are-known" class="headerlink" title="servers it knows about and tries to favour servers to are  known"></a>servers it knows about and tries to favour servers to are  known</h1><h1 id="to-be-up-Uncommenting-this-forces-dnsmasq-to-try-each-query"><a href="#to-be-up-Uncommenting-this-forces-dnsmasq-to-try-each-query" class="headerlink" title="to  be  up.  Uncommenting this forces dnsmasq to try each query"></a>to  be  up.  Uncommenting this forces dnsmasq to try each query</h1><h1 id="with-each-server-strictly-in-the-order-they-appear-in"><a href="#with-each-server-strictly-in-the-order-they-appear-in" class="headerlink" title="with  each  server  strictly  in  the  order  they   appear   in"></a>with  each  server  strictly  in  the  order  they   appear   in</h1><h1 id="etc-resolv-conf"><a href="#etc-resolv-conf" class="headerlink" title="/etc/resolv.conf"></a>/etc/resolv.conf</h1><p>#strict-order</p>
+<h1 id="If-you-don’t-want-dnsmasq-to-read-etc-resolv-conf-or-any-other"><a href="#If-you-don’t-want-dnsmasq-to-read-etc-resolv-conf-or-any-other" class="headerlink" title="If you don’t want dnsmasq to read /etc/resolv.conf or any other"></a>If you don’t want dnsmasq to read /etc/resolv.conf or any other</h1><h1 id="file-getting-its-servers-from-this-file-instead-see-below-then"><a href="#file-getting-its-servers-from-this-file-instead-see-below-then" class="headerlink" title="file, getting its servers from this file instead (see below), then"></a>file, getting its servers from this file instead (see below), then</h1><h1 id="uncomment-this"><a href="#uncomment-this" class="headerlink" title="uncomment this."></a>uncomment this.</h1><p>#no-resolv</p>
+<h1 id="If-you-don’t-want-dnsmasq-to-poll-etc-resolv-conf-or-other-resolv"><a href="#If-you-don’t-want-dnsmasq-to-poll-etc-resolv-conf-or-other-resolv" class="headerlink" title="If you don’t want dnsmasq to poll /etc/resolv.conf or other resolv"></a>If you don’t want dnsmasq to poll /etc/resolv.conf or other resolv</h1><h1 id="files-for-changes-and-re-read-them-then-uncomment-this"><a href="#files-for-changes-and-re-read-them-then-uncomment-this" class="headerlink" title="files for changes and re-read them then uncomment this."></a>files for changes and re-read them then uncomment this.</h1><p>#no-poll</p>
+<h1 id="Add-other-name-servers-here-with-domain-specs-if-they-are-for"><a href="#Add-other-name-servers-here-with-domain-specs-if-they-are-for" class="headerlink" title="Add other name servers here, with domain specs if they are for"></a>Add other name servers here, with domain specs if they are for</h1><h1 id="non-public-domains"><a href="#non-public-domains" class="headerlink" title="non-public domains."></a>non-public domains.</h1><p>#server=/localnet/192.168.0.1</p>
+<h1 id="Example-of-routing-PTR-queries-to-nameservers-this-will-send-all"><a href="#Example-of-routing-PTR-queries-to-nameservers-this-will-send-all" class="headerlink" title="Example of routing PTR queries to nameservers: this will send all"></a>Example of routing PTR queries to nameservers: this will send all</h1><h1 id="address-gt-name-queries-for-192-168-3-24-to-nameserver-10-1-2-3"><a href="#address-gt-name-queries-for-192-168-3-24-to-nameserver-10-1-2-3" class="headerlink" title="address-&gt;name queries for 192.168.3/24 to nameserver 10.1.2.3"></a>address-&gt;name queries for 192.168.3/24 to nameserver 10.1.2.3</h1><p>#server=/3.168.192.in-addr.arpa/10.1.2.3</p>
+<h1 id="Add-local-only-domains-here-queries-in-these-domains-are-answered"><a href="#Add-local-only-domains-here-queries-in-these-domains-are-answered" class="headerlink" title="Add local-only domains here, queries in these domains are answered"></a>Add local-only domains here, queries in these domains are answered</h1><h1 id="from-etc-hosts-or-DHCP-only"><a href="#from-etc-hosts-or-DHCP-only" class="headerlink" title="from /etc/hosts or DHCP only."></a>from /etc/hosts or DHCP only.</h1><p>#local=/localnet/</p>
+<h1 id="Add-domains-which-you-want-to-force-to-an-IP-address-here"><a href="#Add-domains-which-you-want-to-force-to-an-IP-address-here" class="headerlink" title="Add domains which you want to force to an IP address here."></a>Add domains which you want to force to an IP address here.</h1><h1 id="The-example-below-send-any-host-in-doubleclick-net-to-a-local"><a href="#The-example-below-send-any-host-in-doubleclick-net-to-a-local" class="headerlink" title="The example below send any host in doubleclick.net to a local"></a>The example below send any host in doubleclick.net to a local</h1><h1 id="webserver"><a href="#webserver" class="headerlink" title="webserver."></a>webserver.</h1><p>#address=/doubleclick.net/127.0.0.1</p>
+<h1 id="–address-and-–server-work-with-IPv6-addresses-too"><a href="#–address-and-–server-work-with-IPv6-addresses-too" class="headerlink" title="–address (and –server) work with IPv6 addresses too."></a>–address (and –server) work with IPv6 addresses too.</h1><p>#address=/www.thekelleys.org.uk/fe80::20d:60ff:fe36:f83</p>
+<h1 id="You-can-control-how-dnsmasq-talks-to-a-server-this-forces"><a href="#You-can-control-how-dnsmasq-talks-to-a-server-this-forces" class="headerlink" title="You can control how dnsmasq talks to a server: this forces"></a>You can control how dnsmasq talks to a server: this forces</h1><h1 id="queries-to-10-1-2-3-to-be-routed-via-eth1"><a href="#queries-to-10-1-2-3-to-be-routed-via-eth1" class="headerlink" title="queries to 10.1.2.3 to be routed via eth1"></a>queries to 10.1.2.3 to be routed via eth1</h1><h1 id="–server-10-1-2-3-eth1"><a href="#–server-10-1-2-3-eth1" class="headerlink" title="–server=10.1.2.3@eth1"></a>–server=10.1.2.3@eth1</h1><h1 id="and-this-sets-the-source-ie-local-address-used-to-talk-to"><a href="#and-this-sets-the-source-ie-local-address-used-to-talk-to" class="headerlink" title="and this sets the source (ie local) address used to talk to"></a>and this sets the source (ie local) address used to talk to</h1><h1 id="10-1-2-3-to-192-168-1-1-port-55-there-must-be-a-interface-with-that"><a href="#10-1-2-3-to-192-168-1-1-port-55-there-must-be-a-interface-with-that" class="headerlink" title="10.1.2.3 to 192.168.1.1 port 55 (there must be a interface with that"></a>10.1.2.3 to 192.168.1.1 port 55 (there must be a interface with that</h1><h1 id="IP-on-the-machine-obviously"><a href="#IP-on-the-machine-obviously" class="headerlink" title="IP on the machine, obviously)."></a>IP on the machine, obviously).</h1><h1 id="–server-10-1-2-3-192-168-1-1-55"><a href="#–server-10-1-2-3-192-168-1-1-55" class="headerlink" title="–server=10.1.2.3@192.168.1.1#55"></a>–server=10.1.2.3@192.168.1.1#55</h1><h1 id="If-you-want-dnsmasq-to-change-uid-and-gid-to-something-other"><a href="#If-you-want-dnsmasq-to-change-uid-and-gid-to-something-other" class="headerlink" title="If you want dnsmasq to change uid and gid to something other"></a>If you want dnsmasq to change uid and gid to something other</h1><h1 id="than-the-default-edit-the-following-lines"><a href="#than-the-default-edit-the-following-lines" class="headerlink" title="than the default, edit the following lines."></a>than the default, edit the following lines.</h1><p>#user=</p>
+<p>#group=</p>
+<h1 id="If-you-want-dnsmasq-to-listen-for-DHCP-and-DNS-requests-only-on"><a href="#If-you-want-dnsmasq-to-listen-for-DHCP-and-DNS-requests-only-on" class="headerlink" title="If you want dnsmasq to listen for DHCP and DNS requests only on"></a>If you want dnsmasq to listen for DHCP and DNS requests only on</h1><h1 id="specified-interfaces-and-the-loopback-give-the-name-of-the"><a href="#specified-interfaces-and-the-loopback-give-the-name-of-the" class="headerlink" title="specified interfaces (and the loopback) give the name of the"></a>specified interfaces (and the loopback) give the name of the</h1><h1 id="interface-eg-eth0-here"><a href="#interface-eg-eth0-here" class="headerlink" title="interface (eg eth0) here."></a>interface (eg eth0) here.</h1><h1 id="Repeat-the-line-for-more-than-one-interface"><a href="#Repeat-the-line-for-more-than-one-interface" class="headerlink" title="Repeat the line for more than one interface."></a>Repeat the line for more than one interface.</h1><p>#interface=</p>
+<h1 id="Or-you-can-specify-which-interface-not-to-listen-on"><a href="#Or-you-can-specify-which-interface-not-to-listen-on" class="headerlink" title="Or you can specify which interface not to listen on"></a>Or you can specify which interface <em>not</em> to listen on</h1><p>#except-interface=</p>
+<h1 id="Or-which-to-listen-on-by-address-remember-to-include-127-0-0-1-if"><a href="#Or-which-to-listen-on-by-address-remember-to-include-127-0-0-1-if" class="headerlink" title="Or which to listen on by address (remember to include 127.0.0.1 if"></a>Or which to listen on by address (remember to include 127.0.0.1 if</h1><h1 id="you-use-this"><a href="#you-use-this" class="headerlink" title="you use this.)"></a>you use this.)</h1><p>#listen-address=</p>
+<h1 id="If-you-want-dnsmasq-to-provide-only-DNS-service-on-an-interface"><a href="#If-you-want-dnsmasq-to-provide-only-DNS-service-on-an-interface" class="headerlink" title="If you want dnsmasq to provide only DNS service on an interface,"></a>If you want dnsmasq to provide only DNS service on an interface,</h1><h1 id="configure-it-as-shown-above-and-then-use-the-following-line-to"><a href="#configure-it-as-shown-above-and-then-use-the-following-line-to" class="headerlink" title="configure it as shown above, and then use the following line to"></a>configure it as shown above, and then use the following line to</h1><h1 id="disable-DHCP-on-it"><a href="#disable-DHCP-on-it" class="headerlink" title="disable DHCP on it."></a>disable DHCP on it.</h1><p>#no-dhcp-interface=</p>
+<h1 id="On-systems-which-support-it-dnsmasq-binds-the-wildcard-address"><a href="#On-systems-which-support-it-dnsmasq-binds-the-wildcard-address" class="headerlink" title="On systems which support it, dnsmasq binds the wildcard address,"></a>On systems which support it, dnsmasq binds the wildcard address,</h1><h1 id="even-when-it-is-listening-on-only-some-interfaces-It-then-discards"><a href="#even-when-it-is-listening-on-only-some-interfaces-It-then-discards" class="headerlink" title="even when it is listening on only some interfaces. It then discards"></a>even when it is listening on only some interfaces. It then discards</h1><h1 id="requests-that-it-shouldn’t-reply-to-This-has-the-advantage-of"><a href="#requests-that-it-shouldn’t-reply-to-This-has-the-advantage-of" class="headerlink" title="requests that it shouldn’t reply to. This has the advantage of"></a>requests that it shouldn’t reply to. This has the advantage of</h1><h1 id="working-even-when-interfaces-come-and-go-and-change-address-If-you"><a href="#working-even-when-interfaces-come-and-go-and-change-address-If-you" class="headerlink" title="working even when interfaces come and go and change address. If you"></a>working even when interfaces come and go and change address. If you</h1><h1 id="want-dnsmasq-to-really-bind-only-the-interfaces-it-is-listening-on"><a href="#want-dnsmasq-to-really-bind-only-the-interfaces-it-is-listening-on" class="headerlink" title="want dnsmasq to really bind only the interfaces it is listening on,"></a>want dnsmasq to really bind only the interfaces it is listening on,</h1><h1 id="uncomment-this-option-About-the-only-time-you-may-need-this-is-when"><a href="#uncomment-this-option-About-the-only-time-you-may-need-this-is-when" class="headerlink" title="uncomment this option. About the only time you may need this is when"></a>uncomment this option. About the only time you may need this is when</h1><h1 id="running-another-nameserver-on-the-same-machine"><a href="#running-another-nameserver-on-the-same-machine" class="headerlink" title="running another nameserver on the same machine."></a>running another nameserver on the same machine.</h1><p>#bind-interfaces</p>
+<h1 id="If-you-don’t-want-dnsmasq-to-read-etc-hosts-uncomment-the"><a href="#If-you-don’t-want-dnsmasq-to-read-etc-hosts-uncomment-the" class="headerlink" title="If you don’t want dnsmasq to read /etc/hosts, uncomment the"></a>If you don’t want dnsmasq to read /etc/hosts, uncomment the</h1><h1 id="following-line"><a href="#following-line" class="headerlink" title="following line."></a>following line.</h1><p>#no-hosts</p>
+<h1 id="or-if-you-want-it-to-read-another-file-as-well-as-etc-hosts-use"><a href="#or-if-you-want-it-to-read-another-file-as-well-as-etc-hosts-use" class="headerlink" title="or if you want it to read another file, as well as /etc/hosts, use"></a>or if you want it to read another file, as well as /etc/hosts, use</h1><h1 id="this"><a href="#this" class="headerlink" title="this."></a>this.</h1><p>#addn-hosts=/etc/banner_add_hosts</p>
+<h1 id="Set-this-and-domain-see-below-if-you-want-to-have-a-domain"><a href="#Set-this-and-domain-see-below-if-you-want-to-have-a-domain" class="headerlink" title="Set this (and domain: see below) if you want to have a domain"></a>Set this (and domain: see below) if you want to have a domain</h1><h1 id="automatically-added-to-simple-names-in-a-hosts-file"><a href="#automatically-added-to-simple-names-in-a-hosts-file" class="headerlink" title="automatically added to simple names in a hosts-file."></a>automatically added to simple names in a hosts-file.</h1><p>#expand-hosts</p>
+<h1 id="Set-the-domain-for-dnsmasq-this-is-optional-but-if-it-is-set-it"><a href="#Set-the-domain-for-dnsmasq-this-is-optional-but-if-it-is-set-it" class="headerlink" title="Set the domain for dnsmasq. this is optional, but if it is set, it"></a>Set the domain for dnsmasq. this is optional, but if it is set, it</h1><h1 id="does-the-following-things"><a href="#does-the-following-things" class="headerlink" title="does the following things."></a>does the following things.</h1><h1 id="1-Allows-DHCP-hosts-to-have-fully-qualified-domain-names-as-long"><a href="#1-Allows-DHCP-hosts-to-have-fully-qualified-domain-names-as-long" class="headerlink" title="1) Allows DHCP hosts to have fully qualified domain names, as long"></a>1) Allows DHCP hosts to have fully qualified domain names, as long</h1><h1 id="as-the-domain-part-matches-this-setting"><a href="#as-the-domain-part-matches-this-setting" class="headerlink" title="as the domain part matches this setting."></a>as the domain part matches this setting.</h1><h1 id="2-Sets-the-“domain”-DHCP-option-thereby-potentially-setting-the"><a href="#2-Sets-the-“domain”-DHCP-option-thereby-potentially-setting-the" class="headerlink" title="2) Sets the “domain” DHCP option thereby potentially setting the"></a>2) Sets the “domain” DHCP option thereby potentially setting the</h1><h1 id="domain-of-all-systems-configured-by-DHCP"><a href="#domain-of-all-systems-configured-by-DHCP" class="headerlink" title="domain of all systems configured by DHCP"></a>domain of all systems configured by DHCP</h1><h1 id="3-Provides-the-domain-part-for-“expand-hosts”"><a href="#3-Provides-the-domain-part-for-“expand-hosts”" class="headerlink" title="3) Provides the domain part for “expand-hosts”"></a>3) Provides the domain part for “expand-hosts”</h1><p>#domain=thekelleys.org.uk</p>
+<h1 id="Set-a-different-domain-for-a-particular-subnet"><a href="#Set-a-different-domain-for-a-particular-subnet" class="headerlink" title="Set a different domain for a particular subnet"></a>Set a different domain for a particular subnet</h1><p>#domain=wireless.thekelleys.org.uk,192.168.2.0/24</p>
+<h1 id="Same-idea-but-range-rather-then-subnet"><a href="#Same-idea-but-range-rather-then-subnet" class="headerlink" title="Same idea, but range rather then subnet"></a>Same idea, but range rather then subnet</h1><p>#domain=reserved.thekelleys.org.uk,192.68.3.100,192.168.3.200</p>
+<h1 id="Uncomment-this-to-enable-the-integrated-DHCP-server-you-need"><a href="#Uncomment-this-to-enable-the-integrated-DHCP-server-you-need" class="headerlink" title="Uncomment this to enable the integrated DHCP server, you need"></a>Uncomment this to enable the integrated DHCP server, you need</h1><h1 id="to-supply-the-range-of-addresses-available-for-lease-and-optionally"><a href="#to-supply-the-range-of-addresses-available-for-lease-and-optionally" class="headerlink" title="to supply the range of addresses available for lease and optionally"></a>to supply the range of addresses available for lease and optionally</h1><h1 id="a-lease-time-If-you-have-more-than-one-network-you-will-need-to"><a href="#a-lease-time-If-you-have-more-than-one-network-you-will-need-to" class="headerlink" title="a lease time. If you have more than one network, you will need to"></a>a lease time. If you have more than one network, you will need to</h1><h1 id="repeat-this-for-each-network-on-which-you-want-to-supply-DHCP"><a href="#repeat-this-for-each-network-on-which-you-want-to-supply-DHCP" class="headerlink" title="repeat this for each network on which you want to supply DHCP"></a>repeat this for each network on which you want to supply DHCP</h1><h1 id="service"><a href="#service" class="headerlink" title="service."></a>service.</h1><p>#dhcp-range=192.168.0.50,192.168.0.150,12h</p>
+<h1 id="This-is-an-example-of-a-DHCP-range-where-the-netmask-is-given-This"><a href="#This-is-an-example-of-a-DHCP-range-where-the-netmask-is-given-This" class="headerlink" title="This is an example of a DHCP range where the netmask is given. This"></a>This is an example of a DHCP range where the netmask is given. This</h1><h1 id="is-needed-for-networks-we-reach-the-dnsmasq-DHCP-server-via-a-relay"><a href="#is-needed-for-networks-we-reach-the-dnsmasq-DHCP-server-via-a-relay" class="headerlink" title="is needed for networks we reach the dnsmasq DHCP server via a relay"></a>is needed for networks we reach the dnsmasq DHCP server via a relay</h1><h1 id="agent-If-you-don’t-know-what-a-DHCP-relay-agent-is-you-probably"><a href="#agent-If-you-don’t-know-what-a-DHCP-relay-agent-is-you-probably" class="headerlink" title="agent. If you don’t know what a DHCP relay agent is, you probably"></a>agent. If you don’t know what a DHCP relay agent is, you probably</h1><h1 id="don’t-need-to-worry-about-this"><a href="#don’t-need-to-worry-about-this" class="headerlink" title="don’t need to worry about this."></a>don’t need to worry about this.</h1><p>#dhcp-range=192.168.0.50,192.168.0.150,255.255.255.0,12h</p>
+<h1 id="This-is-an-example-of-a-DHCP-range-with-a-network-id-so-that"><a href="#This-is-an-example-of-a-DHCP-range-with-a-network-id-so-that" class="headerlink" title="This is an example of a DHCP range with a network-id, so that"></a>This is an example of a DHCP range with a network-id, so that</h1><h1 id="some-DHCP-options-may-be-set-only-for-this-network"><a href="#some-DHCP-options-may-be-set-only-for-this-network" class="headerlink" title="some DHCP options may be set only for this network."></a>some DHCP options may be set only for this network.</h1><p>#dhcp-range=red,192.168.0.50,192.168.0.150</p>
+<h1 id="Supply-parameters-for-specified-hosts-using-DHCP-There-are-lots"><a href="#Supply-parameters-for-specified-hosts-using-DHCP-There-are-lots" class="headerlink" title="Supply parameters for specified hosts using DHCP. There are lots"></a>Supply parameters for specified hosts using DHCP. There are lots</h1><h1 id="of-valid-alternatives-so-we-will-give-examples-of-each-Note-that"><a href="#of-valid-alternatives-so-we-will-give-examples-of-each-Note-that" class="headerlink" title="of valid alternatives, so we will give examples of each. Note that"></a>of valid alternatives, so we will give examples of each. Note that</h1><h1 id="IP-addresses-DO-NOT-have-to-be-in-the-range-given-above-they-just"><a href="#IP-addresses-DO-NOT-have-to-be-in-the-range-given-above-they-just" class="headerlink" title="IP addresses DO NOT have to be in the range given above, they just"></a>IP addresses DO NOT have to be in the range given above, they just</h1><h1 id="need-to-be-on-the-same-network-The-order-of-the-parameters-in-these"><a href="#need-to-be-on-the-same-network-The-order-of-the-parameters-in-these" class="headerlink" title="need to be on the same network. The order of the parameters in these"></a>need to be on the same network. The order of the parameters in these</h1><h1 id="do-not-matter-it’s-permissble-to-give-name-adddress-and-MAC-in-any-order"><a href="#do-not-matter-it’s-permissble-to-give-name-adddress-and-MAC-in-any-order" class="headerlink" title="do not matter, it’s permissble to give name,adddress and MAC in any order"></a>do not matter, it’s permissble to give name,adddress and MAC in any order</h1><h1 id="Always-allocate-the-host-with-ethernet-address-11-22-33-44-55-66"><a href="#Always-allocate-the-host-with-ethernet-address-11-22-33-44-55-66" class="headerlink" title="Always allocate the host with ethernet address 11:22:33:44:55:66"></a>Always allocate the host with ethernet address 11:22:33:44:55:66</h1><h1 id="The-IP-address-192-168-0-60"><a href="#The-IP-address-192-168-0-60" class="headerlink" title="The IP address 192.168.0.60"></a>The IP address 192.168.0.60</h1><p>#dhcp-host=11:22:33:44:55:66,192.168.0.60</p>
+<h1 id="Always-set-the-name-of-the-host-with-hardware-address"><a href="#Always-set-the-name-of-the-host-with-hardware-address" class="headerlink" title="Always set the name of the host with hardware address"></a>Always set the name of the host with hardware address</h1><h1 id="11-22-33-44-55-66-to-be-“fred”"><a href="#11-22-33-44-55-66-to-be-“fred”" class="headerlink" title="11:22:33:44:55:66 to be “fred”"></a>11:22:33:44:55:66 to be “fred”</h1><p>#dhcp-host=11:22:33:44:55:66,fred</p>
+<h1 id="Always-give-the-host-with-ethernet-address-11-22-33-44-55-66"><a href="#Always-give-the-host-with-ethernet-address-11-22-33-44-55-66" class="headerlink" title="Always give the host with ethernet address 11:22:33:44:55:66"></a>Always give the host with ethernet address 11:22:33:44:55:66</h1><h1 id="the-name-fred-and-IP-address-192-168-0-60-and-lease-time-45-minutes"><a href="#the-name-fred-and-IP-address-192-168-0-60-and-lease-time-45-minutes" class="headerlink" title="the name fred and IP address 192.168.0.60 and lease time 45 minutes"></a>the name fred and IP address 192.168.0.60 and lease time 45 minutes</h1><p>#dhcp-host=11:22:33:44:55:66,fred,192.168.0.60,45m</p>
+<h1 id="Give-a-host-with-ethernet-address-11-22-33-44-55-66-or"><a href="#Give-a-host-with-ethernet-address-11-22-33-44-55-66-or" class="headerlink" title="Give a host with ethernet address 11:22:33:44:55:66 or"></a>Give a host with ethernet address 11:22:33:44:55:66 or</h1><h1 id="12-34-56-78-90-12-the-IP-address-192-168-0-60-Dnsmasq-will-assume"><a href="#12-34-56-78-90-12-the-IP-address-192-168-0-60-Dnsmasq-will-assume" class="headerlink" title="12:34:56:78:90:12 the IP address 192.168.0.60. Dnsmasq will assume"></a>12:34:56:78:90:12 the IP address 192.168.0.60. Dnsmasq will assume</h1><h1 id="that-these-two-ethernet-interfaces-will-never-be-in-use-at-the-same"><a href="#that-these-two-ethernet-interfaces-will-never-be-in-use-at-the-same" class="headerlink" title="that these two ethernet interfaces will never be in use at the same"></a>that these two ethernet interfaces will never be in use at the same</h1><h1 id="time-and-give-the-IP-address-to-the-second-even-if-it-is-already"><a href="#time-and-give-the-IP-address-to-the-second-even-if-it-is-already" class="headerlink" title="time, and give the IP address to the second, even if it is already"></a>time, and give the IP address to the second, even if it is already</h1><h1 id="in-use-by-the-first-Useful-for-laptops-with-wired-and-wireless"><a href="#in-use-by-the-first-Useful-for-laptops-with-wired-and-wireless" class="headerlink" title="in use by the first. Useful for laptops with wired and wireless"></a>in use by the first. Useful for laptops with wired and wireless</h1><h1 id="addresses"><a href="#addresses" class="headerlink" title="addresses."></a>addresses.</h1><p>#dhcp-host=11:22:33:44:55:66,12:34:56:78:90:12,192.168.0.60</p>
+<h1 id="Give-the-machine-which-says-its-name-is-“bert”-IP-address"><a href="#Give-the-machine-which-says-its-name-is-“bert”-IP-address" class="headerlink" title="Give the machine which says its name is “bert” IP address"></a>Give the machine which says its name is “bert” IP address</h1><h1 id="192-168-0-70-and-an-infinite-lease"><a href="#192-168-0-70-and-an-infinite-lease" class="headerlink" title="192.168.0.70 and an infinite lease"></a>192.168.0.70 and an infinite lease</h1><p>#dhcp-host=bert,192.168.0.70,infinite</p>
+<h1 id="Always-give-the-host-with-client-identifier-01-02-02-04"><a href="#Always-give-the-host-with-client-identifier-01-02-02-04" class="headerlink" title="Always give the host with client identifier 01:02:02:04"></a>Always give the host with client identifier 01:02:02:04</h1><h1 id="the-IP-address-192-168-0-60"><a href="#the-IP-address-192-168-0-60" class="headerlink" title="the IP address 192.168.0.60"></a>the IP address 192.168.0.60</h1><p>#dhcp-host=id:01:02:02:04,192.168.0.60</p>
+<h1 id="Always-give-the-host-with-client-identifier-“marjorie”"><a href="#Always-give-the-host-with-client-identifier-“marjorie”" class="headerlink" title="Always give the host with client identifier “marjorie”"></a>Always give the host with client identifier “marjorie”</h1><h1 id="the-IP-address-192-168-0-60-1"><a href="#the-IP-address-192-168-0-60-1" class="headerlink" title="the IP address 192.168.0.60"></a>the IP address 192.168.0.60</h1><p>#dhcp-host=id:marjorie,192.168.0.60</p>
+<h1 id="Enable-the-address-given-for-“judge”-in-etc-hosts"><a href="#Enable-the-address-given-for-“judge”-in-etc-hosts" class="headerlink" title="Enable the address given for “judge” in /etc/hosts"></a>Enable the address given for “judge” in /etc/hosts</h1><h1 id="to-be-given-to-a-machine-presenting-the-name-“judge”-when"><a href="#to-be-given-to-a-machine-presenting-the-name-“judge”-when" class="headerlink" title="to be given to a machine presenting the name “judge” when"></a>to be given to a machine presenting the name “judge” when</h1><h1 id="it-asks-for-a-DHCP-lease"><a href="#it-asks-for-a-DHCP-lease" class="headerlink" title="it asks for a DHCP lease."></a>it asks for a DHCP lease.</h1><p>#dhcp-host=judge</p>
+<h1 id="Never-offer-DHCP-service-to-a-machine-whose-ethernet"><a href="#Never-offer-DHCP-service-to-a-machine-whose-ethernet" class="headerlink" title="Never offer DHCP service to a machine whose ethernet"></a>Never offer DHCP service to a machine whose ethernet</h1><h1 id="address-is-11-22-33-44-55-66"><a href="#address-is-11-22-33-44-55-66" class="headerlink" title="address is 11:22:33:44:55:66"></a>address is 11:22:33:44:55:66</h1><p>#dhcp-host=11:22:33:44:55:66,ignore</p>
+<h1 id="Ignore-any-client-id-presented-by-the-machine-with-ethernet"><a href="#Ignore-any-client-id-presented-by-the-machine-with-ethernet" class="headerlink" title="Ignore any client-id presented by the machine with ethernet"></a>Ignore any client-id presented by the machine with ethernet</h1><h1 id="address-11-22-33-44-55-66-This-is-useful-to-prevent-a-machine"><a href="#address-11-22-33-44-55-66-This-is-useful-to-prevent-a-machine" class="headerlink" title="address 11:22:33:44:55:66. This is useful to prevent a machine"></a>address 11:22:33:44:55:66. This is useful to prevent a machine</h1><h1 id="being-treated-differently-when-running-under-different-OS’s-or"><a href="#being-treated-differently-when-running-under-different-OS’s-or" class="headerlink" title="being treated differently when running under different OS’s or"></a>being treated differently when running under different OS’s or</h1><h1 id="between-PXE-boot-and-OS-boot"><a href="#between-PXE-boot-and-OS-boot" class="headerlink" title="between PXE boot and OS boot."></a>between PXE boot and OS boot.</h1><p>#dhcp-host=11:22:33:44:55:66,id:*</p>
+<h1 id="Send-extra-options-which-are-tagged-as-“red”-to"><a href="#Send-extra-options-which-are-tagged-as-“red”-to" class="headerlink" title="Send extra options which are tagged as “red” to"></a>Send extra options which are tagged as “red” to</h1><h1 id="the-machine-with-ethernet-address-11-22-33-44-55-66"><a href="#the-machine-with-ethernet-address-11-22-33-44-55-66" class="headerlink" title="the machine with ethernet address 11:22:33:44:55:66"></a>the machine with ethernet address 11:22:33:44:55:66</h1><p>#dhcp-host=11:22:33:44:55:66,net:red</p>
+<h1 id="Send-extra-options-which-are-tagged-as-“red”-to-1"><a href="#Send-extra-options-which-are-tagged-as-“red”-to-1" class="headerlink" title="Send extra options which are tagged as “red” to"></a>Send extra options which are tagged as “red” to</h1><h1 id="any-machine-with-ethernet-address-starting-11-22-33"><a href="#any-machine-with-ethernet-address-starting-11-22-33" class="headerlink" title="any machine with ethernet address starting 11:22:33:"></a>any machine with ethernet address starting 11:22:33:</h1><p>#dhcp-host=11:22:33:<em>:</em>:*,net:red</p>
+<h1 id="Ignore-any-clients-which-are-specified-in-dhcp-host-lines"><a href="#Ignore-any-clients-which-are-specified-in-dhcp-host-lines" class="headerlink" title="Ignore any clients which are specified in dhcp-host lines"></a>Ignore any clients which are specified in dhcp-host lines</h1><h1 id="or-etc-ethers-Equivalent-to-ISC-“deny-unkown-clients”"><a href="#or-etc-ethers-Equivalent-to-ISC-“deny-unkown-clients”" class="headerlink" title="or /etc/ethers. Equivalent to ISC “deny unkown-clients”."></a>or /etc/ethers. Equivalent to ISC “deny unkown-clients”.</h1><h1 id="This-relies-on-the-special-“known”-tag-which-is-set-when"><a href="#This-relies-on-the-special-“known”-tag-which-is-set-when" class="headerlink" title="This relies on the special “known” tag which is set when"></a>This relies on the special “known” tag which is set when</h1><h1 id="a-host-is-matched"><a href="#a-host-is-matched" class="headerlink" title="a host is matched."></a>a host is matched.</h1><p>#dhcp-ignore=#known</p>
+<h1 id="Send-extra-options-which-are-tagged-as-“red”-to-any-machine-whose"><a href="#Send-extra-options-which-are-tagged-as-“red”-to-any-machine-whose" class="headerlink" title="Send extra options which are tagged as “red” to any machine whose"></a>Send extra options which are tagged as “red” to any machine whose</h1><h1 id="DHCP-vendorclass-string-includes-the-substring-“Linux”"><a href="#DHCP-vendorclass-string-includes-the-substring-“Linux”" class="headerlink" title="DHCP vendorclass string includes the substring “Linux”"></a>DHCP vendorclass string includes the substring “Linux”</h1><p>#dhcp-vendorclass=red,Linux</p>
+<h1 id="Send-extra-options-which-are-tagged-as-“red”-to-any-machine-one"><a href="#Send-extra-options-which-are-tagged-as-“red”-to-any-machine-one" class="headerlink" title="Send extra options which are tagged as “red” to any machine one"></a>Send extra options which are tagged as “red” to any machine one</h1><h1 id="of-whose-DHCP-userclass-strings-includes-the-substring-“accounts”"><a href="#of-whose-DHCP-userclass-strings-includes-the-substring-“accounts”" class="headerlink" title="of whose DHCP userclass strings includes the substring “accounts”"></a>of whose DHCP userclass strings includes the substring “accounts”</h1><p>#dhcp-userclass=red,accounts</p>
+<h1 id="Send-extra-options-which-are-tagged-as-“red”-to-any-machine-whose-1"><a href="#Send-extra-options-which-are-tagged-as-“red”-to-any-machine-whose-1" class="headerlink" title="Send extra options which are tagged as “red” to any machine whose"></a>Send extra options which are tagged as “red” to any machine whose</h1><h1 id="MAC-address-matches-the-pattern"><a href="#MAC-address-matches-the-pattern" class="headerlink" title="MAC address matches the pattern."></a>MAC address matches the pattern.</h1><p>#dhcp-mac=red,00:60:8C:<em>:</em>:*</p>
+<h1 id="If-this-line-is-uncommented-dnsmasq-will-read-etc-ethers-and-act"><a href="#If-this-line-is-uncommented-dnsmasq-will-read-etc-ethers-and-act" class="headerlink" title="If this line is uncommented, dnsmasq will read /etc/ethers and act"></a>If this line is uncommented, dnsmasq will read /etc/ethers and act</h1><h1 id="on-the-ethernet-address-IP-pairs-found-there-just-as-if-they-had"><a href="#on-the-ethernet-address-IP-pairs-found-there-just-as-if-they-had" class="headerlink" title="on the ethernet-address/IP pairs found there just as if they had"></a>on the ethernet-address/IP pairs found there just as if they had</h1><h1 id="been-given-as-–dhcp-host-options-Useful-if-you-keep"><a href="#been-given-as-–dhcp-host-options-Useful-if-you-keep" class="headerlink" title="been given as –dhcp-host options. Useful if you keep"></a>been given as –dhcp-host options. Useful if you keep</h1><h1 id="MAC-address-host-mappings-there-for-other-purposes"><a href="#MAC-address-host-mappings-there-for-other-purposes" class="headerlink" title="MAC-address/host mappings there for other purposes."></a>MAC-address/host mappings there for other purposes.</h1><p>#read-ethers</p>
+<h1 id="Send-options-to-hosts-which-ask-for-a-DHCP-lease"><a href="#Send-options-to-hosts-which-ask-for-a-DHCP-lease" class="headerlink" title="Send options to hosts which ask for a DHCP lease."></a>Send options to hosts which ask for a DHCP lease.</h1><h1 id="See-RFC-2132-for-details-of-available-options"><a href="#See-RFC-2132-for-details-of-available-options" class="headerlink" title="See RFC 2132 for details of available options."></a>See RFC 2132 for details of available options.</h1><h1 id="Common-options-can-be-given-to-dnsmasq-by-name"><a href="#Common-options-can-be-given-to-dnsmasq-by-name" class="headerlink" title="Common options can be given to dnsmasq by name:"></a>Common options can be given to dnsmasq by name:</h1><h1 id="run-“dnsmasq-–help-dhcp”-to-get-a-list"><a href="#run-“dnsmasq-–help-dhcp”-to-get-a-list" class="headerlink" title="run “dnsmasq –help dhcp” to get a list."></a>run “dnsmasq –help dhcp” to get a list.</h1><h1 id="Note-that-all-the-common-settings-such-as-netmask-and"><a href="#Note-that-all-the-common-settings-such-as-netmask-and" class="headerlink" title="Note that all the common settings, such as netmask and"></a>Note that all the common settings, such as netmask and</h1><h1 id="broadcast-address-DNS-server-and-default-route-are-given"><a href="#broadcast-address-DNS-server-and-default-route-are-given" class="headerlink" title="broadcast address, DNS server and default route, are given"></a>broadcast address, DNS server and default route, are given</h1><h1 id="sane-defaults-by-dnsmasq-You-very-likely-will-not-need"><a href="#sane-defaults-by-dnsmasq-You-very-likely-will-not-need" class="headerlink" title="sane defaults by dnsmasq. You very likely will not need"></a>sane defaults by dnsmasq. You very likely will not need</h1><h1 id="any-dhcp-options-If-you-use-Windows-clients-and-Samba-there"><a href="#any-dhcp-options-If-you-use-Windows-clients-and-Samba-there" class="headerlink" title="any dhcp-options. If you use Windows clients and Samba, there"></a>any dhcp-options. If you use Windows clients and Samba, there</h1><h1 id="are-some-options-which-are-recommended-they-are-detailed-at-the"><a href="#are-some-options-which-are-recommended-they-are-detailed-at-the" class="headerlink" title="are some options which are recommended, they are detailed at the"></a>are some options which are recommended, they are detailed at the</h1><h1 id="end-of-this-section"><a href="#end-of-this-section" class="headerlink" title="end of this section."></a>end of this section.</h1><h1 id="Override-the-default-route-supplied-by-dnsmasq-which-assumes-the"><a href="#Override-the-default-route-supplied-by-dnsmasq-which-assumes-the" class="headerlink" title="Override the default route supplied by dnsmasq, which assumes the"></a>Override the default route supplied by dnsmasq, which assumes the</h1><h1 id="router-is-the-same-machine-as-the-one-running-dnsmasq"><a href="#router-is-the-same-machine-as-the-one-running-dnsmasq" class="headerlink" title="router is the same machine as the one running dnsmasq."></a>router is the same machine as the one running dnsmasq.</h1><p>#dhcp-option=3,1.2.3.4</p>
+<h1 id="Do-the-same-thing-but-using-the-option-name"><a href="#Do-the-same-thing-but-using-the-option-name" class="headerlink" title="Do the same thing, but using the option name"></a>Do the same thing, but using the option name</h1><p>#dhcp-option=option:router,1.2.3.4</p>
+<h1 id="Override-the-default-route-supplied-by-dnsmasq-and-send-no-default"><a href="#Override-the-default-route-supplied-by-dnsmasq-and-send-no-default" class="headerlink" title="Override the default route supplied by dnsmasq and send no default"></a>Override the default route supplied by dnsmasq and send no default</h1><h1 id="route-at-all-Note-that-this-only-works-for-the-options-sent-by"><a href="#route-at-all-Note-that-this-only-works-for-the-options-sent-by" class="headerlink" title="route at all. Note that this only works for the options sent by"></a>route at all. Note that this only works for the options sent by</h1><h1 id="default-1-3-6-12-28-the-same-line-will-send-a-zero-length-option"><a href="#default-1-3-6-12-28-the-same-line-will-send-a-zero-length-option" class="headerlink" title="default (1, 3, 6, 12, 28) the same line will send a zero-length option"></a>default (1, 3, 6, 12, 28) the same line will send a zero-length option</h1><h1 id="for-all-other-option-numbers"><a href="#for-all-other-option-numbers" class="headerlink" title="for all other option numbers."></a>for all other option numbers.</h1><p>#dhcp-option=3</p>
+<h1 id="Set-the-NTP-time-server-addresses-to-192-168-0-4-and-10-10-0-5"><a href="#Set-the-NTP-time-server-addresses-to-192-168-0-4-and-10-10-0-5" class="headerlink" title="Set the NTP time server addresses to 192.168.0.4 and 10.10.0.5"></a>Set the NTP time server addresses to 192.168.0.4 and 10.10.0.5</h1><p>#dhcp-option=option:ntp-server,192.168.0.4,10.10.0.5</p>
+<h1 id="Set-the-NTP-time-server-address-to-be-the-same-machine-as"><a href="#Set-the-NTP-time-server-address-to-be-the-same-machine-as" class="headerlink" title="Set the NTP time server address to be the same machine as"></a>Set the NTP time server address to be the same machine as</h1><h1 id="is-running-dnsmasq"><a href="#is-running-dnsmasq" class="headerlink" title="is running dnsmasq"></a>is running dnsmasq</h1><p>#dhcp-option=42,0.0.0.0</p>
+<h1 id="Set-the-NIS-domain-name-to-“welly”"><a href="#Set-the-NIS-domain-name-to-“welly”" class="headerlink" title="Set the NIS domain name to “welly”"></a>Set the NIS domain name to “welly”</h1><p>#dhcp-option=40,welly</p>
+<h1 id="Set-the-default-time-to-live-to-50"><a href="#Set-the-default-time-to-live-to-50" class="headerlink" title="Set the default time-to-live to 50"></a>Set the default time-to-live to 50</h1><p>#dhcp-option=23,50</p>
+<h1 id="Set-the-“all-subnets-are-local”-flag"><a href="#Set-the-“all-subnets-are-local”-flag" class="headerlink" title="Set the “all subnets are local” flag"></a>Set the “all subnets are local” flag</h1><p>#dhcp-option=27,1</p>
+<h1 id="Send-the-etherboot-magic-flag-and-then-etherboot-options-a-string"><a href="#Send-the-etherboot-magic-flag-and-then-etherboot-options-a-string" class="headerlink" title="Send the etherboot magic flag and then etherboot options (a string)."></a>Send the etherboot magic flag and then etherboot options (a string).</h1><p>#dhcp-option=128,e4:45:74:68:00:00</p>
+<p>#dhcp-option=129,NIC=eepro100</p>
+<h1 id="Specify-an-option-which-will-only-be-sent-to-the-“red”-network"><a href="#Specify-an-option-which-will-only-be-sent-to-the-“red”-network" class="headerlink" title="Specify an option which will only be sent to the “red” network"></a>Specify an option which will only be sent to the “red” network</h1><h1 id="see-dhcp-range-for-the-declaration-of-the-“red”-network"><a href="#see-dhcp-range-for-the-declaration-of-the-“red”-network" class="headerlink" title="(see dhcp-range for the declaration of the “red” network)"></a>(see dhcp-range for the declaration of the “red” network)</h1><h1 id="Note-that-the-net-part-must-precede-the-option-part"><a href="#Note-that-the-net-part-must-precede-the-option-part" class="headerlink" title="Note that the net: part must precede the option: part."></a>Note that the net: part must precede the option: part.</h1><p>#dhcp-option = net:red, option:ntp-server, 192.168.1.1</p>
+<h1 id="The-following-DHCP-options-set-up-dnsmasq-in-the-same-way-as-is-specified"><a href="#The-following-DHCP-options-set-up-dnsmasq-in-the-same-way-as-is-specified" class="headerlink" title="The following DHCP options set up dnsmasq in the same way as is specified"></a>The following DHCP options set up dnsmasq in the same way as is specified</h1><h1 id="for-the-ISC-dhcpcd-in"><a href="#for-the-ISC-dhcpcd-in" class="headerlink" title="for the ISC dhcpcd in"></a>for the ISC dhcpcd in</h1><h1 id="http-www-samba-org-samba-ftp-docs-textdocs-DHCP-Server-Configuration-txt"><a href="#http-www-samba-org-samba-ftp-docs-textdocs-DHCP-Server-Configuration-txt" class="headerlink" title="http://www.samba.org/samba/ftp/docs/textdocs/DHCP-Server-Configuration.txt"></a><a href="http://www.samba.org/samba/ftp/docs/textdocs/DHCP-Server-Configuration.txt" target="_blank" rel="noopener">http://www.samba.org/samba/ftp/docs/textdocs/DHCP-Server-Configuration.txt</a></h1><h1 id="adapted-for-a-typical-dnsmasq-installation-where-the-host-running"><a href="#adapted-for-a-typical-dnsmasq-installation-where-the-host-running" class="headerlink" title="adapted for a typical dnsmasq installation where the host running"></a>adapted for a typical dnsmasq installation where the host running</h1><h1 id="dnsmasq-is-also-the-host-running-samba"><a href="#dnsmasq-is-also-the-host-running-samba" class="headerlink" title="dnsmasq is also the host running samba."></a>dnsmasq is also the host running samba.</h1><h1 id="you-may-want-to-uncomment-some-or-all-of-them-if-you-use"><a href="#you-may-want-to-uncomment-some-or-all-of-them-if-you-use" class="headerlink" title="you may want to uncomment some or all of them if you use"></a>you may want to uncomment some or all of them if you use</h1><h1 id="Windows-clients-and-Samba"><a href="#Windows-clients-and-Samba" class="headerlink" title="Windows clients and Samba."></a>Windows clients and Samba.</h1><p>#dhcp-option=19,0           # option ip-forwarding off</p>
+<p>#dhcp-option=44,0.0.0.0     # set netbios-over-TCP/IP nameserver(s) aka WINS server(s)</p>
+<p>#dhcp-option=45,0.0.0.0     # netbios datagram distribution server</p>
+<p>#dhcp-option=46,8           # netbios node type</p>
+<h1 id="Send-RFC-3397-DNS-domain-search-DHCP-option-WARNING-Your-DHCP-client"><a href="#Send-RFC-3397-DNS-domain-search-DHCP-option-WARNING-Your-DHCP-client" class="headerlink" title="Send RFC-3397 DNS domain search DHCP option. WARNING: Your DHCP client"></a>Send RFC-3397 DNS domain search DHCP option. WARNING: Your DHCP client</h1><h1 id="probably-doesn’t-support-this……"><a href="#probably-doesn’t-support-this……" class="headerlink" title="probably doesn’t support this……"></a>probably doesn’t support this……</h1><p>#dhcp-option=option:domain-search,eng.apple.com,marketing.apple.com</p>
+<h1 id="Send-RFC-3442-classless-static-routes-note-the-netmask-encoding"><a href="#Send-RFC-3442-classless-static-routes-note-the-netmask-encoding" class="headerlink" title="Send RFC-3442 classless static routes (note the netmask encoding)"></a>Send RFC-3442 classless static routes (note the netmask encoding)</h1><p>#dhcp-option=121,192.168.1.0/24,1.2.3.4,10.0.0.0/8,5.6.7.8</p>
+<h1 id="Send-vendor-class-specific-options-encapsulated-in-DHCP-option-43"><a href="#Send-vendor-class-specific-options-encapsulated-in-DHCP-option-43" class="headerlink" title="Send vendor-class specific options encapsulated in DHCP option 43."></a>Send vendor-class specific options encapsulated in DHCP option 43.</h1><h1 id="The-meaning-of-the-options-is-defined-by-the-vendor-class-so"><a href="#The-meaning-of-the-options-is-defined-by-the-vendor-class-so" class="headerlink" title="The meaning of the options is defined by the vendor-class so"></a>The meaning of the options is defined by the vendor-class so</h1><h1 id="options-are-sent-only-when-the-client-supplied-vendor-class"><a href="#options-are-sent-only-when-the-client-supplied-vendor-class" class="headerlink" title="options are sent only when the client supplied vendor class"></a>options are sent only when the client supplied vendor class</h1><h1 id="matches-the-class-given-here-A-substring-match-is-OK-so-“MSFT”"><a href="#matches-the-class-given-here-A-substring-match-is-OK-so-“MSFT”" class="headerlink" title="matches the class given here. (A substring match is OK, so “MSFT”"></a>matches the class given here. (A substring match is OK, so “MSFT”</h1><h1 id="matches-“MSFT”-and-“MSFT-5-0”-This-example-sets-the"><a href="#matches-“MSFT”-and-“MSFT-5-0”-This-example-sets-the" class="headerlink" title="matches “MSFT” and “MSFT 5.0”). This example sets the"></a>matches “MSFT” and “MSFT 5.0”). This example sets the</h1><h1 id="mtftp-address-to-0-0-0-0-for-PXEClients"><a href="#mtftp-address-to-0-0-0-0-for-PXEClients" class="headerlink" title="mtftp address to 0.0.0.0 for PXEClients."></a>mtftp address to 0.0.0.0 for PXEClients.</h1><p>#dhcp-option=vendor:PXEClient,1,0.0.0.0</p>
+<h1 id="Send-microsoft-specific-option-to-tell-windows-to-release-the-DHCP-lease"><a href="#Send-microsoft-specific-option-to-tell-windows-to-release-the-DHCP-lease" class="headerlink" title="Send microsoft-specific option to tell windows to release the DHCP lease"></a>Send microsoft-specific option to tell windows to release the DHCP lease</h1><h1 id="when-it-shuts-down-Note-the-“i”-flag-to-tell-dnsmasq-to-send-the"><a href="#when-it-shuts-down-Note-the-“i”-flag-to-tell-dnsmasq-to-send-the" class="headerlink" title="when it shuts down. Note the “i” flag, to tell dnsmasq to send the"></a>when it shuts down. Note the “i” flag, to tell dnsmasq to send the</h1><h1 id="value-as-a-four-byte-integer-that’s-what-microsoft-wants-See"><a href="#value-as-a-four-byte-integer-that’s-what-microsoft-wants-See" class="headerlink" title="value as a four-byte integer - that’s what microsoft wants. See"></a>value as a four-byte integer - that’s what microsoft wants. See</h1><h1 id="http-technet2-microsoft-com-WindowsServer-en-library-a70f1bb7-d2d4-49f0-96d6-4b7414ecfaae1033-mspx-mfr-true"><a href="#http-technet2-microsoft-com-WindowsServer-en-library-a70f1bb7-d2d4-49f0-96d6-4b7414ecfaae1033-mspx-mfr-true" class="headerlink" title="http://technet2.microsoft.com/WindowsServer/en/library/a70f1bb7-d2d4-49f0-96d6-4b7414ecfaae1033.mspx?mfr=true"></a><a href="http://technet2.microsoft.com/WindowsServer/en/library/a70f1bb7-d2d4-49f0-96d6-4b7414ecfaae1033.mspx?mfr=true" target="_blank" rel="noopener">http://technet2.microsoft.com/WindowsServer/en/library/a70f1bb7-d2d4-49f0-96d6-4b7414ecfaae1033.mspx?mfr=true</a></h1><p>#dhcp-option=vendor:MSFT,2,1i</p>
+<h1 id="Send-the-Encapsulated-vendor-class-ID-needed-by-some-configurations-of"><a href="#Send-the-Encapsulated-vendor-class-ID-needed-by-some-configurations-of" class="headerlink" title="Send the Encapsulated-vendor-class ID needed by some configurations of"></a>Send the Encapsulated-vendor-class ID needed by some configurations of</h1><h1 id="Etherboot-to-allow-is-to-recognise-the-DHCP-server"><a href="#Etherboot-to-allow-is-to-recognise-the-DHCP-server" class="headerlink" title="Etherboot to allow is to recognise the DHCP server."></a>Etherboot to allow is to recognise the DHCP server.</h1><p>#dhcp-option=vendor:Etherboot,60,”Etherboot”</p>
+<h1 id="Send-options-to-PXELinux-Note-that-we-need-to-send-the-options-even"><a href="#Send-options-to-PXELinux-Note-that-we-need-to-send-the-options-even" class="headerlink" title="Send options to PXELinux. Note that we need to send the options even"></a>Send options to PXELinux. Note that we need to send the options even</h1><h1 id="though-they-don’t-appear-in-the-parameter-request-list-so-we-need"><a href="#though-they-don’t-appear-in-the-parameter-request-list-so-we-need" class="headerlink" title="though they don’t appear in the parameter request list, so we need"></a>though they don’t appear in the parameter request list, so we need</h1><h1 id="to-use-dhcp-option-force-here"><a href="#to-use-dhcp-option-force-here" class="headerlink" title="to use dhcp-option-force here."></a>to use dhcp-option-force here.</h1><h1 id="See-http-syslinux-zytor-com-pxe-php-special-for-details"><a href="#See-http-syslinux-zytor-com-pxe-php-special-for-details" class="headerlink" title="See http://syslinux.zytor.com/pxe.php#special for details."></a>See <a href="http://syslinux.zytor.com/pxe.php#special" target="_blank" rel="noopener">http://syslinux.zytor.com/pxe.php#special</a> for details.</h1><h1 id="Magic-number-needed-before-anything-else-is-recognised"><a href="#Magic-number-needed-before-anything-else-is-recognised" class="headerlink" title="Magic number - needed before anything else is recognised"></a>Magic number - needed before anything else is recognised</h1><p>#dhcp-option-force=208,f1:00:74:7e</p>
+<h1 id="Configuration-file-name"><a href="#Configuration-file-name" class="headerlink" title="Configuration file name"></a>Configuration file name</h1><p>#dhcp-option-force=209,configs/common</p>
+<h1 id="Path-prefix"><a href="#Path-prefix" class="headerlink" title="Path prefix"></a>Path prefix</h1><p>#dhcp-option-force=210,/tftpboot/pxelinux/files/</p>
+<h1 id="Reboot-time-Note-‘i’-to-send-32-bit-value"><a href="#Reboot-time-Note-‘i’-to-send-32-bit-value" class="headerlink" title="Reboot time. (Note ‘i’ to send 32-bit value)"></a>Reboot time. (Note ‘i’ to send 32-bit value)</h1><p>#dhcp-option-force=211,30i</p>
+<h1 id="Set-the-boot-filename-for-netboot-PXE-You-will-only-need"><a href="#Set-the-boot-filename-for-netboot-PXE-You-will-only-need" class="headerlink" title="Set the boot filename for netboot/PXE. You will only need"></a>Set the boot filename for netboot/PXE. You will only need</h1><h1 id="this-is-you-want-to-boot-machines-over-the-network-and-you-will-need"><a href="#this-is-you-want-to-boot-machines-over-the-network-and-you-will-need" class="headerlink" title="this is you want to boot machines over the network and you will need"></a>this is you want to boot machines over the network and you will need</h1><h1 id="a-TFTP-server-either-dnsmasq’s-built-in-TFTP-server-or-an"><a href="#a-TFTP-server-either-dnsmasq’s-built-in-TFTP-server-or-an" class="headerlink" title="a TFTP server; either dnsmasq’s built in TFTP server or an"></a>a TFTP server; either dnsmasq’s built in TFTP server or an</h1><h1 id="external-one-See-below-for-how-to-enable-the-TFTP-server"><a href="#external-one-See-below-for-how-to-enable-the-TFTP-server" class="headerlink" title="external one. (See below for how to enable the TFTP server.)"></a>external one. (See below for how to enable the TFTP server.)</h1><p>#dhcp-boot=pxelinux.0</p>
+<h1 id="Boot-for-Etherboot-gPXE-The-idea-is-to-send-two-different"><a href="#Boot-for-Etherboot-gPXE-The-idea-is-to-send-two-different" class="headerlink" title="Boot for Etherboot gPXE. The idea is to send two different"></a>Boot for Etherboot gPXE. The idea is to send two different</h1><h1 id="filenames-the-first-loads-gPXE-and-the-second-tells-gPXE-what-to"><a href="#filenames-the-first-loads-gPXE-and-the-second-tells-gPXE-what-to" class="headerlink" title="filenames, the first loads gPXE, and the second tells gPXE what to"></a>filenames, the first loads gPXE, and the second tells gPXE what to</h1><h1 id="load-The-dhcp-match-sets-the-gpxe-tag-for-requests-from-gPXE"><a href="#load-The-dhcp-match-sets-the-gpxe-tag-for-requests-from-gPXE" class="headerlink" title="load. The dhcp-match sets the gpxe tag for requests from gPXE."></a>load. The dhcp-match sets the gpxe tag for requests from gPXE.</h1><p>#dhcp-match=gpxe,175 # gPXE sends a 175 option.</p>
+<p>#dhcp-boot=net:#gpxe,undionly.kpxe</p>
+<p>#dhcp-boot=mybootimage</p>
+<h1 id="Encapsulated-options-for-Etherboot-gPXE-All-the-options-are"><a href="#Encapsulated-options-for-Etherboot-gPXE-All-the-options-are" class="headerlink" title="Encapsulated options for Etherboot gPXE. All the options are"></a>Encapsulated options for Etherboot gPXE. All the options are</h1><h1 id="encapsulated-within-option-175"><a href="#encapsulated-within-option-175" class="headerlink" title="encapsulated within option 175"></a>encapsulated within option 175</h1><p>#dhcp-option=encap:175, 1, 5b         # priority code</p>
+<p>#dhcp-option=encap:175, 176, 1b       # no-proxydhcp </p>
+<p>#dhcp-option=encap:175, 177, string   # bus-id </p>
+<p>#dhcp-option=encap:175, 189, 1b       # BIOS drive code</p>
+<p>#dhcp-option=encap:175, 190, user     # iSCSI username</p>
+<p>#dhcp-option=encap:175, 191, pass     # iSCSI password</p>
+<h1 id="Test-for-the-architecture-of-a-netboot-client-PXE-clients-are"><a href="#Test-for-the-architecture-of-a-netboot-client-PXE-clients-are" class="headerlink" title="Test for the architecture of a netboot client. PXE clients are"></a>Test for the architecture of a netboot client. PXE clients are</h1><h1 id="supposed-to-send-their-architecture-as-option-93-See-RFC-4578"><a href="#supposed-to-send-their-architecture-as-option-93-See-RFC-4578" class="headerlink" title="supposed to send their architecture as option 93. (See RFC 4578)"></a>supposed to send their architecture as option 93. (See RFC 4578)</h1><p>#dhcp-match=peecees, option:client-arch, 0 #x86-32</p>
+<p>#dhcp-match=itanics, option:client-arch, 2 #IA64</p>
+<p>#dhcp-match=hammers, option:client-arch, 6 #x86-64</p>
+<p>#dhcp-match=mactels, option:client-arch, 7 #EFI x86-64 </p>
+<h1 id="Do-real-PXE-rather-than-just-booting-a-single-file-this-is-an"><a href="#Do-real-PXE-rather-than-just-booting-a-single-file-this-is-an" class="headerlink" title="Do real PXE, rather than just booting a single file, this is an"></a>Do real PXE, rather than just booting a single file, this is an</h1><h1 id="alternative-to-dhcp-boot"><a href="#alternative-to-dhcp-boot" class="headerlink" title="alternative to dhcp-boot."></a>alternative to dhcp-boot.</h1><p>#pxe-prompt=”What system shall I netboot?”</p>
+<h1 id="or-with-timeout-before-first-available-action-is-taken"><a href="#or-with-timeout-before-first-available-action-is-taken" class="headerlink" title="or with timeout before first available action is taken:"></a>or with timeout before first available action is taken:</h1><p>#pxe-prompt=”Press F8 for menu.”, 60</p>
+<h1 id="Available-boot-services-for-PXE"><a href="#Available-boot-services-for-PXE" class="headerlink" title="Available boot services. for PXE."></a>Available boot services. for PXE.</h1><p>#pxe-service=x86PC, “Boot from local disk”, 0</p>
+<h1 id="Loads-pxelinux-0-from-dnsmasq-TFTP-server"><a href="#Loads-pxelinux-0-from-dnsmasq-TFTP-server" class="headerlink" title="Loads /pxelinux.0 from dnsmasq TFTP server."></a>Loads <tftp-root>/pxelinux.0 from dnsmasq TFTP server.</tftp-root></h1><p>#pxe-service=x86PC, “Install Linux”, pxelinux </p>
+<h1 id="Loads-pxelinux-0-from-TFTP-server-at-1-2-3-4"><a href="#Loads-pxelinux-0-from-TFTP-server-at-1-2-3-4" class="headerlink" title="Loads /pxelinux.0 from TFTP server at 1.2.3.4."></a>Loads <tftp-root>/pxelinux.0 from TFTP server at 1.2.3.4.</tftp-root></h1><h1 id="Beware-this-fails-on-old-PXE-ROMS"><a href="#Beware-this-fails-on-old-PXE-ROMS" class="headerlink" title="Beware this fails on old PXE ROMS."></a>Beware this fails on old PXE ROMS.</h1><p>#pxe-service=x86PC, “Install Linux”, pxelinux, 1.2.3.4 </p>
+<h1 id="Use-bootserver-on-network-found-my-multicast-or-broadcast"><a href="#Use-bootserver-on-network-found-my-multicast-or-broadcast" class="headerlink" title="Use bootserver on network, found my multicast or broadcast."></a>Use bootserver on network, found my multicast or broadcast.</h1><p>#pxe-service=x86PC, “Install windows from RIS server”, 1</p>
+<h1 id="Use-bootserver-at-a-known-IP-address"><a href="#Use-bootserver-at-a-known-IP-address" class="headerlink" title="Use bootserver at a known IP address."></a>Use bootserver at a known IP address.</h1><p>#pxe-service=x86PC, “Install windows from RIS server”, 1, 1.2.3.4</p>
+<h1 id="If-you-have-multicast-FTP-available"><a href="#If-you-have-multicast-FTP-available" class="headerlink" title="If you have multicast-FTP available,"></a>If you have multicast-FTP available,</h1><h1 id="information-for-that-can-be-passed-in-a-similar-way-using-options-1"><a href="#information-for-that-can-be-passed-in-a-similar-way-using-options-1" class="headerlink" title="information for that can be passed in a similar way using options 1"></a>information for that can be passed in a similar way using options 1</h1><h1 id="to-5-See-page-19-of"><a href="#to-5-See-page-19-of" class="headerlink" title="to 5. See page 19 of"></a>to 5. See page 19 of</h1><h1 id="http-download-intel-com-design-archives-wfm-downloads-pxespec-pdf"><a href="#http-download-intel-com-design-archives-wfm-downloads-pxespec-pdf" class="headerlink" title="http://download.intel.com/design/archives/wfm/downloads/pxespec.pdf"></a><a href="http://download.intel.com/design/archives/wfm/downloads/pxespec.pdf" target="_blank" rel="noopener">http://download.intel.com/design/archives/wfm/downloads/pxespec.pdf</a></h1><h1 id="Enable-dnsmasq’s-built-in-TFTP-server"><a href="#Enable-dnsmasq’s-built-in-TFTP-server" class="headerlink" title="Enable dnsmasq’s built-in TFTP server"></a>Enable dnsmasq’s built-in TFTP server</h1><p>#enable-tftp</p>
+<h1 id="Set-the-root-directory-for-files-availble-via-FTP"><a href="#Set-the-root-directory-for-files-availble-via-FTP" class="headerlink" title="Set the root directory for files availble via FTP."></a>Set the root directory for files availble via FTP.</h1><p>#tftp-root=/var/ftpd</p>
+<h1 id="Make-the-TFTP-server-more-secure-with-this-set-only-files-owned-by"><a href="#Make-the-TFTP-server-more-secure-with-this-set-only-files-owned-by" class="headerlink" title="Make the TFTP server more secure: with this set, only files owned by"></a>Make the TFTP server more secure: with this set, only files owned by</h1><h1 id="the-user-dnsmasq-is-running-as-will-be-send-over-the-net"><a href="#the-user-dnsmasq-is-running-as-will-be-send-over-the-net" class="headerlink" title="the user dnsmasq is running as will be send over the net."></a>the user dnsmasq is running as will be send over the net.</h1><p>#tftp-secure</p>
+<h1 id="Set-the-boot-file-name-only-when-the-“red”-tag-is-set"><a href="#Set-the-boot-file-name-only-when-the-“red”-tag-is-set" class="headerlink" title="Set the boot file name only when the “red” tag is set."></a>Set the boot file name only when the “red” tag is set.</h1><p>#dhcp-boot=net:red,pxelinux.red-net</p>
+<h1 id="An-example-of-dhcp-boot-with-an-external-TFTP-server-the-name-and-IP"><a href="#An-example-of-dhcp-boot-with-an-external-TFTP-server-the-name-and-IP" class="headerlink" title="An example of dhcp-boot with an external TFTP server: the name and IP"></a>An example of dhcp-boot with an external TFTP server: the name and IP</h1><h1 id="address-of-the-server-are-given-after-the-filename"><a href="#address-of-the-server-are-given-after-the-filename" class="headerlink" title="address of the server are given after the filename."></a>address of the server are given after the filename.</h1><h1 id="Can-fail-with-old-PXE-ROMS-Overridden-by-–pxe-service"><a href="#Can-fail-with-old-PXE-ROMS-Overridden-by-–pxe-service" class="headerlink" title="Can fail with old PXE ROMS. Overridden by –pxe-service."></a>Can fail with old PXE ROMS. Overridden by –pxe-service.</h1><p>#dhcp-boot=/var/ftpd/pxelinux.0,boothost,192.168.0.3</p>
+<h1 id="Set-the-limit-on-DHCP-leases-the-default-is-150"><a href="#Set-the-limit-on-DHCP-leases-the-default-is-150" class="headerlink" title="Set the limit on DHCP leases, the default is 150"></a>Set the limit on DHCP leases, the default is 150</h1><p>#dhcp-lease-max=150</p>
+<h1 id="The-DHCP-server-needs-somewhere-on-disk-to-keep-its-lease-database"><a href="#The-DHCP-server-needs-somewhere-on-disk-to-keep-its-lease-database" class="headerlink" title="The DHCP server needs somewhere on disk to keep its lease database."></a>The DHCP server needs somewhere on disk to keep its lease database.</h1><h1 id="This-defaults-to-a-sane-location-but-if-you-want-to-change-it-use"><a href="#This-defaults-to-a-sane-location-but-if-you-want-to-change-it-use" class="headerlink" title="This defaults to a sane location, but if you want to change it, use"></a>This defaults to a sane location, but if you want to change it, use</h1><h1 id="the-line-below"><a href="#the-line-below" class="headerlink" title="the line below."></a>the line below.</h1><p>#dhcp-leasefile=/var/lib/dnsmasq/dnsmasq.leases</p>
+<h1 id="Set-the-DHCP-server-to-authoritative-mode-In-this-mode-it-will-barge-in"><a href="#Set-the-DHCP-server-to-authoritative-mode-In-this-mode-it-will-barge-in" class="headerlink" title="Set the DHCP server to authoritative mode. In this mode it will barge in"></a>Set the DHCP server to authoritative mode. In this mode it will barge in</h1><h1 id="and-take-over-the-lease-for-any-client-which-broadcasts-on-the-network"><a href="#and-take-over-the-lease-for-any-client-which-broadcasts-on-the-network" class="headerlink" title="and take over the lease for any client which broadcasts on the network,"></a>and take over the lease for any client which broadcasts on the network,</h1><h1 id="whether-it-has-a-record-of-the-lease-or-not-This-avoids-long-timeouts"><a href="#whether-it-has-a-record-of-the-lease-or-not-This-avoids-long-timeouts" class="headerlink" title="whether it has a record of the lease or not. This avoids long timeouts"></a>whether it has a record of the lease or not. This avoids long timeouts</h1><h1 id="when-a-machine-wakes-up-on-a-new-network-DO-NOT-enable-this-if-there’s"><a href="#when-a-machine-wakes-up-on-a-new-network-DO-NOT-enable-this-if-there’s" class="headerlink" title="when a machine wakes up on a new network. DO NOT enable this if there’s"></a>when a machine wakes up on a new network. DO NOT enable this if there’s</h1><h1 id="the-slighest-chance-that-you-might-end-up-accidentally-configuring-a-DHCP"><a href="#the-slighest-chance-that-you-might-end-up-accidentally-configuring-a-DHCP" class="headerlink" title="the slighest chance that you might end up accidentally configuring a DHCP"></a>the slighest chance that you might end up accidentally configuring a DHCP</h1><h1 id="server-for-your-campus-company-accidentally-The-ISC-server-uses"><a href="#server-for-your-campus-company-accidentally-The-ISC-server-uses" class="headerlink" title="server for your campus/company accidentally. The ISC server uses"></a>server for your campus/company accidentally. The ISC server uses</h1><h1 id="the-same-option-and-this-URL-provides-more-information"><a href="#the-same-option-and-this-URL-provides-more-information" class="headerlink" title="the same option, and this URL provides more information:"></a>the same option, and this URL provides more information:</h1><h1 id="http-www-isc-org-index-pl-sw-dhcp-authoritative-php"><a href="#http-www-isc-org-index-pl-sw-dhcp-authoritative-php" class="headerlink" title="http://www.isc.org/index.pl?/sw/dhcp/authoritative.php"></a><a href="http://www.isc.org/index.pl?/sw/dhcp/authoritative.php" target="_blank" rel="noopener">http://www.isc.org/index.pl?/sw/dhcp/authoritative.php</a></h1><p>#dhcp-authoritative</p>
+<h1 id="Run-an-executable-when-a-DHCP-lease-is-created-or-destroyed"><a href="#Run-an-executable-when-a-DHCP-lease-is-created-or-destroyed" class="headerlink" title="Run an executable when a DHCP lease is created or destroyed."></a>Run an executable when a DHCP lease is created or destroyed.</h1><h1 id="The-arguments-sent-to-the-script-are-“add”-or-“del”"><a href="#The-arguments-sent-to-the-script-are-“add”-or-“del”" class="headerlink" title="The arguments sent to the script are “add” or “del”,"></a>The arguments sent to the script are “add” or “del”,</h1><h1 id="then-the-MAC-address-the-IP-address-and-finally-the-hostname"><a href="#then-the-MAC-address-the-IP-address-and-finally-the-hostname" class="headerlink" title="then the MAC address, the IP address and finally the hostname"></a>then the MAC address, the IP address and finally the hostname</h1><h1 id="if-there-is-one"><a href="#if-there-is-one" class="headerlink" title="if there is one."></a>if there is one.</h1><p>#dhcp-script=/bin/echo</p>
+<h1 id="Set-the-cachesize-here"><a href="#Set-the-cachesize-here" class="headerlink" title="Set the cachesize here."></a>Set the cachesize here.</h1><p>#cache-size=150</p>
+<h1 id="If-you-want-to-disable-negative-caching-uncomment-this"><a href="#If-you-want-to-disable-negative-caching-uncomment-this" class="headerlink" title="If you want to disable negative caching, uncomment this."></a>If you want to disable negative caching, uncomment this.</h1><p>#no-negcache</p>
+<h1 id="Normally-responses-which-come-form-etc-hosts-and-the-DHCP-lease"><a href="#Normally-responses-which-come-form-etc-hosts-and-the-DHCP-lease" class="headerlink" title="Normally responses which come form /etc/hosts and the DHCP lease"></a>Normally responses which come form /etc/hosts and the DHCP lease</h1><h1 id="file-have-Time-To-Live-set-as-zero-which-conventionally-means"><a href="#file-have-Time-To-Live-set-as-zero-which-conventionally-means" class="headerlink" title="file have Time-To-Live set as zero, which conventionally means"></a>file have Time-To-Live set as zero, which conventionally means</h1><h1 id="do-not-cache-further-If-you-are-happy-to-trade-lower-load-on-the"><a href="#do-not-cache-further-If-you-are-happy-to-trade-lower-load-on-the" class="headerlink" title="do not cache further. If you are happy to trade lower load on the"></a>do not cache further. If you are happy to trade lower load on the</h1><h1 id="server-for-potentially-stale-date-you-can-set-a-time-to-live-in"><a href="#server-for-potentially-stale-date-you-can-set-a-time-to-live-in" class="headerlink" title="server for potentially stale date, you can set a time-to-live (in"></a>server for potentially stale date, you can set a time-to-live (in</h1><h1 id="seconds-here"><a href="#seconds-here" class="headerlink" title="seconds) here."></a>seconds) here.</h1><p>#local-ttl=</p>
+<h1 id="If-you-want-dnsmasq-to-detect-attempts-by-Verisign-to-send-queries"><a href="#If-you-want-dnsmasq-to-detect-attempts-by-Verisign-to-send-queries" class="headerlink" title="If you want dnsmasq to detect attempts by Verisign to send queries"></a>If you want dnsmasq to detect attempts by Verisign to send queries</h1><h1 id="to-unregistered-com-and-net-hosts-to-its-sitefinder-service-and"><a href="#to-unregistered-com-and-net-hosts-to-its-sitefinder-service-and" class="headerlink" title="to unregistered .com and .net hosts to its sitefinder service and"></a>to unregistered .com and .net hosts to its sitefinder service and</h1><h1 id="have-dnsmasq-instead-return-the-correct-NXDOMAIN-response-uncomment"><a href="#have-dnsmasq-instead-return-the-correct-NXDOMAIN-response-uncomment" class="headerlink" title="have dnsmasq instead return the correct NXDOMAIN response, uncomment"></a>have dnsmasq instead return the correct NXDOMAIN response, uncomment</h1><h1 id="this-line-You-can-add-similar-lines-to-do-the-same-for-other"><a href="#this-line-You-can-add-similar-lines-to-do-the-same-for-other" class="headerlink" title="this line. You can add similar lines to do the same for other"></a>this line. You can add similar lines to do the same for other</h1><h1 id="registries-which-have-implemented-wildcard-A-records"><a href="#registries-which-have-implemented-wildcard-A-records" class="headerlink" title="registries which have implemented wildcard A records."></a>registries which have implemented wildcard A records.</h1><p>#bogus-nxdomain=64.94.110.11</p>
+<h1 id="If-you-want-to-fix-up-DNS-results-from-upstream-servers-use-the"><a href="#If-you-want-to-fix-up-DNS-results-from-upstream-servers-use-the" class="headerlink" title="If you want to fix up DNS results from upstream servers, use the"></a>If you want to fix up DNS results from upstream servers, use the</h1><h1 id="alias-option-This-only-works-for-IPv4"><a href="#alias-option-This-only-works-for-IPv4" class="headerlink" title="alias option. This only works for IPv4."></a>alias option. This only works for IPv4.</h1><h1 id="This-alias-makes-a-result-of-1-2-3-4-appear-as-5-6-7-8"><a href="#This-alias-makes-a-result-of-1-2-3-4-appear-as-5-6-7-8" class="headerlink" title="This alias makes a result of 1.2.3.4 appear as 5.6.7.8"></a>This alias makes a result of 1.2.3.4 appear as 5.6.7.8</h1><p>#alias=1.2.3.4,5.6.7.8</p>
+<h1 id="and-this-maps-1-2-3-x-to-5-6-7-x"><a href="#and-this-maps-1-2-3-x-to-5-6-7-x" class="headerlink" title="and this maps 1.2.3.x to 5.6.7.x"></a>and this maps 1.2.3.x to 5.6.7.x</h1><p>#alias=1.2.3.0,5.6.7.0,255.255.255.0</p>
+<h1 id="and-this-maps-192-168-0-10-gt-192-168-0-40-to-10-0-0-10-gt-10-0-0-40"><a href="#and-this-maps-192-168-0-10-gt-192-168-0-40-to-10-0-0-10-gt-10-0-0-40" class="headerlink" title="and this maps 192.168.0.10-&gt;192.168.0.40 to 10.0.0.10-&gt;10.0.0.40"></a>and this maps 192.168.0.10-&gt;192.168.0.40 to 10.0.0.10-&gt;10.0.0.40</h1><p>#alias=192.168.0.10-192.168.0.40,10.0.0.0,255.255.255.0</p>
+<h1 id="Change-these-lines-if-you-want-dnsmasq-to-serve-MX-records"><a href="#Change-these-lines-if-you-want-dnsmasq-to-serve-MX-records" class="headerlink" title="Change these lines if you want dnsmasq to serve MX records."></a>Change these lines if you want dnsmasq to serve MX records.</h1><h1 id="Return-an-MX-record-named-“maildomain-com”-with-target"><a href="#Return-an-MX-record-named-“maildomain-com”-with-target" class="headerlink" title="Return an MX record named “maildomain.com” with target"></a>Return an MX record named “maildomain.com” with target</h1><h1 id="servermachine-com-and-preference-50"><a href="#servermachine-com-and-preference-50" class="headerlink" title="servermachine.com and preference 50"></a>servermachine.com and preference 50</h1><p>#mx-host=maildomain.com,servermachine.com,50</p>
+<h1 id="Set-the-default-target-for-MX-records-created-using-the-localmx-option"><a href="#Set-the-default-target-for-MX-records-created-using-the-localmx-option" class="headerlink" title="Set the default target for MX records created using the localmx option."></a>Set the default target for MX records created using the localmx option.</h1><p>#mx-target=servermachine.com</p>
+<h1 id="Return-an-MX-record-pointing-to-the-mx-target-for-all-local"><a href="#Return-an-MX-record-pointing-to-the-mx-target-for-all-local" class="headerlink" title="Return an MX record pointing to the mx-target for all local"></a>Return an MX record pointing to the mx-target for all local</h1><h1 id="machines"><a href="#machines" class="headerlink" title="machines."></a>machines.</h1><p>#localmx</p>
+<h1 id="Return-an-MX-record-pointing-to-itself-for-all-local-machines"><a href="#Return-an-MX-record-pointing-to-itself-for-all-local-machines" class="headerlink" title="Return an MX record pointing to itself for all local machines."></a>Return an MX record pointing to itself for all local machines.</h1><p>#selfmx</p>
+<h1 id="Change-the-following-lines-if-you-want-dnsmasq-to-serve-SRV"><a href="#Change-the-following-lines-if-you-want-dnsmasq-to-serve-SRV" class="headerlink" title="Change the following lines if you want dnsmasq to serve SRV"></a>Change the following lines if you want dnsmasq to serve SRV</h1><h1 id="records-These-are-useful-if-you-want-to-serve-ldap-requests-for"><a href="#records-These-are-useful-if-you-want-to-serve-ldap-requests-for" class="headerlink" title="records.  These are useful if you want to serve ldap requests for"></a>records.  These are useful if you want to serve ldap requests for</h1><h1 id="Active-Directory-and-other-windows-originated-DNS-requests"><a href="#Active-Directory-and-other-windows-originated-DNS-requests" class="headerlink" title="Active Directory and other windows-originated DNS requests."></a>Active Directory and other windows-originated DNS requests.</h1><h1 id="See-RFC-2782"><a href="#See-RFC-2782" class="headerlink" title="See RFC 2782."></a>See RFC 2782.</h1><h1 id="You-may-add-multiple-srv-host-lines"><a href="#You-may-add-multiple-srv-host-lines" class="headerlink" title="You may add multiple srv-host lines."></a>You may add multiple srv-host lines.</h1><h1 id="The-fields-are"><a href="#The-fields-are" class="headerlink" title="The fields are ,,,,"></a>The fields are <name>,<target>,<port>,<priority>,<weight></weight></priority></port></target></name></h1><h1 id="If-the-domain-part-if-missing-from-the-name-so-that-is-just-has-the"><a href="#If-the-domain-part-if-missing-from-the-name-so-that-is-just-has-the" class="headerlink" title="If the domain part if missing from the name (so that is just has the"></a>If the domain part if missing from the name (so that is just has the</h1><h1 id="service-and-protocol-sections-then-the-domain-given-by-the-domain"><a href="#service-and-protocol-sections-then-the-domain-given-by-the-domain" class="headerlink" title="service and protocol sections) then the domain given by the domain="></a>service and protocol sections) then the domain given by the domain=</h1><h1 id="config-option-is-used-Note-that-expand-hosts-does-not-need-to-be"><a href="#config-option-is-used-Note-that-expand-hosts-does-not-need-to-be" class="headerlink" title="config option is used. (Note that expand-hosts does not need to be"></a>config option is used. (Note that expand-hosts does not need to be</h1><h1 id="set-for-this-to-work"><a href="#set-for-this-to-work" class="headerlink" title="set for this to work.)"></a>set for this to work.)</h1><h1 id="A-SRV-record-sending-LDAP-for-the-example-com-domain-to"><a href="#A-SRV-record-sending-LDAP-for-the-example-com-domain-to" class="headerlink" title="A SRV record sending LDAP for the example.com domain to"></a>A SRV record sending LDAP for the example.com domain to</h1><h1 id="ldapserver-example-com-port-289"><a href="#ldapserver-example-com-port-289" class="headerlink" title="ldapserver.example.com port 289"></a>ldapserver.example.com port 289</h1><p>#srv-host=_ldap._tcp.example.com,ldapserver.example.com,389</p>
+<h1 id="A-SRV-record-sending-LDAP-for-the-example-com-domain-to-1"><a href="#A-SRV-record-sending-LDAP-for-the-example-com-domain-to-1" class="headerlink" title="A SRV record sending LDAP for the example.com domain to"></a>A SRV record sending LDAP for the example.com domain to</h1><h1 id="ldapserver-example-com-port-289-using-domain"><a href="#ldapserver-example-com-port-289-using-domain" class="headerlink" title="ldapserver.example.com port 289 (using domain=)"></a>ldapserver.example.com port 289 (using domain=)</h1><p>#domain=example.com</p>
+<p>#srv-host=_ldap._tcp,ldapserver.example.com,389</p>
+<h1 id="Two-SRV-records-for-LDAP-each-with-different-priorities"><a href="#Two-SRV-records-for-LDAP-each-with-different-priorities" class="headerlink" title="Two SRV records for LDAP, each with different priorities"></a>Two SRV records for LDAP, each with different priorities</h1><p>#srv-host=_ldap._tcp.example.com,ldapserver.example.com,389,1</p>
+<p>#srv-host=_ldap._tcp.example.com,ldapserver.example.com,389,2</p>
+<h1 id="A-SRV-record-indicating-that-there-is-no-LDAP-server-for-the-domain"><a href="#A-SRV-record-indicating-that-there-is-no-LDAP-server-for-the-domain" class="headerlink" title="A SRV record indicating that there is no LDAP server for the domain"></a>A SRV record indicating that there is no LDAP server for the domain</h1><h1 id="example-com"><a href="#example-com" class="headerlink" title="example.com"></a>example.com</h1><p>#srv-host=_ldap._tcp.example.com</p>
+<h1 id="The-following-line-shows-how-to-make-dnsmasq-serve-an-arbitrary-PTR"><a href="#The-following-line-shows-how-to-make-dnsmasq-serve-an-arbitrary-PTR" class="headerlink" title="The following line shows how to make dnsmasq serve an arbitrary PTR"></a>The following line shows how to make dnsmasq serve an arbitrary PTR</h1><h1 id="record-This-is-useful-for-DNS-SD-Note-that-the"><a href="#record-This-is-useful-for-DNS-SD-Note-that-the" class="headerlink" title="record. This is useful for DNS-SD. (Note that the"></a>record. This is useful for DNS-SD. (Note that the</h1><h1 id="domain-name-expansion-done-for-SRV-records-does-not"><a href="#domain-name-expansion-done-for-SRV-records-does-not" class="headerlink" title="domain-name expansion done for SRV records _does_not"></a>domain-name expansion done for SRV records _does_not</h1><h1 id="occur-for-PTR-records"><a href="#occur-for-PTR-records" class="headerlink" title="occur for PTR records.)"></a>occur for PTR records.)</h1><p>#ptr-record=_http._tcp.dns-sd-services,”New Employee Page._http._tcp.dns-sd-services”</p>
+<h1 id="Change-the-following-lines-to-enable-dnsmasq-to-serve-TXT-records"><a href="#Change-the-following-lines-to-enable-dnsmasq-to-serve-TXT-records" class="headerlink" title="Change the following lines to enable dnsmasq to serve TXT records."></a>Change the following lines to enable dnsmasq to serve TXT records.</h1><h1 id="These-are-used-for-things-like-SPF-and-zeroconf-Note-that-the"><a href="#These-are-used-for-things-like-SPF-and-zeroconf-Note-that-the" class="headerlink" title="These are used for things like SPF and zeroconf. (Note that the"></a>These are used for things like SPF and zeroconf. (Note that the</h1><h1 id="domain-name-expansion-done-for-SRV-records-does-not-1"><a href="#domain-name-expansion-done-for-SRV-records-does-not-1" class="headerlink" title="domain-name expansion done for SRV records _does_not"></a>domain-name expansion done for SRV records _does_not</h1><h1 id="occur-for-TXT-records"><a href="#occur-for-TXT-records" class="headerlink" title="occur for TXT records.)"></a>occur for TXT records.)</h1><p>#Example SPF.</p>
+<p>#txt-record=example.com,”v=spf1 a -all”</p>
+<p>#Example zeroconf</p>
+<p>#txt-record=_http._tcp.example.com,name=value,paper=A4</p>
+<h1 id="Provide-an-alias-for-a-“local”-DNS-name-Note-that-this-only-works"><a href="#Provide-an-alias-for-a-“local”-DNS-name-Note-that-this-only-works" class="headerlink" title="Provide an alias for a “local” DNS name. Note that this only works"></a>Provide an alias for a “local” DNS name. Note that this <em>only</em> works</h1><h1 id="for-targets-which-are-names-from-DHCP-or-etc-hosts-Give-host"><a href="#for-targets-which-are-names-from-DHCP-or-etc-hosts-Give-host" class="headerlink" title="for targets which are names from DHCP or /etc/hosts. Give host"></a>for targets which are names from DHCP or /etc/hosts. Give host</h1><h1 id="“bert”-another-name-bertrand"><a href="#“bert”-another-name-bertrand" class="headerlink" title="“bert” another name, bertrand"></a>“bert” another name, bertrand</h1><p>#cname=bertand,bert</p>
+<h1 id="For-debugging-purposes-log-each-DNS-query-as-it-passes-through"><a href="#For-debugging-purposes-log-each-DNS-query-as-it-passes-through" class="headerlink" title="For debugging purposes, log each DNS query as it passes through"></a>For debugging purposes, log each DNS query as it passes through</h1><h1 id="dnsmasq"><a href="#dnsmasq" class="headerlink" title="dnsmasq."></a>dnsmasq.</h1><p>#log-queries</p>
+<h1 id="Log-lots-of-extra-information-about-DHCP-transactions"><a href="#Log-lots-of-extra-information-about-DHCP-transactions" class="headerlink" title="Log lots of extra information about DHCP transactions."></a>Log lots of extra information about DHCP transactions.</h1><p>#log-dhcp</p>
+<h1 id="Include-a-another-lot-of-configuration-options"><a href="#Include-a-another-lot-of-configuration-options" class="headerlink" title="Include a another lot of configuration options."></a>Include a another lot of configuration options.</h1><p>#conf-file=/etc/dnsmasq.more.conf</p>
+<p>#conf-dir=/etc/dnsmasq.d</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dnsmasq/" rel="tag"># dnsmasq</a>
+          
+            <a href="/tags/conf/" rel="tag"># conf</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/26/Shadowsocks服务器端的搭建/" rel="next" title="Shadowsocks服务器端的搭建(请善用返回功能)">
+                <i class="fa fa-chevron-left"></i> Shadowsocks服务器端的搭建(请善用返回功能)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/28/dnsmasq-conf(中文版)/" rel="prev" title="dnsmasq-conf(中文版)">
+                dnsmasq-conf(中文版) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="pancc" />
+            
+              <p class="site-author-name" itemprop="name">pancc</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuration-file-for-dnsmasq"><span class="nav-number">1.</span> <span class="nav-text">Configuration file for dnsmasq.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Format-is-one-option-per-line-legal-options-are-the-same"><span class="nav-number">2.</span> <span class="nav-text">Format is one option per line, legal options are the same</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#as-the-long-options-legal-on-the-command-line-See"><span class="nav-number">3.</span> <span class="nav-text">as the long options legal on the command line. See</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“-usr-sbin-dnsmasq-–help”-or-“man-8-dnsmasq”-for-details"><span class="nav-number">4.</span> <span class="nav-text">“/usr/sbin/dnsmasq –help” or “man 8 dnsmasq” for details.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-following-two-options-make-you-a-better-netizen-since-they"><span class="nav-number">5.</span> <span class="nav-text">The following two options make you a better netizen, since they</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tell-dnsmasq-to-filter-out-queries-which-the-public-DNS-cannot"><span class="nav-number">6.</span> <span class="nav-text">tell dnsmasq to filter out queries which the public DNS cannot</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#answer-and-which-load-the-servers-especially-the-root-servers"><span class="nav-number">7.</span> <span class="nav-text">answer, and which load the servers (especially the root servers)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#uneccessarily-If-you-have-a-dial-on-demand-link-they-also-stop"><span class="nav-number">8.</span> <span class="nav-text">uneccessarily. If you have a dial-on-demand link they also stop</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#these-requests-from-bringing-up-the-link-uneccessarily"><span class="nav-number">9.</span> <span class="nav-text">these requests from bringing up the link uneccessarily.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Never-forward-plain-names-without-a-dot-or-domain-part"><span class="nav-number">10.</span> <span class="nav-text">Never forward plain names (without a dot or domain part)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Never-forward-addresses-in-the-non-routed-address-spaces"><span class="nav-number">11.</span> <span class="nav-text">Never forward addresses in the non-routed address spaces.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Uncomment-this-to-filter-useless-windows-originated-DNS-requests"><span class="nav-number">12.</span> <span class="nav-text">Uncomment this to filter useless windows-originated DNS requests</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#which-can-trigger-dial-on-demand-links-needlessly"><span class="nav-number">13.</span> <span class="nav-text">which can trigger dial-on-demand links needlessly.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Note-that-amongst-other-things-this-blocks-all-SRV-requests"><span class="nav-number">14.</span> <span class="nav-text">Note that (amongst other things) this blocks all SRV requests,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#so-don’t-use-it-if-you-use-eg-Kerberos-SIP-XMMP-or-Google-talk"><span class="nav-number">15.</span> <span class="nav-text">so don’t use it if you use eg Kerberos, SIP, XMMP or Google-talk.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-option-only-affects-forwarding-SRV-records-originating-for"><span class="nav-number">16.</span> <span class="nav-text">This option only affects forwarding, SRV records originating for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dnsmasq-via-srv-host-lines-are-not-suppressed-by-it"><span class="nav-number">17.</span> <span class="nav-text">dnsmasq (via srv-host= lines) are not suppressed by it.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Change-this-line-if-you-want-dns-to-get-its-upstream-servers-from"><span class="nav-number">18.</span> <span class="nav-text">Change this line if you want dns to get its upstream servers from</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#somewhere-other-that-etc-resolv-conf"><span class="nav-number">19.</span> <span class="nav-text">somewhere other that /etc/resolv.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#By-default-dnsmasq-will-send-queries-to-any-of-the-upstream"><span class="nav-number">20.</span> <span class="nav-text">By  default,  dnsmasq  will  send queries to any of the upstream</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#servers-it-knows-about-and-tries-to-favour-servers-to-are-known"><span class="nav-number">21.</span> <span class="nav-text">servers it knows about and tries to favour servers to are  known</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-be-up-Uncommenting-this-forces-dnsmasq-to-try-each-query"><span class="nav-number">22.</span> <span class="nav-text">to  be  up.  Uncommenting this forces dnsmasq to try each query</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#with-each-server-strictly-in-the-order-they-appear-in"><span class="nav-number">23.</span> <span class="nav-text">with  each  server  strictly  in  the  order  they   appear   in</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#etc-resolv-conf"><span class="nav-number">24.</span> <span class="nav-text">/etc/resolv.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-don’t-want-dnsmasq-to-read-etc-resolv-conf-or-any-other"><span class="nav-number">25.</span> <span class="nav-text">If you don’t want dnsmasq to read /etc/resolv.conf or any other</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#file-getting-its-servers-from-this-file-instead-see-below-then"><span class="nav-number">26.</span> <span class="nav-text">file, getting its servers from this file instead (see below), then</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#uncomment-this"><span class="nav-number">27.</span> <span class="nav-text">uncomment this.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-don’t-want-dnsmasq-to-poll-etc-resolv-conf-or-other-resolv"><span class="nav-number">28.</span> <span class="nav-text">If you don’t want dnsmasq to poll /etc/resolv.conf or other resolv</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#files-for-changes-and-re-read-them-then-uncomment-this"><span class="nav-number">29.</span> <span class="nav-text">files for changes and re-read them then uncomment this.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-other-name-servers-here-with-domain-specs-if-they-are-for"><span class="nav-number">30.</span> <span class="nav-text">Add other name servers here, with domain specs if they are for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#non-public-domains"><span class="nav-number">31.</span> <span class="nav-text">non-public domains.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-of-routing-PTR-queries-to-nameservers-this-will-send-all"><span class="nav-number">32.</span> <span class="nav-text">Example of routing PTR queries to nameservers: this will send all</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#address-gt-name-queries-for-192-168-3-24-to-nameserver-10-1-2-3"><span class="nav-number">33.</span> <span class="nav-text">address-&gt;name queries for 192.168.3/24 to nameserver 10.1.2.3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-local-only-domains-here-queries-in-these-domains-are-answered"><span class="nav-number">34.</span> <span class="nav-text">Add local-only domains here, queries in these domains are answered</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#from-etc-hosts-or-DHCP-only"><span class="nav-number">35.</span> <span class="nav-text">from /etc/hosts or DHCP only.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-domains-which-you-want-to-force-to-an-IP-address-here"><span class="nav-number">36.</span> <span class="nav-text">Add domains which you want to force to an IP address here.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-example-below-send-any-host-in-doubleclick-net-to-a-local"><span class="nav-number">37.</span> <span class="nav-text">The example below send any host in doubleclick.net to a local</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webserver"><span class="nav-number">38.</span> <span class="nav-text">webserver.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#–address-and-–server-work-with-IPv6-addresses-too"><span class="nav-number">39.</span> <span class="nav-text">–address (and –server) work with IPv6 addresses too.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You-can-control-how-dnsmasq-talks-to-a-server-this-forces"><span class="nav-number">40.</span> <span class="nav-text">You can control how dnsmasq talks to a server: this forces</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#queries-to-10-1-2-3-to-be-routed-via-eth1"><span class="nav-number">41.</span> <span class="nav-text">queries to 10.1.2.3 to be routed via eth1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#–server-10-1-2-3-eth1"><span class="nav-number">42.</span> <span class="nav-text">–server=10.1.2.3@eth1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#and-this-sets-the-source-ie-local-address-used-to-talk-to"><span class="nav-number">43.</span> <span class="nav-text">and this sets the source (ie local) address used to talk to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-1-2-3-to-192-168-1-1-port-55-there-must-be-a-interface-with-that"><span class="nav-number">44.</span> <span class="nav-text">10.1.2.3 to 192.168.1.1 port 55 (there must be a interface with that</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP-on-the-machine-obviously"><span class="nav-number">45.</span> <span class="nav-text">IP on the machine, obviously).</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#–server-10-1-2-3-192-168-1-1-55"><span class="nav-number">46.</span> <span class="nav-text">–server=10.1.2.3@192.168.1.1#55</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-want-dnsmasq-to-change-uid-and-gid-to-something-other"><span class="nav-number">47.</span> <span class="nav-text">If you want dnsmasq to change uid and gid to something other</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#than-the-default-edit-the-following-lines"><span class="nav-number">48.</span> <span class="nav-text">than the default, edit the following lines.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-want-dnsmasq-to-listen-for-DHCP-and-DNS-requests-only-on"><span class="nav-number">49.</span> <span class="nav-text">If you want dnsmasq to listen for DHCP and DNS requests only on</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#specified-interfaces-and-the-loopback-give-the-name-of-the"><span class="nav-number">50.</span> <span class="nav-text">specified interfaces (and the loopback) give the name of the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#interface-eg-eth0-here"><span class="nav-number">51.</span> <span class="nav-text">interface (eg eth0) here.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Repeat-the-line-for-more-than-one-interface"><span class="nav-number">52.</span> <span class="nav-text">Repeat the line for more than one interface.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Or-you-can-specify-which-interface-not-to-listen-on"><span class="nav-number">53.</span> <span class="nav-text">Or you can specify which interface not to listen on</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Or-which-to-listen-on-by-address-remember-to-include-127-0-0-1-if"><span class="nav-number">54.</span> <span class="nav-text">Or which to listen on by address (remember to include 127.0.0.1 if</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#you-use-this"><span class="nav-number">55.</span> <span class="nav-text">you use this.)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-want-dnsmasq-to-provide-only-DNS-service-on-an-interface"><span class="nav-number">56.</span> <span class="nav-text">If you want dnsmasq to provide only DNS service on an interface,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#configure-it-as-shown-above-and-then-use-the-following-line-to"><span class="nav-number">57.</span> <span class="nav-text">configure it as shown above, and then use the following line to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#disable-DHCP-on-it"><span class="nav-number">58.</span> <span class="nav-text">disable DHCP on it.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#On-systems-which-support-it-dnsmasq-binds-the-wildcard-address"><span class="nav-number">59.</span> <span class="nav-text">On systems which support it, dnsmasq binds the wildcard address,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#even-when-it-is-listening-on-only-some-interfaces-It-then-discards"><span class="nav-number">60.</span> <span class="nav-text">even when it is listening on only some interfaces. It then discards</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#requests-that-it-shouldn’t-reply-to-This-has-the-advantage-of"><span class="nav-number">61.</span> <span class="nav-text">requests that it shouldn’t reply to. This has the advantage of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#working-even-when-interfaces-come-and-go-and-change-address-If-you"><span class="nav-number">62.</span> <span class="nav-text">working even when interfaces come and go and change address. If you</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#want-dnsmasq-to-really-bind-only-the-interfaces-it-is-listening-on"><span class="nav-number">63.</span> <span class="nav-text">want dnsmasq to really bind only the interfaces it is listening on,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#uncomment-this-option-About-the-only-time-you-may-need-this-is-when"><span class="nav-number">64.</span> <span class="nav-text">uncomment this option. About the only time you may need this is when</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#running-another-nameserver-on-the-same-machine"><span class="nav-number">65.</span> <span class="nav-text">running another nameserver on the same machine.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-don’t-want-dnsmasq-to-read-etc-hosts-uncomment-the"><span class="nav-number">66.</span> <span class="nav-text">If you don’t want dnsmasq to read /etc/hosts, uncomment the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#following-line"><span class="nav-number">67.</span> <span class="nav-text">following line.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-if-you-want-it-to-read-another-file-as-well-as-etc-hosts-use"><span class="nav-number">68.</span> <span class="nav-text">or if you want it to read another file, as well as /etc/hosts, use</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this"><span class="nav-number">69.</span> <span class="nav-text">this.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-this-and-domain-see-below-if-you-want-to-have-a-domain"><span class="nav-number">70.</span> <span class="nav-text">Set this (and domain: see below) if you want to have a domain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#automatically-added-to-simple-names-in-a-hosts-file"><span class="nav-number">71.</span> <span class="nav-text">automatically added to simple names in a hosts-file.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-domain-for-dnsmasq-this-is-optional-but-if-it-is-set-it"><span class="nav-number">72.</span> <span class="nav-text">Set the domain for dnsmasq. this is optional, but if it is set, it</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#does-the-following-things"><span class="nav-number">73.</span> <span class="nav-text">does the following things.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Allows-DHCP-hosts-to-have-fully-qualified-domain-names-as-long"><span class="nav-number">74.</span> <span class="nav-text">1) Allows DHCP hosts to have fully qualified domain names, as long</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#as-the-domain-part-matches-this-setting"><span class="nav-number">75.</span> <span class="nav-text">as the domain part matches this setting.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Sets-the-“domain”-DHCP-option-thereby-potentially-setting-the"><span class="nav-number">76.</span> <span class="nav-text">2) Sets the “domain” DHCP option thereby potentially setting the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#domain-of-all-systems-configured-by-DHCP"><span class="nav-number">77.</span> <span class="nav-text">domain of all systems configured by DHCP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Provides-the-domain-part-for-“expand-hosts”"><span class="nav-number">78.</span> <span class="nav-text">3) Provides the domain part for “expand-hosts”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-a-different-domain-for-a-particular-subnet"><span class="nav-number">79.</span> <span class="nav-text">Set a different domain for a particular subnet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Same-idea-but-range-rather-then-subnet"><span class="nav-number">80.</span> <span class="nav-text">Same idea, but range rather then subnet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Uncomment-this-to-enable-the-integrated-DHCP-server-you-need"><span class="nav-number">81.</span> <span class="nav-text">Uncomment this to enable the integrated DHCP server, you need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-supply-the-range-of-addresses-available-for-lease-and-optionally"><span class="nav-number">82.</span> <span class="nav-text">to supply the range of addresses available for lease and optionally</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-lease-time-If-you-have-more-than-one-network-you-will-need-to"><span class="nav-number">83.</span> <span class="nav-text">a lease time. If you have more than one network, you will need to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#repeat-this-for-each-network-on-which-you-want-to-supply-DHCP"><span class="nav-number">84.</span> <span class="nav-text">repeat this for each network on which you want to supply DHCP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#service"><span class="nav-number">85.</span> <span class="nav-text">service.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-is-an-example-of-a-DHCP-range-where-the-netmask-is-given-This"><span class="nav-number">86.</span> <span class="nav-text">This is an example of a DHCP range where the netmask is given. This</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#is-needed-for-networks-we-reach-the-dnsmasq-DHCP-server-via-a-relay"><span class="nav-number">87.</span> <span class="nav-text">is needed for networks we reach the dnsmasq DHCP server via a relay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#agent-If-you-don’t-know-what-a-DHCP-relay-agent-is-you-probably"><span class="nav-number">88.</span> <span class="nav-text">agent. If you don’t know what a DHCP relay agent is, you probably</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#don’t-need-to-worry-about-this"><span class="nav-number">89.</span> <span class="nav-text">don’t need to worry about this.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-is-an-example-of-a-DHCP-range-with-a-network-id-so-that"><span class="nav-number">90.</span> <span class="nav-text">This is an example of a DHCP range with a network-id, so that</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#some-DHCP-options-may-be-set-only-for-this-network"><span class="nav-number">91.</span> <span class="nav-text">some DHCP options may be set only for this network.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Supply-parameters-for-specified-hosts-using-DHCP-There-are-lots"><span class="nav-number">92.</span> <span class="nav-text">Supply parameters for specified hosts using DHCP. There are lots</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#of-valid-alternatives-so-we-will-give-examples-of-each-Note-that"><span class="nav-number">93.</span> <span class="nav-text">of valid alternatives, so we will give examples of each. Note that</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP-addresses-DO-NOT-have-to-be-in-the-range-given-above-they-just"><span class="nav-number">94.</span> <span class="nav-text">IP addresses DO NOT have to be in the range given above, they just</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#need-to-be-on-the-same-network-The-order-of-the-parameters-in-these"><span class="nav-number">95.</span> <span class="nav-text">need to be on the same network. The order of the parameters in these</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#do-not-matter-it’s-permissble-to-give-name-adddress-and-MAC-in-any-order"><span class="nav-number">96.</span> <span class="nav-text">do not matter, it’s permissble to give name,adddress and MAC in any order</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Always-allocate-the-host-with-ethernet-address-11-22-33-44-55-66"><span class="nav-number">97.</span> <span class="nav-text">Always allocate the host with ethernet address 11:22:33:44:55:66</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-IP-address-192-168-0-60"><span class="nav-number">98.</span> <span class="nav-text">The IP address 192.168.0.60</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Always-set-the-name-of-the-host-with-hardware-address"><span class="nav-number">99.</span> <span class="nav-text">Always set the name of the host with hardware address</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-22-33-44-55-66-to-be-“fred”"><span class="nav-number">100.</span> <span class="nav-text">11:22:33:44:55:66 to be “fred”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Always-give-the-host-with-ethernet-address-11-22-33-44-55-66"><span class="nav-number">101.</span> <span class="nav-text">Always give the host with ethernet address 11:22:33:44:55:66</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-name-fred-and-IP-address-192-168-0-60-and-lease-time-45-minutes"><span class="nav-number">102.</span> <span class="nav-text">the name fred and IP address 192.168.0.60 and lease time 45 minutes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Give-a-host-with-ethernet-address-11-22-33-44-55-66-or"><span class="nav-number">103.</span> <span class="nav-text">Give a host with ethernet address 11:22:33:44:55:66 or</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-34-56-78-90-12-the-IP-address-192-168-0-60-Dnsmasq-will-assume"><span class="nav-number">104.</span> <span class="nav-text">12:34:56:78:90:12 the IP address 192.168.0.60. Dnsmasq will assume</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#that-these-two-ethernet-interfaces-will-never-be-in-use-at-the-same"><span class="nav-number">105.</span> <span class="nav-text">that these two ethernet interfaces will never be in use at the same</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#time-and-give-the-IP-address-to-the-second-even-if-it-is-already"><span class="nav-number">106.</span> <span class="nav-text">time, and give the IP address to the second, even if it is already</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in-use-by-the-first-Useful-for-laptops-with-wired-and-wireless"><span class="nav-number">107.</span> <span class="nav-text">in use by the first. Useful for laptops with wired and wireless</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#addresses"><span class="nav-number">108.</span> <span class="nav-text">addresses.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Give-the-machine-which-says-its-name-is-“bert”-IP-address"><span class="nav-number">109.</span> <span class="nav-text">Give the machine which says its name is “bert” IP address</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#192-168-0-70-and-an-infinite-lease"><span class="nav-number">110.</span> <span class="nav-text">192.168.0.70 and an infinite lease</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Always-give-the-host-with-client-identifier-01-02-02-04"><span class="nav-number">111.</span> <span class="nav-text">Always give the host with client identifier 01:02:02:04</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-IP-address-192-168-0-60"><span class="nav-number">112.</span> <span class="nav-text">the IP address 192.168.0.60</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Always-give-the-host-with-client-identifier-“marjorie”"><span class="nav-number">113.</span> <span class="nav-text">Always give the host with client identifier “marjorie”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-IP-address-192-168-0-60-1"><span class="nav-number">114.</span> <span class="nav-text">the IP address 192.168.0.60</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enable-the-address-given-for-“judge”-in-etc-hosts"><span class="nav-number">115.</span> <span class="nav-text">Enable the address given for “judge” in /etc/hosts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-be-given-to-a-machine-presenting-the-name-“judge”-when"><span class="nav-number">116.</span> <span class="nav-text">to be given to a machine presenting the name “judge” when</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#it-asks-for-a-DHCP-lease"><span class="nav-number">117.</span> <span class="nav-text">it asks for a DHCP lease.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Never-offer-DHCP-service-to-a-machine-whose-ethernet"><span class="nav-number">118.</span> <span class="nav-text">Never offer DHCP service to a machine whose ethernet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#address-is-11-22-33-44-55-66"><span class="nav-number">119.</span> <span class="nav-text">address is 11:22:33:44:55:66</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ignore-any-client-id-presented-by-the-machine-with-ethernet"><span class="nav-number">120.</span> <span class="nav-text">Ignore any client-id presented by the machine with ethernet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#address-11-22-33-44-55-66-This-is-useful-to-prevent-a-machine"><span class="nav-number">121.</span> <span class="nav-text">address 11:22:33:44:55:66. This is useful to prevent a machine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#being-treated-differently-when-running-under-different-OS’s-or"><span class="nav-number">122.</span> <span class="nav-text">being treated differently when running under different OS’s or</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#between-PXE-boot-and-OS-boot"><span class="nav-number">123.</span> <span class="nav-text">between PXE boot and OS boot.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-extra-options-which-are-tagged-as-“red”-to"><span class="nav-number">124.</span> <span class="nav-text">Send extra options which are tagged as “red” to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-machine-with-ethernet-address-11-22-33-44-55-66"><span class="nav-number">125.</span> <span class="nav-text">the machine with ethernet address 11:22:33:44:55:66</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-extra-options-which-are-tagged-as-“red”-to-1"><span class="nav-number">126.</span> <span class="nav-text">Send extra options which are tagged as “red” to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#any-machine-with-ethernet-address-starting-11-22-33"><span class="nav-number">127.</span> <span class="nav-text">any machine with ethernet address starting 11:22:33:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ignore-any-clients-which-are-specified-in-dhcp-host-lines"><span class="nav-number">128.</span> <span class="nav-text">Ignore any clients which are specified in dhcp-host lines</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-etc-ethers-Equivalent-to-ISC-“deny-unkown-clients”"><span class="nav-number">129.</span> <span class="nav-text">or /etc/ethers. Equivalent to ISC “deny unkown-clients”.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-relies-on-the-special-“known”-tag-which-is-set-when"><span class="nav-number">130.</span> <span class="nav-text">This relies on the special “known” tag which is set when</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-host-is-matched"><span class="nav-number">131.</span> <span class="nav-text">a host is matched.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-extra-options-which-are-tagged-as-“red”-to-any-machine-whose"><span class="nav-number">132.</span> <span class="nav-text">Send extra options which are tagged as “red” to any machine whose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP-vendorclass-string-includes-the-substring-“Linux”"><span class="nav-number">133.</span> <span class="nav-text">DHCP vendorclass string includes the substring “Linux”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-extra-options-which-are-tagged-as-“red”-to-any-machine-one"><span class="nav-number">134.</span> <span class="nav-text">Send extra options which are tagged as “red” to any machine one</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#of-whose-DHCP-userclass-strings-includes-the-substring-“accounts”"><span class="nav-number">135.</span> <span class="nav-text">of whose DHCP userclass strings includes the substring “accounts”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-extra-options-which-are-tagged-as-“red”-to-any-machine-whose-1"><span class="nav-number">136.</span> <span class="nav-text">Send extra options which are tagged as “red” to any machine whose</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MAC-address-matches-the-pattern"><span class="nav-number">137.</span> <span class="nav-text">MAC address matches the pattern.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-this-line-is-uncommented-dnsmasq-will-read-etc-ethers-and-act"><span class="nav-number">138.</span> <span class="nav-text">If this line is uncommented, dnsmasq will read /etc/ethers and act</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#on-the-ethernet-address-IP-pairs-found-there-just-as-if-they-had"><span class="nav-number">139.</span> <span class="nav-text">on the ethernet-address/IP pairs found there just as if they had</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#been-given-as-–dhcp-host-options-Useful-if-you-keep"><span class="nav-number">140.</span> <span class="nav-text">been given as –dhcp-host options. Useful if you keep</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MAC-address-host-mappings-there-for-other-purposes"><span class="nav-number">141.</span> <span class="nav-text">MAC-address/host mappings there for other purposes.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-options-to-hosts-which-ask-for-a-DHCP-lease"><span class="nav-number">142.</span> <span class="nav-text">Send options to hosts which ask for a DHCP lease.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#See-RFC-2132-for-details-of-available-options"><span class="nav-number">143.</span> <span class="nav-text">See RFC 2132 for details of available options.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Common-options-can-be-given-to-dnsmasq-by-name"><span class="nav-number">144.</span> <span class="nav-text">Common options can be given to dnsmasq by name:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#run-“dnsmasq-–help-dhcp”-to-get-a-list"><span class="nav-number">145.</span> <span class="nav-text">run “dnsmasq –help dhcp” to get a list.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Note-that-all-the-common-settings-such-as-netmask-and"><span class="nav-number">146.</span> <span class="nav-text">Note that all the common settings, such as netmask and</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#broadcast-address-DNS-server-and-default-route-are-given"><span class="nav-number">147.</span> <span class="nav-text">broadcast address, DNS server and default route, are given</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sane-defaults-by-dnsmasq-You-very-likely-will-not-need"><span class="nav-number">148.</span> <span class="nav-text">sane defaults by dnsmasq. You very likely will not need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#any-dhcp-options-If-you-use-Windows-clients-and-Samba-there"><span class="nav-number">149.</span> <span class="nav-text">any dhcp-options. If you use Windows clients and Samba, there</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#are-some-options-which-are-recommended-they-are-detailed-at-the"><span class="nav-number">150.</span> <span class="nav-text">are some options which are recommended, they are detailed at the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#end-of-this-section"><span class="nav-number">151.</span> <span class="nav-text">end of this section.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Override-the-default-route-supplied-by-dnsmasq-which-assumes-the"><span class="nav-number">152.</span> <span class="nav-text">Override the default route supplied by dnsmasq, which assumes the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#router-is-the-same-machine-as-the-one-running-dnsmasq"><span class="nav-number">153.</span> <span class="nav-text">router is the same machine as the one running dnsmasq.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Do-the-same-thing-but-using-the-option-name"><span class="nav-number">154.</span> <span class="nav-text">Do the same thing, but using the option name</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Override-the-default-route-supplied-by-dnsmasq-and-send-no-default"><span class="nav-number">155.</span> <span class="nav-text">Override the default route supplied by dnsmasq and send no default</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#route-at-all-Note-that-this-only-works-for-the-options-sent-by"><span class="nav-number">156.</span> <span class="nav-text">route at all. Note that this only works for the options sent by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#default-1-3-6-12-28-the-same-line-will-send-a-zero-length-option"><span class="nav-number">157.</span> <span class="nav-text">default (1, 3, 6, 12, 28) the same line will send a zero-length option</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-all-other-option-numbers"><span class="nav-number">158.</span> <span class="nav-text">for all other option numbers.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-NTP-time-server-addresses-to-192-168-0-4-and-10-10-0-5"><span class="nav-number">159.</span> <span class="nav-text">Set the NTP time server addresses to 192.168.0.4 and 10.10.0.5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-NTP-time-server-address-to-be-the-same-machine-as"><span class="nav-number">160.</span> <span class="nav-text">Set the NTP time server address to be the same machine as</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#is-running-dnsmasq"><span class="nav-number">161.</span> <span class="nav-text">is running dnsmasq</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-NIS-domain-name-to-“welly”"><span class="nav-number">162.</span> <span class="nav-text">Set the NIS domain name to “welly”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-default-time-to-live-to-50"><span class="nav-number">163.</span> <span class="nav-text">Set the default time-to-live to 50</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-“all-subnets-are-local”-flag"><span class="nav-number">164.</span> <span class="nav-text">Set the “all subnets are local” flag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-the-etherboot-magic-flag-and-then-etherboot-options-a-string"><span class="nav-number">165.</span> <span class="nav-text">Send the etherboot magic flag and then etherboot options (a string).</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Specify-an-option-which-will-only-be-sent-to-the-“red”-network"><span class="nav-number">166.</span> <span class="nav-text">Specify an option which will only be sent to the “red” network</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#see-dhcp-range-for-the-declaration-of-the-“red”-network"><span class="nav-number">167.</span> <span class="nav-text">(see dhcp-range for the declaration of the “red” network)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Note-that-the-net-part-must-precede-the-option-part"><span class="nav-number">168.</span> <span class="nav-text">Note that the net: part must precede the option: part.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-following-DHCP-options-set-up-dnsmasq-in-the-same-way-as-is-specified"><span class="nav-number">169.</span> <span class="nav-text">The following DHCP options set up dnsmasq in the same way as is specified</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-the-ISC-dhcpcd-in"><span class="nav-number">170.</span> <span class="nav-text">for the ISC dhcpcd in</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-www-samba-org-samba-ftp-docs-textdocs-DHCP-Server-Configuration-txt"><span class="nav-number">171.</span> <span class="nav-text">http://www.samba.org/samba/ftp/docs/textdocs/DHCP-Server-Configuration.txt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#adapted-for-a-typical-dnsmasq-installation-where-the-host-running"><span class="nav-number">172.</span> <span class="nav-text">adapted for a typical dnsmasq installation where the host running</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dnsmasq-is-also-the-host-running-samba"><span class="nav-number">173.</span> <span class="nav-text">dnsmasq is also the host running samba.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#you-may-want-to-uncomment-some-or-all-of-them-if-you-use"><span class="nav-number">174.</span> <span class="nav-text">you may want to uncomment some or all of them if you use</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows-clients-and-Samba"><span class="nav-number">175.</span> <span class="nav-text">Windows clients and Samba.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-RFC-3397-DNS-domain-search-DHCP-option-WARNING-Your-DHCP-client"><span class="nav-number">176.</span> <span class="nav-text">Send RFC-3397 DNS domain search DHCP option. WARNING: Your DHCP client</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#probably-doesn’t-support-this……"><span class="nav-number">177.</span> <span class="nav-text">probably doesn’t support this……</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-RFC-3442-classless-static-routes-note-the-netmask-encoding"><span class="nav-number">178.</span> <span class="nav-text">Send RFC-3442 classless static routes (note the netmask encoding)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-vendor-class-specific-options-encapsulated-in-DHCP-option-43"><span class="nav-number">179.</span> <span class="nav-text">Send vendor-class specific options encapsulated in DHCP option 43.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-meaning-of-the-options-is-defined-by-the-vendor-class-so"><span class="nav-number">180.</span> <span class="nav-text">The meaning of the options is defined by the vendor-class so</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#options-are-sent-only-when-the-client-supplied-vendor-class"><span class="nav-number">181.</span> <span class="nav-text">options are sent only when the client supplied vendor class</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matches-the-class-given-here-A-substring-match-is-OK-so-“MSFT”"><span class="nav-number">182.</span> <span class="nav-text">matches the class given here. (A substring match is OK, so “MSFT”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matches-“MSFT”-and-“MSFT-5-0”-This-example-sets-the"><span class="nav-number">183.</span> <span class="nav-text">matches “MSFT” and “MSFT 5.0”). This example sets the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mtftp-address-to-0-0-0-0-for-PXEClients"><span class="nav-number">184.</span> <span class="nav-text">mtftp address to 0.0.0.0 for PXEClients.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-microsoft-specific-option-to-tell-windows-to-release-the-DHCP-lease"><span class="nav-number">185.</span> <span class="nav-text">Send microsoft-specific option to tell windows to release the DHCP lease</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#when-it-shuts-down-Note-the-“i”-flag-to-tell-dnsmasq-to-send-the"><span class="nav-number">186.</span> <span class="nav-text">when it shuts down. Note the “i” flag, to tell dnsmasq to send the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#value-as-a-four-byte-integer-that’s-what-microsoft-wants-See"><span class="nav-number">187.</span> <span class="nav-text">value as a four-byte integer - that’s what microsoft wants. See</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-technet2-microsoft-com-WindowsServer-en-library-a70f1bb7-d2d4-49f0-96d6-4b7414ecfaae1033-mspx-mfr-true"><span class="nav-number">188.</span> <span class="nav-text">http://technet2.microsoft.com/WindowsServer/en/library/a70f1bb7-d2d4-49f0-96d6-4b7414ecfaae1033.mspx?mfr=true</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-the-Encapsulated-vendor-class-ID-needed-by-some-configurations-of"><span class="nav-number">189.</span> <span class="nav-text">Send the Encapsulated-vendor-class ID needed by some configurations of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Etherboot-to-allow-is-to-recognise-the-DHCP-server"><span class="nav-number">190.</span> <span class="nav-text">Etherboot to allow is to recognise the DHCP server.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Send-options-to-PXELinux-Note-that-we-need-to-send-the-options-even"><span class="nav-number">191.</span> <span class="nav-text">Send options to PXELinux. Note that we need to send the options even</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#though-they-don’t-appear-in-the-parameter-request-list-so-we-need"><span class="nav-number">192.</span> <span class="nav-text">though they don’t appear in the parameter request list, so we need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-use-dhcp-option-force-here"><span class="nav-number">193.</span> <span class="nav-text">to use dhcp-option-force here.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#See-http-syslinux-zytor-com-pxe-php-special-for-details"><span class="nav-number">194.</span> <span class="nav-text">See http://syslinux.zytor.com/pxe.php#special for details.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Magic-number-needed-before-anything-else-is-recognised"><span class="nav-number">195.</span> <span class="nav-text">Magic number - needed before anything else is recognised</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuration-file-name"><span class="nav-number">196.</span> <span class="nav-text">Configuration file name</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Path-prefix"><span class="nav-number">197.</span> <span class="nav-text">Path prefix</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reboot-time-Note-‘i’-to-send-32-bit-value"><span class="nav-number">198.</span> <span class="nav-text">Reboot time. (Note ‘i’ to send 32-bit value)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-boot-filename-for-netboot-PXE-You-will-only-need"><span class="nav-number">199.</span> <span class="nav-text">Set the boot filename for netboot/PXE. You will only need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this-is-you-want-to-boot-machines-over-the-network-and-you-will-need"><span class="nav-number">200.</span> <span class="nav-text">this is you want to boot machines over the network and you will need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-TFTP-server-either-dnsmasq’s-built-in-TFTP-server-or-an"><span class="nav-number">201.</span> <span class="nav-text">a TFTP server; either dnsmasq’s built in TFTP server or an</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#external-one-See-below-for-how-to-enable-the-TFTP-server"><span class="nav-number">202.</span> <span class="nav-text">external one. (See below for how to enable the TFTP server.)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Boot-for-Etherboot-gPXE-The-idea-is-to-send-two-different"><span class="nav-number">203.</span> <span class="nav-text">Boot for Etherboot gPXE. The idea is to send two different</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#filenames-the-first-loads-gPXE-and-the-second-tells-gPXE-what-to"><span class="nav-number">204.</span> <span class="nav-text">filenames, the first loads gPXE, and the second tells gPXE what to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#load-The-dhcp-match-sets-the-gpxe-tag-for-requests-from-gPXE"><span class="nav-number">205.</span> <span class="nav-text">load. The dhcp-match sets the gpxe tag for requests from gPXE.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Encapsulated-options-for-Etherboot-gPXE-All-the-options-are"><span class="nav-number">206.</span> <span class="nav-text">Encapsulated options for Etherboot gPXE. All the options are</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#encapsulated-within-option-175"><span class="nav-number">207.</span> <span class="nav-text">encapsulated within option 175</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-for-the-architecture-of-a-netboot-client-PXE-clients-are"><span class="nav-number">208.</span> <span class="nav-text">Test for the architecture of a netboot client. PXE clients are</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#supposed-to-send-their-architecture-as-option-93-See-RFC-4578"><span class="nav-number">209.</span> <span class="nav-text">supposed to send their architecture as option 93. (See RFC 4578)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Do-real-PXE-rather-than-just-booting-a-single-file-this-is-an"><span class="nav-number">210.</span> <span class="nav-text">Do real PXE, rather than just booting a single file, this is an</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#alternative-to-dhcp-boot"><span class="nav-number">211.</span> <span class="nav-text">alternative to dhcp-boot.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or-with-timeout-before-first-available-action-is-taken"><span class="nav-number">212.</span> <span class="nav-text">or with timeout before first available action is taken:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Available-boot-services-for-PXE"><span class="nav-number">213.</span> <span class="nav-text">Available boot services. for PXE.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loads-pxelinux-0-from-dnsmasq-TFTP-server"><span class="nav-number">214.</span> <span class="nav-text">Loads /pxelinux.0 from dnsmasq TFTP server.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loads-pxelinux-0-from-TFTP-server-at-1-2-3-4"><span class="nav-number">215.</span> <span class="nav-text">Loads /pxelinux.0 from TFTP server at 1.2.3.4.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Beware-this-fails-on-old-PXE-ROMS"><span class="nav-number">216.</span> <span class="nav-text">Beware this fails on old PXE ROMS.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Use-bootserver-on-network-found-my-multicast-or-broadcast"><span class="nav-number">217.</span> <span class="nav-text">Use bootserver on network, found my multicast or broadcast.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Use-bootserver-at-a-known-IP-address"><span class="nav-number">218.</span> <span class="nav-text">Use bootserver at a known IP address.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-have-multicast-FTP-available"><span class="nav-number">219.</span> <span class="nav-text">If you have multicast-FTP available,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#information-for-that-can-be-passed-in-a-similar-way-using-options-1"><span class="nav-number">220.</span> <span class="nav-text">information for that can be passed in a similar way using options 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-5-See-page-19-of"><span class="nav-number">221.</span> <span class="nav-text">to 5. See page 19 of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-download-intel-com-design-archives-wfm-downloads-pxespec-pdf"><span class="nav-number">222.</span> <span class="nav-text">http://download.intel.com/design/archives/wfm/downloads/pxespec.pdf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enable-dnsmasq’s-built-in-TFTP-server"><span class="nav-number">223.</span> <span class="nav-text">Enable dnsmasq’s built-in TFTP server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-root-directory-for-files-availble-via-FTP"><span class="nav-number">224.</span> <span class="nav-text">Set the root directory for files availble via FTP.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Make-the-TFTP-server-more-secure-with-this-set-only-files-owned-by"><span class="nav-number">225.</span> <span class="nav-text">Make the TFTP server more secure: with this set, only files owned by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-user-dnsmasq-is-running-as-will-be-send-over-the-net"><span class="nav-number">226.</span> <span class="nav-text">the user dnsmasq is running as will be send over the net.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-boot-file-name-only-when-the-“red”-tag-is-set"><span class="nav-number">227.</span> <span class="nav-text">Set the boot file name only when the “red” tag is set.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#An-example-of-dhcp-boot-with-an-external-TFTP-server-the-name-and-IP"><span class="nav-number">228.</span> <span class="nav-text">An example of dhcp-boot with an external TFTP server: the name and IP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#address-of-the-server-are-given-after-the-filename"><span class="nav-number">229.</span> <span class="nav-text">address of the server are given after the filename.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Can-fail-with-old-PXE-ROMS-Overridden-by-–pxe-service"><span class="nav-number">230.</span> <span class="nav-text">Can fail with old PXE ROMS. Overridden by –pxe-service.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-limit-on-DHCP-leases-the-default-is-150"><span class="nav-number">231.</span> <span class="nav-text">Set the limit on DHCP leases, the default is 150</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-DHCP-server-needs-somewhere-on-disk-to-keep-its-lease-database"><span class="nav-number">232.</span> <span class="nav-text">The DHCP server needs somewhere on disk to keep its lease database.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-defaults-to-a-sane-location-but-if-you-want-to-change-it-use"><span class="nav-number">233.</span> <span class="nav-text">This defaults to a sane location, but if you want to change it, use</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-line-below"><span class="nav-number">234.</span> <span class="nav-text">the line below.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-DHCP-server-to-authoritative-mode-In-this-mode-it-will-barge-in"><span class="nav-number">235.</span> <span class="nav-text">Set the DHCP server to authoritative mode. In this mode it will barge in</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#and-take-over-the-lease-for-any-client-which-broadcasts-on-the-network"><span class="nav-number">236.</span> <span class="nav-text">and take over the lease for any client which broadcasts on the network,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#whether-it-has-a-record-of-the-lease-or-not-This-avoids-long-timeouts"><span class="nav-number">237.</span> <span class="nav-text">whether it has a record of the lease or not. This avoids long timeouts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#when-a-machine-wakes-up-on-a-new-network-DO-NOT-enable-this-if-there’s"><span class="nav-number">238.</span> <span class="nav-text">when a machine wakes up on a new network. DO NOT enable this if there’s</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-slighest-chance-that-you-might-end-up-accidentally-configuring-a-DHCP"><span class="nav-number">239.</span> <span class="nav-text">the slighest chance that you might end up accidentally configuring a DHCP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#server-for-your-campus-company-accidentally-The-ISC-server-uses"><span class="nav-number">240.</span> <span class="nav-text">server for your campus/company accidentally. The ISC server uses</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#the-same-option-and-this-URL-provides-more-information"><span class="nav-number">241.</span> <span class="nav-text">the same option, and this URL provides more information:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#http-www-isc-org-index-pl-sw-dhcp-authoritative-php"><span class="nav-number">242.</span> <span class="nav-text">http://www.isc.org/index.pl?/sw/dhcp/authoritative.php</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Run-an-executable-when-a-DHCP-lease-is-created-or-destroyed"><span class="nav-number">243.</span> <span class="nav-text">Run an executable when a DHCP lease is created or destroyed.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-arguments-sent-to-the-script-are-“add”-or-“del”"><span class="nav-number">244.</span> <span class="nav-text">The arguments sent to the script are “add” or “del”,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#then-the-MAC-address-the-IP-address-and-finally-the-hostname"><span class="nav-number">245.</span> <span class="nav-text">then the MAC address, the IP address and finally the hostname</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-there-is-one"><span class="nav-number">246.</span> <span class="nav-text">if there is one.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-cachesize-here"><span class="nav-number">247.</span> <span class="nav-text">Set the cachesize here.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-want-to-disable-negative-caching-uncomment-this"><span class="nav-number">248.</span> <span class="nav-text">If you want to disable negative caching, uncomment this.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Normally-responses-which-come-form-etc-hosts-and-the-DHCP-lease"><span class="nav-number">249.</span> <span class="nav-text">Normally responses which come form /etc/hosts and the DHCP lease</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#file-have-Time-To-Live-set-as-zero-which-conventionally-means"><span class="nav-number">250.</span> <span class="nav-text">file have Time-To-Live set as zero, which conventionally means</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#do-not-cache-further-If-you-are-happy-to-trade-lower-load-on-the"><span class="nav-number">251.</span> <span class="nav-text">do not cache further. If you are happy to trade lower load on the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#server-for-potentially-stale-date-you-can-set-a-time-to-live-in"><span class="nav-number">252.</span> <span class="nav-text">server for potentially stale date, you can set a time-to-live (in</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#seconds-here"><span class="nav-number">253.</span> <span class="nav-text">seconds) here.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-want-dnsmasq-to-detect-attempts-by-Verisign-to-send-queries"><span class="nav-number">254.</span> <span class="nav-text">If you want dnsmasq to detect attempts by Verisign to send queries</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-unregistered-com-and-net-hosts-to-its-sitefinder-service-and"><span class="nav-number">255.</span> <span class="nav-text">to unregistered .com and .net hosts to its sitefinder service and</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#have-dnsmasq-instead-return-the-correct-NXDOMAIN-response-uncomment"><span class="nav-number">256.</span> <span class="nav-text">have dnsmasq instead return the correct NXDOMAIN response, uncomment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this-line-You-can-add-similar-lines-to-do-the-same-for-other"><span class="nav-number">257.</span> <span class="nav-text">this line. You can add similar lines to do the same for other</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#registries-which-have-implemented-wildcard-A-records"><span class="nav-number">258.</span> <span class="nav-text">registries which have implemented wildcard A records.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-you-want-to-fix-up-DNS-results-from-upstream-servers-use-the"><span class="nav-number">259.</span> <span class="nav-text">If you want to fix up DNS results from upstream servers, use the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#alias-option-This-only-works-for-IPv4"><span class="nav-number">260.</span> <span class="nav-text">alias option. This only works for IPv4.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#This-alias-makes-a-result-of-1-2-3-4-appear-as-5-6-7-8"><span class="nav-number">261.</span> <span class="nav-text">This alias makes a result of 1.2.3.4 appear as 5.6.7.8</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#and-this-maps-1-2-3-x-to-5-6-7-x"><span class="nav-number">262.</span> <span class="nav-text">and this maps 1.2.3.x to 5.6.7.x</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#and-this-maps-192-168-0-10-gt-192-168-0-40-to-10-0-0-10-gt-10-0-0-40"><span class="nav-number">263.</span> <span class="nav-text">and this maps 192.168.0.10-&gt;192.168.0.40 to 10.0.0.10-&gt;10.0.0.40</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Change-these-lines-if-you-want-dnsmasq-to-serve-MX-records"><span class="nav-number">264.</span> <span class="nav-text">Change these lines if you want dnsmasq to serve MX records.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Return-an-MX-record-named-“maildomain-com”-with-target"><span class="nav-number">265.</span> <span class="nav-text">Return an MX record named “maildomain.com” with target</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#servermachine-com-and-preference-50"><span class="nav-number">266.</span> <span class="nav-text">servermachine.com and preference 50</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-the-default-target-for-MX-records-created-using-the-localmx-option"><span class="nav-number">267.</span> <span class="nav-text">Set the default target for MX records created using the localmx option.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Return-an-MX-record-pointing-to-the-mx-target-for-all-local"><span class="nav-number">268.</span> <span class="nav-text">Return an MX record pointing to the mx-target for all local</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#machines"><span class="nav-number">269.</span> <span class="nav-text">machines.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Return-an-MX-record-pointing-to-itself-for-all-local-machines"><span class="nav-number">270.</span> <span class="nav-text">Return an MX record pointing to itself for all local machines.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Change-the-following-lines-if-you-want-dnsmasq-to-serve-SRV"><span class="nav-number">271.</span> <span class="nav-text">Change the following lines if you want dnsmasq to serve SRV</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#records-These-are-useful-if-you-want-to-serve-ldap-requests-for"><span class="nav-number">272.</span> <span class="nav-text">records.  These are useful if you want to serve ldap requests for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Active-Directory-and-other-windows-originated-DNS-requests"><span class="nav-number">273.</span> <span class="nav-text">Active Directory and other windows-originated DNS requests.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#See-RFC-2782"><span class="nav-number">274.</span> <span class="nav-text">See RFC 2782.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#You-may-add-multiple-srv-host-lines"><span class="nav-number">275.</span> <span class="nav-text">You may add multiple srv-host lines.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-fields-are"><span class="nav-number">276.</span> <span class="nav-text">The fields are ,,,,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#If-the-domain-part-if-missing-from-the-name-so-that-is-just-has-the"><span class="nav-number">277.</span> <span class="nav-text">If the domain part if missing from the name (so that is just has the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#service-and-protocol-sections-then-the-domain-given-by-the-domain"><span class="nav-number">278.</span> <span class="nav-text">service and protocol sections) then the domain given by the domain=</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#config-option-is-used-Note-that-expand-hosts-does-not-need-to-be"><span class="nav-number">279.</span> <span class="nav-text">config option is used. (Note that expand-hosts does not need to be</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set-for-this-to-work"><span class="nav-number">280.</span> <span class="nav-text">set for this to work.)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-SRV-record-sending-LDAP-for-the-example-com-domain-to"><span class="nav-number">281.</span> <span class="nav-text">A SRV record sending LDAP for the example.com domain to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ldapserver-example-com-port-289"><span class="nav-number">282.</span> <span class="nav-text">ldapserver.example.com port 289</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-SRV-record-sending-LDAP-for-the-example-com-domain-to-1"><span class="nav-number">283.</span> <span class="nav-text">A SRV record sending LDAP for the example.com domain to</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ldapserver-example-com-port-289-using-domain"><span class="nav-number">284.</span> <span class="nav-text">ldapserver.example.com port 289 (using domain=)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-SRV-records-for-LDAP-each-with-different-priorities"><span class="nav-number">285.</span> <span class="nav-text">Two SRV records for LDAP, each with different priorities</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-SRV-record-indicating-that-there-is-no-LDAP-server-for-the-domain"><span class="nav-number">286.</span> <span class="nav-text">A SRV record indicating that there is no LDAP server for the domain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#example-com"><span class="nav-number">287.</span> <span class="nav-text">example.com</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-following-line-shows-how-to-make-dnsmasq-serve-an-arbitrary-PTR"><span class="nav-number">288.</span> <span class="nav-text">The following line shows how to make dnsmasq serve an arbitrary PTR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#record-This-is-useful-for-DNS-SD-Note-that-the"><span class="nav-number">289.</span> <span class="nav-text">record. This is useful for DNS-SD. (Note that the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#domain-name-expansion-done-for-SRV-records-does-not"><span class="nav-number">290.</span> <span class="nav-text">domain-name expansion done for SRV records _does_not</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#occur-for-PTR-records"><span class="nav-number">291.</span> <span class="nav-text">occur for PTR records.)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Change-the-following-lines-to-enable-dnsmasq-to-serve-TXT-records"><span class="nav-number">292.</span> <span class="nav-text">Change the following lines to enable dnsmasq to serve TXT records.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#These-are-used-for-things-like-SPF-and-zeroconf-Note-that-the"><span class="nav-number">293.</span> <span class="nav-text">These are used for things like SPF and zeroconf. (Note that the</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#domain-name-expansion-done-for-SRV-records-does-not-1"><span class="nav-number">294.</span> <span class="nav-text">domain-name expansion done for SRV records _does_not</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#occur-for-TXT-records"><span class="nav-number">295.</span> <span class="nav-text">occur for TXT records.)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Provide-an-alias-for-a-“local”-DNS-name-Note-that-this-only-works"><span class="nav-number">296.</span> <span class="nav-text">Provide an alias for a “local” DNS name. Note that this only works</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-targets-which-are-names-from-DHCP-or-etc-hosts-Give-host"><span class="nav-number">297.</span> <span class="nav-text">for targets which are names from DHCP or /etc/hosts. Give host</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#“bert”-another-name-bertrand"><span class="nav-number">298.</span> <span class="nav-text">“bert” another name, bertrand</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For-debugging-purposes-log-each-DNS-query-as-it-passes-through"><span class="nav-number">299.</span> <span class="nav-text">For debugging purposes, log each DNS query as it passes through</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dnsmasq"><span class="nav-number">300.</span> <span class="nav-text">dnsmasq.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Log-lots-of-extra-information-about-DHCP-transactions"><span class="nav-number">301.</span> <span class="nav-text">Log lots of extra information about DHCP transactions.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Include-a-another-lot-of-configuration-options"><span class="nav-number">302.</span> <span class="nav-text">Include a another lot of configuration options.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pancc</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

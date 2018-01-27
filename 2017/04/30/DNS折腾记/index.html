@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="DNS,hosts,dnsmasq,SS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言一直使用人家开源的hosts替换笔记本上的或者Android 手机上的文件, 但是又不免遇到几个问题1.每次都要执行两种替换，电脑和手机上的2.Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n，电脑直接替换，但在对安卓hosts文件替换之前必须在电脑端对文件加工 123用 Notepad++ 打开 hosts 文件 点击菜单中的视图–显示符号">
+<meta name="keywords" content="DNS,hosts,dnsmasq,SS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DNS折腾记">
+<meta property="og:url" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/index.html">
+<meta property="og:site_name" content="未知领域">
+<meta property="og:description" content="前言一直使用人家开源的hosts替换笔记本上的或者Android 手机上的文件, 但是又不免遇到几个问题1.每次都要执行两种替换，电脑和手机上的2.Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n，电脑直接替换，但在对安卓hosts文件替换之前必须在电脑端对文件加工 123用 Notepad++ 打开 hosts 文件 点击菜单中的视图–显示符号">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/idea.gif">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/草泥马.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/捣蒜.gif">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/藐视.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/极路由自定义hosts1.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/极路由自定义hosts2.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/极路由参数.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/bamp.gif">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/疑问.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/疑问.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/喝茶.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/哈哈哈.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/embarrassed.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/wall-lay.gif">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/扇扇子.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/眼神犀利.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/羞羞.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/啊呀呀.gif">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/喝水.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/diu.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/嘿嘿.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/拍肩.gif">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/yellow.gif">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/OK.jpg">
+<meta property="og:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/告辞.jpg">
+<meta property="og:updated_time" content="2017-05-01T10:08:29.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DNS折腾记">
+<meta name="twitter:description" content="前言一直使用人家开源的hosts替换笔记本上的或者Android 手机上的文件, 但是又不免遇到几个问题1.每次都要执行两种替换，电脑和手机上的2.Android 手机 hosts 文件的换行符必须是 \ n 而不是 windows 的 \ r\n，电脑直接替换，但在对安卓hosts文件替换之前必须在电脑端对文件加工 123用 Notepad++ 打开 hosts 文件 点击菜单中的视图–显示符号">
+<meta name="twitter:image" content="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/idea.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/"/>
+
+
+
+
+
+  <title>DNS折腾记 | 未知领域</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">未知领域</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">女装是最吼的</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hexo.mantoujun.top/2017/04/30/DNS折腾记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pancc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="未知领域">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DNS折腾记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-30T00:04:29+08:00">
+                2017-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/DNS/" itemprop="url" rel="index">
+                    <span itemprop="name">DNS</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/DNS/搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">搭建</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><img src="/2017/04/30/DNS折腾记/idea.gif" align="left" alt="idea">一直使用人家开源的<a href="https://github.com/DonQvixote/GoogleHosts.git" target="_blank" rel="noopener">hosts</a>替换笔记本上的或者Android 手机上的文件, 但是又不免遇到几个问题<br><br><br>1.每次都要执行两种替换，电脑和手机上的<br>2.Android 手机 hosts 文件的换行符必须是 <code>\ n</code> 而不是 windows 的 <code>\ r\n</code>，电脑直接替换，但在对安卓hosts文件替换之前必须在电脑端对文件加工</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用 Notepad++ 打开 hosts 文件 </span><br><span class="line">点击菜单中的视图–显示符号–显示所有字符”</span><br><span class="line">将所有 <span class="string">"CR LF"</span> 的换行符换成 <span class="string">"LF "</span></span><br></pre></td></tr></table></figure>
+<p>3.未 root 的 Android 手机和未越狱的 IOS 设备无法修改 hosts 文件<br>这就很卧槽了<img src="/2017/04/30/DNS折腾记/草泥马.jpg" alt="草泥马.jpg">，难道我改个 DNS 记录还要去承担 root  和越狱的未知风险么，于是情节开始有了发展<img src="/2017/04/30/DNS折腾记/捣蒜.gif" alt="捣蒜.gif"></p>
+<h1 id="进入主线"><a href="#进入主线" class="headerlink" title="进入主线"></a>进入主线</h1><p>寻思着从身边的东西下手解决需求，路由器———就是你了嘿嘿<img src="/2017/04/30/DNS折腾记/藐视.jpg" alt="藐视.jpg"><br>路由器的型号是极路由二，既然主打智能就应该能用来完成 DNS 解析，再瞅瞅插件，发现彩蛋一枚<br><img src="/2017/04/30/DNS折腾记/极路由自定义hosts1.jpg" alt="极路由自定义hosts1.jpg"><br>安装下来看看详情页面<br><img src="/2017/04/30/DNS折腾记/极路由自定义hosts2.jpg" alt="极路由自定义hosts2.jpg">，这程序猿还是挺懂人心的，预置了不少域名. 看看使用说明，发现个最大问题———支持条目太少，为什么会这样呢，再去瞅瞅路由器参数<br><img src="/2017/04/30/DNS折腾记/极路由参数.jpg" alt="极路由参数.jpg"></p>
+<p>这参数我给8分，满点100. 不管了先搞搞先<img src="/2017/04/30/DNS折腾记/bamp.gif" alt="idea">.</p>
+
+<p>首先确认好流程，极路底层系统从 LINUX 开发，那么我必须先处理好换行符，然后把全部记录一次性复制进去——插件提示超过限制<img src="/2017/04/30/DNS折腾记/疑问.jpg" alt="疑问.jpg">，一定是哪里搞错了，<br>首先试着把空白行删除再复制——还是超出限制<img src="/2017/04/30/DNS折腾记/疑问.jpg" alt="疑问.jpg"><br>我服，我把注释删掉好了</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">匹配 # 字符删除所在行</span><br></pre></td></tr></table></figure>
+<p>复制进去，<img src="/2017/04/30/DNS折腾记/喝茶.jpg" alt="喝茶.jpg">等插件下载进度慢慢跑完，boom，改一下手机的 DNS 到路由器地址，可以用，真是皆大欢喜<img src="/2017/04/30/DNS折腾记/哈哈哈.jpg" alt="哈哈哈.jpg"><br>再偷懒一点，用 winscp 进入路由器<code>etc</code> 目录找到 hosts 文件，直接将仅执行换行的记录文本复制进去，重启下路由器，测试一下，貌似工作正常，再进去查看下文件，简直了——直接少了一半的记录，我还是选择插件大法吧——停，好像这跟我的出发点不太一样，为什么我想要偷懒反而变得复杂了<img src="/2017/04/30/DNS折腾记/embarrassed.jpg" alt="embarrassed.jpg"><br>总之先问问度娘可行的替代方法~<br>先逛逛极路由官方论坛，简直了，hosts 修改全是吐槽难用的，然后下边给出的解决方法是换个360路由——我 Dr.com 认证就是用修改版极路由做的，不干——主要是懒癌<img src="/2017/04/30/DNS折腾记/wall-lay.gif" alt="wall-lay.gif"><br>事到如今我只能祭出杀手锏了——腾讯云上边的主机，要不我自建个 DNS 服务器吧</p>
+<hr>
+<h1 id="主线二号"><a href="#主线二号" class="headerlink" title="主线二号"></a>主线二号</h1><p>服务器上跑的是CentOs系统，这下有搞头<img src="/2017/04/30/DNS折腾记/扇扇子.jpg" alt="扇扇子.jpg">，找找可选方案，java环境?玩不开，滚蛋. python环境？还是玩不开，滚犊子. 捕捉到一个特别的——DNSmasq，原生方案，高度可定制<br><img src="/2017/04/30/DNS折腾记/眼神犀利.jpg" alt="眼神犀利.jpg">，就是你了. 下边全程使用winscp跟putty软件.<br>找到<code>dnsmasq-conf</code>文件，参照网上各种不负责任复制粘贴的博客内容，翻译一下文件指引<a href="../../28/dnsmasq-conf%28%E4%B8%AD%E6%96%87%E7%89%88%29/index.html">中文参照指引</a>，开始搞事<img src="/2017/04/30/DNS折腾记/羞羞.jpg" alt="羞羞.jpg"><br>先写好基础的配置</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">no-resolv  <span class="comment">//不使用/etc/resolv.conf指定上游 DNS 服务器，直接下方给出</span></span><br><span class="line">server=<span class="number">119.29</span>.<span class="number">29.29</span></span><br><span class="line">server=<span class="number">114.114</span>.<span class="number">114.114</span>  <span class="comment">//上游服务器选用了腾讯和114</span></span><br><span class="line">server=/<span class="selector-class">.edu</span><span class="selector-class">.cn</span>/<span class="number">222.200</span>.<span class="number">115.251</span> <span class="comment">//针对校园网内访问使用校内 DNS </span></span><br><span class="line">server=/google.com/<span class="number">139</span><span class="selector-class">.x</span><span class="selector-class">.x</span><span class="selector-class">.x</span> <span class="comment">//避免谷歌用自己的dns重定向，强制转向自己的服务器地址</span></span><br><span class="line">addn-hosts=/etc/dnsmasq<span class="selector-class">.host</span> <span class="comment">//挂载hosts文件</span></span><br></pre></td></tr></table></figure>
+<p><code>dnsmasq-conf</code>文件中还可加入特别的解析地址和广告屏蔽，比如我就为了日服fgo 加入了如下配置</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">address=/data.fate-go.jp/<span class="number">54.230</span><span class="number">.249</span><span class="number">.7</span></span><br><span class="line">address=/view.fate-go.jp/<span class="number">54.192</span><span class="number">.75</span><span class="number">.120</span></span><br><span class="line">address=/ocsp.digicert.com/<span class="number">117.18</span><span class="number">.237</span><span class="number">.29</span></span><br></pre></td></tr></table></figure>
+<p>当然上边的地址不知道什么时候会失效. 获得主机名的方法是用shadowscks记录 DNS 记录，这里不展开写<br>然后怎么可能少了 <code>hosts</code> 文件呢，替换好行尾符后复制到<code>/etc/dnsmasq.host</code>文件中.<br>打开putty 连接终端输入<code>sudo service dnsmasq restart</code>重启服务，再输入<code>netstat -tunlp|grep 53</code>测试53端口，正常的话应该跟下边差不多</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_27_70_centos ~]# netstat -tunlp|grep <span class="number">53</span></span><br><span class="line">tcp        <span class="number">0</span>      <span class="number">0</span> <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">53</span>                  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>:*                   LIST                    EN      <span class="number">4226</span>/dnsmasq</span><br><span class="line">udp        <span class="number">0</span>      <span class="number">0</span> <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>:<span class="number">53</span>                  <span class="number">0.0</span><span class="meta">.0</span><span class="meta">.0</span>:*                                                   <span class="number">4226</span>/dnsmasq</span><br></pre></td></tr></table></figure>
+<p>然后修改本地 DNS 地址,<br>本机 cmd 指令 <code>ipconfig /flushdns</code>, 打开谷歌应用商店，正常显示内容<img src="/2017/04/30/DNS折腾记/啊呀呀.gif" alt="啊呀呀.gif">，真是太愉快了<br>咳咳，都说人的欲望是满足不了的，到这里我又有了一个奇特的脑洞，想办法让没越狱的 IOS 设备用上这个 DNS <img src="/2017/04/30/DNS折腾记/喝水.jpg" alt="喝水.jpg">但是难度貌似挺大，毕竟网上都没有正确的解决方法，也许我该找找特定的工具——绕道？照着这个思路，剧情逐步走向了升华</p>
+<hr>
+<h1 id="剧情升华"><a href="#剧情升华" class="headerlink" title="剧情升华"></a>剧情升华</h1><p>翻山越岭仍未找到合适的方式，在课上的百无聊赖的我为了肝 fgo 地打开了 shadowsocks，连接上了国外的代理，然后一个激灵果断上网查找 SS 客户端的工作原理，详细过程不做描述，网上各种复制粘贴，请让我这个表情<img src="/2017/04/30/DNS折腾记/diu.jpg" alt="diu.jpg">表达对这些博客主的敬意，之后仅在 wiki 站点找到了数量极少的说明，然后打开了客户端自带的配置文件<code>default.db.conf</code><br>默认的内容如下(仅截图了代表性的部分)</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"># Shadowrocket: 2017-04-30 02:03:21</span><br><span class="line">[General]</span><br><span class="line">bypass-system = true</span><br><span class="line">skip-proxy = <span class="number">192.168</span>.<span class="number">0.0</span>/<span class="number">16</span>,<span class="number">10.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">172.16</span>.<span class="number">0.0</span>/<span class="number">12</span>,localhost,*<span class="selector-class">.local</span>,e<span class="selector-class">.crashlynatics</span><span class="selector-class">.com</span></span><br><span class="line">bypass-tun = <span class="number">0.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">1.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">1.160</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">1.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">10.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">14.0</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">14.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">14.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">14.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">27.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">27.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">27.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">36.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">36.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">36.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">39.0</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">39.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">39.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">42.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">43.224</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">45.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">47.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">49.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">49.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">49.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">54.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">54.191</span>.<span class="number">0.0</span>/<span class="number">16</span>,<span class="number">58.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">58.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">58.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">59.32</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">59.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">59.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">60.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">60.160</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">60.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">61.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">61.64</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">61.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">61.224</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">100.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">101.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">101.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">101.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">103.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">103.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">106.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">106.224</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">110.0</span>.<span class="number">0.0</span>/<span class="number">7</span>,<span class="number">112.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">112.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">112.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">113.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">113.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">113.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">114.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">114.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">114.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">115.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">116.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">117.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">117.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">118.0</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">118.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">118.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">119.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">119.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">119.224</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">120.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">120.64</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">120.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">120.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">120.198</span>.<span class="number">201.0</span>/<span class="number">24</span>,<span class="number">121.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">121.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">122.0</span>.<span class="number">0.0</span>/<span class="number">7</span>,<span class="number">124.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">125.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">125.160</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">125.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">127.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">139.0</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">139.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">140.64</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">140.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">140.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">144.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">144.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">144.224</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">150.0</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">150.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">150.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">150.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">152.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">153.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">153.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">157.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">157.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">157.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">157.224</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">159.224</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">161.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">162.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">163.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">163.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">163.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">163.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">166.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">167.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">167.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">168.160</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">169.254</span>.<span class="number">0.0</span>/<span class="number">16</span>,<span class="number">171.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">171.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">172.16</span>.<span class="number">0.0</span>/<span class="number">12</span>,<span class="number">175.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">175.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">180.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">180.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">182.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">183.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">183.64</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">183.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">192.0</span>.<span class="number">0.0</span>/<span class="number">24</span>,<span class="number">192.0</span>.<span class="number">2.0</span>/<span class="number">24</span>,<span class="number">192.88</span>.<span class="number">99.0</span>/<span class="number">24</span>,<span class="number">192.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">192.160</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">198.18</span>.<span class="number">0.0</span>/<span class="number">15</span>,<span class="number">198.51</span>.<span class="number">100.0</span>/<span class="number">24</span>,<span class="number">202.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">202.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">202.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">203.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">203.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">203.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">210.0</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">210.64</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">210.160</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">210.192</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">211.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">211.128</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">218.0</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">218.160</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">218.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">219.64</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">219.128</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">219.192</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">220.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">220.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">221.0</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">221.96</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">221.128</span>.<span class="number">0.0</span>/<span class="number">9</span>,<span class="number">222.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,<span class="number">223.0</span>.<span class="number">0.0</span>/<span class="number">11</span>,<span class="number">223.64</span>.<span class="number">0.0</span>/<span class="number">10</span>,<span class="number">223.128</span>.<span class="number">0.0</span>/<span class="number">9</span></span><br><span class="line">dns-server = <span class="number">114.114</span>.<span class="number">114.114</span>,<span class="number">119.29</span>.<span class="number">29.29</span>,<span class="number">8.8</span>.<span class="number">8.8</span> </span><br><span class="line">[Rule]</span><br><span class="line">DOMAIN-KEYWORD,google,PROXY,force-remote-dns</span><br><span class="line">DOMAIN-KEYWORD,facebook,PROXY,force-remote-dns</span><br><span class="line">DOMAIN-KEYWORD,gmail,PROXY,force-remote-dns</span><br><span class="line">DOMAIN-SUFFIX,twimg<span class="selector-class">.com</span>,PROXY,force-remote-dns</span><br><span class="line">DOMAIN-SUFFIX,admob<span class="selector-class">.com</span>,REJECT</span><br><span class="line"></span><br><span class="line">DOMAIN-SUFFIX,adview<span class="selector-class">.cn</span>,REJECT</span><br><span class="line">DOMAIN-SUFFIX,adwhirl<span class="selector-class">.com</span>,REJECT</span><br><span class="line">DOMAIN-SUFFIX,adwo<span class="selector-class">.com</span>,REJECT</span><br><span class="line">DOMAIN-SUFFIX,cnzz<span class="selector-class">.com</span>,DIRECT</span><br><span class="line">DOMAIN-SUFFIX,mzstatic<span class="selector-class">.com</span>,PROXY</span><br><span class="line">DOMAIN-SUFFIX,appspot<span class="selector-class">.com</span>,PROXY</span><br><span class="line">DOMAIN-SUFFIX,ykimg<span class="selector-class">.com</span>,DIRECT</span><br><span class="line">DOMAIN-SUFFIX,medium<span class="selector-class">.com</span>,PROXY</span><br><span class="line">DOMAIN-SUFFIX,clashroyaleapp<span class="selector-class">.com</span>,DIRECT</span><br><span class="line">DOMAIN-SUFFIX,bilibili<span class="selector-class">.com</span>,DIRECT</span><br><span class="line">DOMAIN-SUFFIX,bilibili<span class="selector-class">.cn</span>,DIRECT</span><br><span class="line">DOMAIN-SUFFIX,acgvideo<span class="selector-class">.com</span>,DIRECT</span><br><span class="line">DOMAIN-SUFFIX,outlook<span class="selector-class">.com</span>,DIRECT</span><br><span class="line">IP-CIDR,<span class="number">91.108</span>.<span class="number">56.0</span>/<span class="number">22</span>,PROXY</span><br><span class="line">IP-CIDR,<span class="number">91.108</span>.<span class="number">4.0</span>/<span class="number">22</span>,PROXY</span><br><span class="line">IP-CIDR,<span class="number">109.239</span>.<span class="number">140.0</span>/<span class="number">24</span>,PROXY</span><br><span class="line">IP-CIDR,<span class="number">149.154</span>.<span class="number">160.0</span>/<span class="number">20</span>,PROXY</span><br><span class="line">IP-CIDR,<span class="number">192.168</span>.<span class="number">0.0</span>/<span class="number">16</span>,DIRECT</span><br><span class="line">IP-CIDR,<span class="number">10.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,DIRECT</span><br><span class="line">IP-CIDR,<span class="number">172.16</span>.<span class="number">0.0</span>/<span class="number">12</span>,DIRECT</span><br><span class="line">IP-CIDR,<span class="number">127.0</span>.<span class="number">0.0</span>/<span class="number">8</span>,DIRECT</span><br><span class="line">GEOIP,CN,DIRECT</span><br><span class="line">FINAL,PROXY</span><br></pre></td></tr></table></figure>
+<p>上边有几处需要特别注意的</p>
+<ol>
+<li><code>dns-server = 114.114.114.114,119.29.29.29,8.8.8.8</code> //指定dns服务器？</li>
+<li><code>GEOIP,CN,DIRECT</code> //中国域名使用直连方式？</li>
+<li><code>FINAL,PROXY</code>  //其他不在表中的使用代理？</li>
+</ol>
+<p>带着疑问我执行了以下步骤，</p>
+<ol>
+<li>打开 shaowsocks 的流量统计日志,使用预设配置，打开国内百度首页，载入网页后回到软件统计页面，页面数据是<strong>代理流量0 K，直连流量 15K</strong>，关闭 ss 连接，这里十分重要</li>
+<li>打开 ss 连接，打开谷歌相册app，载入一个图片后回到软件统计页面，页面数据是<strong>代理流量50K，直连流量 0 K</strong>，关闭 ss 连接，这里十分重要</li>
+<li>初步判断第二点是正确的</li>
+<li>打开 ss 连接，打开上边未包括在标志 <code>DIRECT</code>行中 的站点，载入网页后回到软件统计页面，页面数据是<strong>代理流量25 K，直连流量 0K</strong>，这里十分重要</li>
+<li>继续判断第三点是正确的</li>
+<li>下载并将列表中 <code>PROXY</code>替换成 <code>DIRECT</code>,删去<code>force-remote-dns</code>语句，并设置为ss 的使用配置文件</li>
+<li>打开 ss 连接，打开上边未包括在标志 <code>DIRECT</code>行中 的站点，载入网页后回到软件统计页面，页面数据是<strong>代理流量0 K，直连流量  25K</strong>，这里十分重要</li>
+<li>更加坚信第三点的正确，同时也产生了一个疑惑——<code>dns-server =</code> 行是否依赖于 ss 服务器的连接状态(生效与否)</li>
+<li>于是我连接上了一个客户端中显示超时的 ss 服务器，手机显示 VPN 其实与服务器连接失败，我设想应该是软件 api 模拟出来的连接状态，并被手机接收</li>
+<li>接着打开上边未包括在标志 <code>DIRECT</code>行中 的站点，载入网页后回到软件统计页面，页面数据是<strong>代理流量0 K，直连流量  25K</strong></li>
+</ol>
+<p>细心人可能就会发现我找到了突破口，<img src="/2017/04/30/DNS折腾记/嘿嘿.jpg" alt="嘿嘿.jpg">没错就是<code>dns-server =</code>行，于是</p>
+<ol>
+<li>我在这里填上了自己的 DNS 服务器地址，接上失效的 SS 服务器，打开了谷歌站点，回到软件统计页面，页面数据是<strong>代理流量0 K，直连流量  26 k</strong><br>我特么终于解决温饱需求了<img src="/2017/04/30/DNS折腾记/拍肩.gif" alt="拍肩.gif">，至此为 未root Android 手机和 未越狱 IOS 设备 提供自定义 DNS 的需求得到了完美解决，你问我翻墙是不是想做一些羞羞的见不得人的事情，我只能送你这个表情了<img src="/2017/04/30/DNS折腾记/yellow.gif" alt="enter description here"></li>
+</ol>
+<hr>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>关于 shadowsocks 的账号，可以在主机上搭建，参见我另一篇文章 “<a href="../../26/Shadowsocks服务器端的搭建/index.html">Shadowsocks服务器端的搭建</a>” ,对了你也许需要一个主机，这里是给学生党的经济选择 “<a href="https://www.qcloud.com/act/campus" target="_blank" rel="noopener">腾讯 云+校园计划</a>” “<a href="https://promotion.aliyun.com/ntms/campus2017.html" target="_blank" rel="noopener">阿里 云翼计划</a>”<br>起初一个很平常微小的需求被我放大到了进行 DNS 服务搭建才能满足的地步，不过在这过程中我学到了不少的东西，当然这些知识可能不太见得了光，但无论如何，有收获就是好的<img src="/2017/04/30/DNS折腾记/OK.jpg" alt="OK.jpg"><br>最后来个告别：祝大家撸得愉快<img src="/2017/04/30/DNS折腾记/告辞.jpg" alt="告辞.jpg"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DNS/" rel="tag"># DNS</a>
+          
+            <a href="/tags/hosts/" rel="tag"># hosts</a>
+          
+            <a href="/tags/dnsmasq/" rel="tag"># dnsmasq</a>
+          
+            <a href="/tags/SS/" rel="tag"># SS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/29/Github上开源的各类书籍/" rel="next" title="GitHub上开源的各类书籍">
+                <i class="fa fa-chevron-left"></i> GitHub上开源的各类书籍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/30/大宇资讯与-Epic-Games-签定-UE4-游戏引擎使用授权/" rel="prev" title="大宇资讯与 Epic Games 签定 UE4 游戏引擎使用授权">
+                大宇资讯与 Epic Games 签定 UE4 游戏引擎使用授权 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="pancc" />
+            
+              <p class="site-author-name" itemprop="name">pancc</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进入主线"><span class="nav-number">2.</span> <span class="nav-text">进入主线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主线二号"><span class="nav-number">3.</span> <span class="nav-text">主线二号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#剧情升华"><span class="nav-number">4.</span> <span class="nav-text">剧情升华</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pancc</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
